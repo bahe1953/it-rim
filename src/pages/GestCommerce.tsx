@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Layers, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function GestCommerce() {
+  const { t } = useLanguage();
+
   return (
     <div className="pt-20 min-h-screen">
       <section className="relative py-20">
@@ -19,16 +22,15 @@ export default function GestCommerce() {
               <span className="gradient-text">GestCommerce</span>
             </h1>
             <p className="text-lg text-slate-400 mb-10">
-              Version simplifiée de notre solution de gestion commerciale.
-              Idéale pour les commerçants qui n'ont pas besoin du module comptabilité.
+              {t.gestcommerce.desc}
             </p>
             <div className="glass-card rounded-2xl p-8">
               <p className="text-slate-300 mb-6">
-                Cette page est en cours de finalisation.
-                <br />En attendant, découvrez notre produit vedette <strong className="text-cyan-500">Mouhassib</strong>.
+                {t.gestcommerce.cardText1}
+                <br />{t.gestcommerce.cardText2} <strong className="text-cyan-500">Mouhassib</strong>.
               </p>
               <Link to="/mouhassib" className="btn-primary text-base">
-                Voir Mouhassib <ArrowRight size={18} />
+                {t.gestcommerce.ctaButton} <ArrowRight size={18} />
               </Link>
             </div>
           </motion.div>

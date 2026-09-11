@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Languages } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { lang, toggleLang, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -16,11 +18,23 @@ export default function Header() {
   useEffect(() => { setOpen(false); }, [location]);
 
   const links = [
-    { to: '/', label: 'Accueil' },
-    { to: '/mouhassib', label: 'Mouhassib' },
-    { to: '/gestcommerce', label: 'GestCommerce' },
-    { to: '/contact', label: 'Contact' },
+    { to: '/', label: t.nav.home },
+    { to: '/mouhassib', label: t.nav.mouhassib },
+    { to: '/gestcommerce', label: t.nav.gestcommerce },
+    { to: '/contact', label: t.nav.contact },
   ];
+
+  const LangButton = ({ className = '' }: { className?: string }) => (
+    <button
+      type="button"
+      onClick={toggleLang}
+      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass-card text-sm font-medium text-slate-300 hover:text-cyan-500 transition-colors ${className}`}
+      aria-label="Changer de langue / تغيير اللغة"
+    >
+      <Languages size={14} />
+      {lang === 'fr' ? 'العربية' : 'Français'}
+    </button>
+  );
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -46,14 +60,18 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <LangButton />
           <Link to="/mouhassib" className="btn-primary text-sm">
-            Télécharger Mouhassib
+            {t.nav.downloadCta}
           </Link>
         </nav>
 
-        <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <LangButton />
+          <button className="text-white" onClick={() => setOpen(!open)}>
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -71,7 +89,7 @@ export default function Header() {
               </Link>
             ))}
             <Link to="/mouhassib" className="btn-primary text-sm justify-center">
-              Télécharger Mouhassib
+              {t.nav.downloadCta}
             </Link>
           </nav>
         </div>

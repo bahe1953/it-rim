@@ -19,6 +19,12 @@ html, body {
   font-family: 'Inter', system-ui, sans-serif;
 }
 
+/* Police arabe (Cairo) quand la page est en RTL. */
+html[dir='rtl'] body {
+  font-family: 'Cairo', system-ui, sans-serif;
+}
+
+
 /* Scrollbar premium */
 ::-webkit-scrollbar {
   width: 10px;

@@ -5,8 +5,10 @@ import {
   Check, HardDrive, Clock, Shield, Users
 } from 'lucide-react';
 import { MOUHASSIB_DOWNLOAD_URL } from '../config';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Mouhassib() {
+  const { t, lang } = useLanguage();
   const [clicked, setClicked] = useState(false);
   const [count, setCount] = useState<number | null>(null);
 
@@ -32,14 +34,15 @@ export default function Mouhassib() {
     setCount((c) => (c !== null ? c + 1 : c));
   };
 
-  const features = [
-    { icon: BarChart3, title: 'Dashboard temps réel', desc: 'Vue globale de votre activité : ventes, achats, résultat, alertes stock et péremption.' },
-    { icon: ShoppingCart, title: 'Ventes & factures', desc: 'Enregistrement des ventes, génération de tickets et factures professionnelles.' },
-    { icon: Boxes, title: 'Stock & péremption', desc: 'Suivi du stock, alertes automatiques sur seuils et dates de péremption.' },
-    { icon: Calculator, title: 'Comptabilité intégrée', desc: 'Journaux, balance, bilan, export Sage 100. Gestion complète de la zakat.' },
-    { icon: Globe, title: '100% arabe RTL', desc: 'Interface entièrement en arabe, adaptée aux commerçants arabophones.' },
-    { icon: HardDrive, title: 'Fonctionne hors ligne', desc: 'Base SQLite locale. Aucun besoin d\'internet pour utiliser Mouhassib.' },
-  ];
+  const featureIcons = [BarChart3, ShoppingCart, Boxes, Calculator, Globe, HardDrive];
+  const chipIcons = [Clock, Shield, HardDrive];
+
+  const countLabel =
+    count !== null
+      ? lang === 'fr'
+        ? `${count.toLocaleString('fr-FR')} ${count > 1 ? t.mouhassib.downloadCountSuffix : t.mouhassib.downloadCountSuffixOne}`
+        : `${count.toLocaleString('ar-EG')} ${count > 1 ? t.mouhassib.downloadCountSuffix : t.mouhassib.downloadCountSuffixOne}`
+      : '';
 
   return (
     <div className="pt-20">
@@ -57,38 +60,36 @@ export default function Mouhassib() {
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6">
                 <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-sm text-slate-300">Version 1.0.0 disponible</span>
+                <span className="text-sm text-slate-300">{t.mouhassib.badge}</span>
               </div>
 
               <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
                 <span className="gradient-text">Mouhassib</span>
                 <br />
                 <span className="text-3xl md:text-4xl text-slate-300 font-bold">
-                  La gestion commerciale
-                  <br />qui parle votre langue
+                  {t.mouhassib.heroTitleLine1}
+                  <br />{t.mouhassib.heroTitleLine2}
                 </span>
               </h1>
 
               <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-                Logiciel complet de gestion pour commerçants et TPE : ventes, stock, achats,
-                clients, factures et comptabilité. Entièrement en arabe, avec support RTL natif.
+                {t.mouhassib.heroDesc}
               </p>
 
               <div className="flex flex-wrap gap-3 mb-8">
-                {[
-                  { icon: Clock, text: 'Trial 30 jours gratuit' },
-                  { icon: Shield, text: 'Aucune carte requise' },
-                  { icon: HardDrive, text: 'Fonctionne hors ligne' },
-                ].map(item => (
-                  <div key={item.text} className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card text-sm">
-                    <item.icon size={14} className="text-cyan-500" />
-                    <span className="text-slate-300">{item.text}</span>
-                  </div>
-                ))}
+                {t.mouhassib.chips.map((text, i) => {
+                  const Icon = chipIcons[i];
+                  return (
+                    <div key={text} className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card text-sm">
+                      <Icon size={14} className="text-cyan-500" />
+                      <span className="text-slate-300">{text}</span>
+                    </div>
+                  );
+                })}
               </div>
 
               <a href="#telecharger" className="btn-primary text-base">
-                <Download size={18} /> Télécharger gratuitement
+                <Download size={18} /> {t.mouhassib.ctaFree}
               </a>
             </motion.div>
 
@@ -102,15 +103,15 @@ export default function Mouhassib() {
                 <div className="bg-marine-900 rounded-xl aspect-video flex items-center justify-center border border-cyan-500/10">
                   <div className="text-center p-8">
                     <Package size={64} className="text-cyan-500 mx-auto mb-4" />
-                    <div className="text-slate-400 text-sm">Aperçu de Mouhassib</div>
-                    <div className="text-slate-500 text-xs mt-1">(Screenshot à venir)</div>
+                    <div className="text-slate-400 text-sm">{t.mouhassib.previewLabel}</div>
+                    <div className="text-slate-500 text-xs mt-1">{t.mouhassib.previewSub}</div>
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 glass-card px-4 py-3 rounded-xl">
+              <div className="absolute -bottom-4 end-4 glass-card px-4 py-3 rounded-xl">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-slate-300 font-medium">Live production</span>
+                  <span className="text-xs text-slate-300 font-medium">{t.mouhassib.liveLabel}</span>
                 </div>
               </div>
             </motion.div>
@@ -123,30 +124,33 @@ export default function Mouhassib() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-4">
-              <span className="text-cyan-500 text-sm font-semibold">Fonctionnalités</span>
+              <span className="text-cyan-500 text-sm font-semibold">{t.mouhassib.featuresBadge}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Tout ce dont votre commerce <span className="gradient-text">a besoin</span>
+              {t.mouhassib.featuresTitle1} <span className="gradient-text">{t.mouhassib.featuresTitleHighlight}</span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="glass-card rounded-2xl p-6"
-              >
-                <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4">
-                  <f.icon size={22} className="text-cyan-500" />
-                </div>
-                <h3 className="font-bold text-white mb-2">{f.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">{f.desc}</p>
-              </motion.div>
-            ))}
+            {t.mouhassib.features.map((f, i) => {
+              const Icon = featureIcons[i];
+              return (
+                <motion.div
+                  key={f.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="glass-card rounded-2xl p-6"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4">
+                    <Icon size={22} className="text-cyan-500" />
+                  </div>
+                  <h3 className="font-bold text-white mb-2">{f.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed">{f.desc}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -156,16 +160,15 @@ export default function Mouhassib() {
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block px-4 py-1.5 rounded-full bg-gold-300/10 border border-gold-300/20 mb-4">
-              <span className="text-gold-300 text-sm font-semibold">Téléchargement</span>
+              <span className="text-gold-300 text-sm font-semibold">{t.mouhassib.downloadBadge}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Essayez Mouhassib <span className="gradient-text">gratuitement</span>
+              {t.mouhassib.downloadTitle1} <span className="gradient-text">{t.mouhassib.downloadTitleHighlight}</span>
             </h2>
             <p className="text-slate-400">
-              Un seul clic : le téléchargement démarre immédiatement et WhatsApp s'ouvre
-              pour qu'on vous accompagne dans l'installation.
+              {t.mouhassib.downloadDesc1}
               <br />
-              Trial 30 jours complet, sans engagement.
+              {t.mouhassib.downloadDesc2}
             </p>
           </div>
 
@@ -178,9 +181,7 @@ export default function Mouhassib() {
             {count !== null && (
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
                 <Users size={14} className="text-cyan-500" />
-                <span className="text-sm text-slate-300">
-                  {count.toLocaleString('fr-FR')} téléchargement{count > 1 ? 's' : ''} déjà effectué{count > 1 ? 's' : ''}
-                </span>
+                <span className="text-sm text-slate-300">{countLabel}</span>
               </div>
             )}
 
@@ -190,28 +191,24 @@ export default function Mouhassib() {
                 onClick={handleDownload}
                 className="btn-primary text-base justify-center mx-auto"
               >
-                <Download size={18} /> Télécharger Mouhassib
+                <Download size={18} /> {t.mouhassib.downloadButton}
               </button>
             </div>
 
             <p className="text-xs text-slate-500 text-center mt-4">
-              Un clic suffit : le téléchargement démarre immédiatement, sans inscription.
+              {t.mouhassib.downloadFinePrint}
             </p>
 
             {clicked && (
               <div className="mt-4 text-sm text-cyan-400">
-                Téléchargement lancé !
+                {t.mouhassib.downloadedMsg}
               </div>
             )}
           </motion.div>
 
           {/* Ce qui est inclus */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              'Trial complet 30 jours',
-              'Toutes les fonctionnalités',
-              'Support par WhatsApp',
-            ].map(item => (
+            {t.mouhassib.includes.map(item => (
               <div key={item} className="glass-card rounded-xl p-4 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center">
                   <Check size={16} className="text-cyan-500" />
