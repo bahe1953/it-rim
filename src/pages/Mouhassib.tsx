@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { MOUHASSIB_DOWNLOAD_URL } from '../config';
 
-const WHATSAPP_NUMBER = '22236330718';
+const WHATSAPP_NUMBER = '22226041021';
 const WHATSAPP_MESSAGE =
   "Bonjour, je viens de telecharger Mouhassib depuis it-rim.net. Je souhaite etre accompagne pour l'installation.";
 
