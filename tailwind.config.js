@@ -26,7 +26,13 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         arabic: ['Cairo', 'sans-serif'],
+      },
+      borderRadius: {
+        xl: '0.9rem',
+        '2xl': '1.35rem',
+        '3xl': '1.85rem',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

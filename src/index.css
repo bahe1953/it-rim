@@ -19,13 +19,24 @@ html, body {
   font-family: 'Inter', system-ui, sans-serif;
 }
 
-/* Police arabe (Cairo) quand la page est en RTL. */
+/* Direction "Signal Chaleureux" : les titres adoptent une police plus humaine
+   et accueillante (Plus Jakarta Sans) pour un rendu premium et chaleureux. */
+h1, h2, h3, h4 {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Police arabe (Cairo) quand la page est en RTL, y compris pour les titres :
+   Cairo porte deja une identite chaleureuse et lisible en arabe. */
 html[dir='rtl'] body {
   font-family: 'Cairo', system-ui, sans-serif;
 }
+html[dir='rtl'] h1, html[dir='rtl'] h2, html[dir='rtl'] h3, html[dir='rtl'] h4 {
+  font-family: 'Cairo', system-ui, sans-serif;
+  letter-spacing: normal;
+}
 
-
-/* Scrollbar premium */
+/* Scrollbar premium, degrade cyan -> or pour une touche plus chaleureuse */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -34,42 +45,43 @@ html[dir='rtl'] body {
   background: #0F1624;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#00E5FF, #00B8CC);
+  background: linear-gradient(#22D3EE, #E8B84C);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(#22D3EE, #00E5FF);
+  background: linear-gradient(#00E5FF, #F5D078);
 }
 
-/* Gradient text utility */
+/* Gradient text utility - plus chaleureux, l'or prend plus de place */
 .gradient-text {
-  background: linear-gradient(135deg, #00E5FF 0%, #22D3EE 50%, #F5D078 100%);
+  background: linear-gradient(135deg, #00E5FF 0%, #F5D078 60%, #E8B84C 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
-/* Card glass effect */
+/* Card glass effect - plus doux, plus lumineux, teinte or subtile */
 .glass-card {
-  background: linear-gradient(135deg, rgba(30, 58, 95, 0.4) 0%, rgba(15, 37, 64, 0.6) 100%);
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.45) 0%, rgba(232, 184, 76, 0.05) 50%, rgba(15, 37, 64, 0.6) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(245, 208, 120, 0.14);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 229, 255, 0.3);
-  box-shadow: 0 20px 40px -10px rgba(0, 229, 255, 0.2);
+  border-color: rgba(245, 208, 120, 0.32);
+  box-shadow: 0 20px 45px -12px rgba(232, 184, 76, 0.22), 0 10px 25px -10px rgba(0, 229, 255, 0.15);
 }
 
-/* Bouton premium */
+/* Bouton premium - degrade or -> cyan, plus chaleureux et engageant */
 .btn-primary {
-  background: linear-gradient(135deg, #00E5FF 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, #E8B84C 0%, #00E5FF 100%);
   color: #0A1929;
   font-weight: 700;
   padding: 12px 28px;
-  border-radius: 12px;
+  border-radius: 14px;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
@@ -78,16 +90,16 @@ html[dir='rtl'] body {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px -10px rgba(0, 229, 255, 0.5);
+  box-shadow: 0 15px 32px -10px rgba(232, 184, 76, 0.5);
 }
 
 .btn-secondary {
   background: transparent;
-  color: #00E5FF;
-  border: 1.5px solid rgba(0, 229, 255, 0.4);
+  color: #F5D078;
+  border: 1.5px solid rgba(245, 208, 120, 0.4);
   font-weight: 600;
   padding: 12px 28px;
-  border-radius: 12px;
+  border-radius: 14px;
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
@@ -95,14 +107,14 @@ html[dir='rtl'] body {
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 229, 255, 0.1);
-  border-color: #00E5FF;
+  background: rgba(245, 208, 120, 0.1);
+  border-color: #F5D078;
 }
 
-/* Grid pattern background */
+/* Grid pattern background - teinte or tres subtile pour la chaleur d'ambiance */
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(245, 208, 120, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 208, 120, 0.035) 1px, transparent 1px);
   background-size: 50px 50px;
 }
