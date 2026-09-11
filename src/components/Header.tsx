@@ -19,8 +19,9 @@ export default function Header() {
 
   const links = [
     { to: '/', label: t.nav.home },
-    { to: '/mouhassib', label: t.nav.mouhassib },
-    { to: '/gestcommerce', label: t.nav.gestcommerce },
+    { to: '/logiciels', label: t.nav.software },
+    { to: '/solutions-entreprises', label: t.nav.enterprise },
+    { to: '/services', label: t.nav.services },
     { to: '/contact', label: t.nav.contact },
   ];
 
@@ -46,12 +47,12 @@ export default function Header() {
           <span className="font-bold text-xl text-white tracking-tight">IT-RIM</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7">
           {links.map(link => (
             <Link
               key={link.to}
               to={link.to}
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
                 location.pathname === link.to
                   ? 'text-cyan-500'
                   : 'text-slate-300 hover:text-cyan-500'

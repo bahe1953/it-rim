@@ -143,6 +143,12 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
+
+          <div className="text-center mt-10">
+            <Link to="/logiciels" className="inline-flex items-center gap-2 text-cyan-500 font-semibold hover:gap-3 transition-all">
+              {t.home.seeAllSoftware} <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 

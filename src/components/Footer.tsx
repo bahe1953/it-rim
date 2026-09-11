@@ -22,8 +22,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-white mb-4">{t.footer.productsTitle}</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/mouhassib" className="text-slate-400 hover:text-cyan-500 transition">{t.nav.mouhassib}</Link></li>
-              <li><Link to="/gestcommerce" className="text-slate-400 hover:text-cyan-500 transition">{t.nav.gestcommerce}</Link></li>
+              <li><Link to="/logiciels" className="text-slate-400 hover:text-cyan-500 transition">{t.nav.software}</Link></li>
+              <li><Link to="/mouhassib" className="text-slate-400 hover:text-cyan-500 transition">Mouhassib</Link></li>
+              <li><Link to="/gestcommerce" className="text-slate-400 hover:text-cyan-500 transition">GestCommerce</Link></li>
+              <li><Link to="/services" className="text-slate-400 hover:text-cyan-500 transition">{t.nav.services}</Link></li>
             </ul>
           </div>
 

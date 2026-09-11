@@ -1,10 +1,18 @@
 export type Lang = 'fr' | 'ar';
 
+export interface SoftwareCard {
+  name: string;
+  tagline: string;
+  status: 'available' | 'soon';
+  href: string;
+}
+
 export interface Dictionary {
   nav: {
     home: string;
-    mouhassib: string;
-    gestcommerce: string;
+    software: string;
+    enterprise: string;
+    services: string;
     contact: string;
     downloadCta: string;
   };
@@ -33,6 +41,7 @@ export interface Dictionary {
     gestcommerceDesc: string;
     gestcommerceTags: string[];
     gestcommerceCta: string;
+    seeAllSoftware: string;
     servicesBadge: string;
     servicesTitle1: string;
     servicesTitle2: string;
@@ -85,14 +94,44 @@ export interface Dictionary {
     addressTitle: string;
     addressDesc: string;
   };
+  software: {
+    badge: string;
+    title1: string;
+    title2: string;
+    subtitle: string;
+    cards: SoftwareCard[];
+    ctaDiscover: string;
+    ctaDemo: string;
+    comingSoonBadge: string;
+  };
+  comingSoon: {
+    badgeLabel: string;
+    bodyText: string;
+    contactCta: string;
+    backLink: string;
+  };
+  services: {
+    badge: string;
+    title1: string;
+    titleHighlight: string;
+    subtitle: string;
+    items: { title: string; desc: string }[];
+    ctaTitle: string;
+    ctaButton: string;
+  };
+  enterprise: {
+    title: string;
+    tagline: string;
+  };
 }
 
 export const translations: Record<Lang, Dictionary> = {
   fr: {
     nav: {
       home: 'Accueil',
-      mouhassib: 'Mouhassib',
-      gestcommerce: 'GestCommerce',
+      software: 'Nos logiciels',
+      enterprise: 'Solutions entreprises',
+      services: 'Services IT',
       contact: 'Contact',
       downloadCta: 'Télécharger Mouhassib',
     },
@@ -125,6 +164,7 @@ export const translations: Record<Lang, Dictionary> = {
         'Solution de gestion commerciale simple et efficace : ventes, achats, stock, clients, fournisseurs. La version essentielle sans le module comptabilité.',
       gestcommerceTags: ['Simple', 'Rapide', 'Offline', 'Trial 30j'],
       gestcommerceCta: 'Découvrir GestCommerce',
+      seeAllSoftware: 'Voir tous nos logiciels',
       servicesBadge: 'Nos services',
       servicesTitle1: 'Ce que nous',
       servicesTitle2: 'faisons',
@@ -189,12 +229,52 @@ export const translations: Record<Lang, Dictionary> = {
       addressTitle: 'Nouakchott, Mauritanie',
       addressDesc: "Nous accompagnons commerçants et entreprises en Mauritanie et dans toute l'Afrique de l'Ouest.",
     },
+    software: {
+      badge: 'Nos logiciels',
+      title1: 'Des logiciels conçus pour',
+      title2: 'votre entreprise',
+      subtitle:
+        "Des solutions professionnelles conçues par IT-RIM pour répondre aux besoins réels des entreprises en Mauritanie et à l'international.",
+      cards: [
+        { name: 'Mouhassib', tagline: 'Gestion commerciale et comptabilité, entièrement en arabe.', status: 'available', href: '/mouhassib' },
+        { name: 'GestCommerce', tagline: 'Gestion commerciale simple et rapide, sans comptabilité.', status: 'available', href: '/gestcommerce' },
+        { name: 'RAQIB', tagline: 'Gestion du patrimoine et des immobilisations.', status: 'soon', href: '/logiciels/raqib' },
+        { name: 'Waqood', tagline: 'Gestion de station-service.', status: 'soon', href: '/logiciels/waqood' },
+      ],
+      ctaDiscover: 'Découvrir',
+      ctaDemo: 'Demander une démonstration',
+      comingSoonBadge: 'Bientôt disponible',
+    },
+    comingSoon: {
+      badgeLabel: 'Bientôt disponible',
+      bodyText: 'Cette page est en cours de préparation. Contactez-nous pour en savoir plus dès maintenant.',
+      contactCta: 'Nous contacter',
+      backLink: 'Retour à nos logiciels',
+    },
+    services: {
+      badge: 'Services IT',
+      title1: 'Votre partenaire de',
+      titleHighlight: 'transformation numérique',
+      subtitle: 'Au-delà de nos logiciels, nous accompagnons les entreprises dans leurs projets technologiques.',
+      items: [
+        { title: 'Développement sur mesure', desc: 'Applications web, desktop et mobiles adaptées à vos besoins spécifiques.' },
+        { title: 'Conseil et audit', desc: 'Analyse de vos processus et recommandations pour la transformation digitale.' },
+        { title: 'Formation', desc: 'Accompagnement de vos équipes pour maîtriser nos outils.' },
+      ],
+      ctaTitle: 'Un projet en tête ?',
+      ctaButton: 'Discutons-en',
+    },
+    enterprise: {
+      title: 'Solutions entreprises',
+      tagline: 'Des solutions sur mesure pour accompagner la croissance de votre entreprise.',
+    },
   },
   ar: {
     nav: {
       home: 'الرئيسية',
-      mouhassib: 'محاسب',
-      gestcommerce: 'GestCommerce',
+      software: 'برمجياتنا',
+      enterprise: 'حلول المؤسسات',
+      services: 'الخدمات التقنية',
       contact: 'اتصل بنا',
       downloadCta: 'تحميل محاسب',
     },
@@ -227,6 +307,7 @@ export const translations: Record<Lang, Dictionary> = {
         'حل بسيط وفعّال لإدارة الأعمال التجارية: المبيعات، المشتريات، المخزون، العملاء، الموردون. النسخة الأساسية دون وحدة المحاسبة.',
       gestcommerceTags: ['بسيط', 'سريع', 'دون إنترنت', 'تجربة 30 يومًا'],
       gestcommerceCta: 'اكتشف GestCommerce',
+      seeAllSoftware: 'عرض كل برمجياتنا',
       servicesBadge: 'خدماتنا',
       servicesTitle1: 'ما الذي',
       servicesTitle2: 'نقدمه',
@@ -290,6 +371,45 @@ export const translations: Record<Lang, Dictionary> = {
       cardWhatsapp: 'واتساب',
       addressTitle: 'نواكشوط، موريتانيا',
       addressDesc: 'نرافق التجار والشركات في موريتانيا وفي جميع أنحاء غرب إفريقيا.',
+    },
+    software: {
+      badge: 'برمجياتنا',
+      title1: 'حلول برمجية مصممة',
+      title2: 'لتطوير أعمالكم',
+      subtitle:
+        'حلول احترافية صممتها آي تي ريم لتلبية الاحتياجات الفعلية للشركات في موريتانيا وعلى الصعيد الدولي.',
+      cards: [
+        { name: 'محاسب', tagline: 'إدارة تجارية ومحاسبة، باللغة العربية بالكامل.', status: 'available', href: '/mouhassib' },
+        { name: 'GestCommerce', tagline: 'إدارة تجارية بسيطة وسريعة، دون وحدة محاسبة.', status: 'available', href: '/gestcommerce' },
+        { name: 'RAQIB', tagline: 'إدارة الممتلكات والأصول.', status: 'soon', href: '/logiciels/raqib' },
+        { name: 'Waqood', tagline: 'إدارة محطات الوقود.', status: 'soon', href: '/logiciels/waqood' },
+      ],
+      ctaDiscover: 'اكتشف',
+      ctaDemo: 'اطلب عرضًا توضيحيًا',
+      comingSoonBadge: 'قريبًا',
+    },
+    comingSoon: {
+      badgeLabel: 'قريبًا',
+      bodyText: 'هذه الصفحة قيد الإعداد. تواصلوا معنا لمعرفة المزيد الآن.',
+      contactCta: 'تواصل معنا',
+      backLink: 'العودة إلى برمجياتنا',
+    },
+    services: {
+      badge: 'الخدمات التقنية',
+      title1: 'شريككم في',
+      titleHighlight: 'التحول الرقمي',
+      subtitle: 'إلى جانب برمجياتنا، نرافق الشركات في مشاريعها التقنية.',
+      items: [
+        { title: 'تطوير حسب الطلب', desc: 'تطبيقات ويب وسطح مكتب وهواتف محمولة مصممة خصيصًا لاحتياجاتكم.' },
+        { title: 'استشارات وتدقيق', desc: 'تحليل عملياتكم وتقديم توصيات للتحول الرقمي.' },
+        { title: 'تدريب', desc: 'مرافقة فرقكم لإتقان استخدام أدواتنا.' },
+      ],
+      ctaTitle: 'لديكم مشروع في الذهن؟',
+      ctaButton: 'لنتحدث عن ذلك',
+    },
+    enterprise: {
+      title: 'حلول المؤسسات',
+      tagline: 'حلول مخصصة لمواكبة نمو شركتكم.',
     },
   },
 };
