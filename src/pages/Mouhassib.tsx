@@ -1,42 +1,25 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import {
   Package, BarChart3, ShoppingCart, Boxes, Calculator, Globe, Download,
-  Check, HardDrive, Clock, Shield, Loader2
+  Check, HardDrive, Clock, Shield, MessageCircle
 } from 'lucide-react';
 import { MOUHASSIB_DOWNLOAD_URL } from '../config';
 
-export default function Mouhassib() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ nom: '', email: '', telephone: '', ville: '' });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+const WHATSAPP_NUMBER = '22236330718';
+const WHATSAPP_MESSAGE =
+  "Bonjour, je viens de telecharger Mouhassib depuis it-rim.net. Je souhaite etre accompagne pour l'installation.";
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    if (!form.nom || !form.email || !form.telephone) {
-      setError('Veuillez remplir tous les champs obligatoires.');
-      return;
+export default function Mouhassib() {
+  const [clicked, setClicked] = useState(false);
+
+  const handleDownload = () => {
+    const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MESSAGE);
+    window.open(waUrl, '_blank');
+    if (MOUHASSIB_DOWNLOAD_URL) {
+      window.location.href = MOUHASSIB_DOWNLOAD_URL;
     }
-    setLoading(true);
-    try {
-      const res = await fetch('/api/download-request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, produit: 'mouhassib' }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Erreur inconnue');
-      const params = new URLSearchParams({ email: form.email });
-      if (MOUHASSIB_DOWNLOAD_URL) params.set('dl', MOUHASSIB_DOWNLOAD_URL);
-      navigate(`/merci?${params.toString()}`);
-    } catch (err: any) {
-      setError(err.message || 'Une erreur est survenue. Réessayez.');
-    } finally {
-      setLoading(false);
-    }
+    setClicked(true);
   };
 
   const features = [
@@ -169,103 +152,46 @@ export default function Mouhassib() {
               Essayez Mouhassib <span className="gradient-text">gratuitement</span>
             </h2>
             <p className="text-slate-400">
-              Remplissez le formulaire ci-dessous : le téléchargement démarre immédiatement.
+              Un seul clic : le téléchargement démarre immédiatement et WhatsApp s'ouvre
+              pour qu'on vous accompagne dans l'installation.
               <br />
               Trial 30 jours complet, sans engagement.
             </p>
           </div>
 
-          <motion.form
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            onSubmit={submit}
-            className="glass-card rounded-2xl p-8"
+            className="glass-card rounded-2xl p-10 text-center"
           >
-            <div className="grid md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Nom complet <span className="text-cyan-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={form.nom}
-                  onChange={(e) => setForm({ ...form, nom: e.target.value })}
-                  className="w-full px-4 py-3 bg-marine-900 border border-cyan-500/20 rounded-lg text-white focus:border-cyan-500 focus:outline-none transition"
-                  placeholder="Mohamed Ahmed"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Email <span className="text-cyan-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-marine-900 border border-cyan-500/20 rounded-lg text-white focus:border-cyan-500 focus:outline-none transition"
-                  placeholder="votre@email.com"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Téléphone / WhatsApp <span className="text-cyan-500">*</span>
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={form.telephone}
-                  onChange={(e) => setForm({ ...form, telephone: e.target.value })}
-                  className="w-full px-4 py-3 bg-marine-900 border border-cyan-500/20 rounded-lg text-white focus:border-cyan-500 focus:outline-none transition"
-                  placeholder="+222 XX XX XX XX"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
-                  Ville
-                </label>
-                <input
-                  type="text"
-                  value={form.ville}
-                  onChange={(e) => setForm({ ...form, ville: e.target.value })}
-                  className="w-full px-4 py-3 bg-marine-900 border border-cyan-500/20 rounded-lg text-white focus:border-cyan-500 focus:outline-none transition"
-                  placeholder="Nouakchott"
-                />
-              </div>
-            </div>
-
-            {error && (
-              <div className="mt-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
-                {error}
-              </div>
-            )}
-
             <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary w-full mt-6 justify-center text-base disabled:opacity-50 disabled:cursor-not-allowed"
+              type="button"
+              onClick={handleDownload}
+              className="btn-primary text-base justify-center mx-auto"
             >
-              {loading ? (
-                <><Loader2 size={18} className="animate-spin" /> Préparation du téléchargement...</>
-              ) : (
-                <><Download size={18} /> Télécharger Mouhassib</>
-              )}
+              <Download size={18} /> Télécharger Mouhassib
             </button>
 
             <p className="text-xs text-slate-500 text-center mt-4">
-              En cliquant, le téléchargement démarre immédiatement et vous recevez aussi un email de confirmation.
-              Vos données sont utilisées uniquement pour vous fournir Mouhassib.
+              En cliquant, le téléchargement démarre immédiatement et WhatsApp s'ouvre avec un
+              message déjà écrit pour vous — il ne reste qu'à l'envoyer.
             </p>
-          </motion.form>
+
+            {clicked && (
+              <div className="mt-6 flex items-center justify-center gap-2 text-sm text-cyan-400">
+                <MessageCircle size={16} />
+                <span>Téléchargement lancé — n'oubliez pas d'envoyer le message WhatsApp !</span>
+              </div>
+            )}
+          </motion.div>
 
           {/* Ce qui est inclus */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               'Trial complet 30 jours',
               'Toutes les fonctionnalités',
-              'Support par email',
+              'Support par WhatsApp',
             ].map(item => (
               <div key={item} className="glass-card rounded-xl p-4 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center">
