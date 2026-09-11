@@ -6,6 +6,10 @@
 //    - Executer en tant que : Moi (votre compte Gmail)
 //    - Qui a acces : Tout le monde
 // 5. Copier l'URL donnee (se termine par /exec) : c'est GOOGLE_SHEET_WEBHOOK_URL.
+//
+// Si ce fichier a deja ete deploye et que vous ajoutez doGet() plus tard :
+// Deployer > Gerer les deploiements > crayon (Modifier) > Version : Nouvelle version > Deployer.
+// Cela garde la meme URL /exec (pas besoin de la changer dans Vercel).
 
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
@@ -27,5 +31,17 @@ function doPost(e) {
 
   return ContentService
     .createTextOutput(JSON.stringify({ success: true }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Retourne le nombre total de telechargements (nombre de lignes, hors en-tete).
+// Utilise par le site pour afficher le compteur public.
+function doGet(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var lastRow = sheet.getLastRow();
+  var count = lastRow > 0 ? lastRow - 1 : 0;
+
+  return ContentService
+    .createTextOutput(JSON.stringify({ count: count }))
     .setMimeType(ContentService.MimeType.JSON);
 }

@@ -1,25 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Package, BarChart3, ShoppingCart, Boxes, Calculator, Globe, Download,
-  Check, HardDrive, Clock, Shield, MessageCircle
+  Check, HardDrive, Clock, Shield, Users
 } from 'lucide-react';
 import { MOUHASSIB_DOWNLOAD_URL } from '../config';
 
-const WHATSAPP_NUMBER = '22226041021';
-const WHATSAPP_MESSAGE =
-  "Bonjour, je viens de telecharger Mouhassib depuis it-rim.net. Je souhaite etre accompagne pour l'installation.";
-
 export default function Mouhassib() {
   const [clicked, setClicked] = useState(false);
+  const [count, setCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch('/api/download-count')
+      .then((r) => r.json())
+      .then((d) => setCount(typeof d.count === 'number' ? d.count : null))
+      .catch(() => {});
+  }, []);
 
   const handleDownload = () => {
-    const waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MESSAGE);
-    window.open(waUrl, '_blank');
+    // Ping silencieux pour compter le telechargement (n'attend pas la reponse).
+    fetch('/api/download-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ produit: 'mouhassib' }),
+    }).catch(() => {});
+
     if (MOUHASSIB_DOWNLOAD_URL) {
       window.location.href = MOUHASSIB_DOWNLOAD_URL;
     }
     setClicked(true);
+    setCount((c) => (c !== null ? c + 1 : c));
   };
 
   const features = [
@@ -165,23 +175,32 @@ export default function Mouhassib() {
             viewport={{ once: true }}
             className="glass-card rounded-2xl p-10 text-center"
           >
-            <button
-              type="button"
-              onClick={handleDownload}
-              className="btn-primary text-base justify-center mx-auto"
-            >
-              <Download size={18} /> Télécharger Mouhassib
-            </button>
+            {count !== null && (
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
+                <Users size={14} className="text-cyan-500" />
+                <span className="text-sm text-slate-300">
+                  {count.toLocaleString('fr-FR')} téléchargement{count > 1 ? 's' : ''} déjà effectué{count > 1 ? 's' : ''}
+                </span>
+              </div>
+            )}
+
+            <div>
+              <button
+                type="button"
+                onClick={handleDownload}
+                className="btn-primary text-base justify-center mx-auto"
+              >
+                <Download size={18} /> Télécharger Mouhassib
+              </button>
+            </div>
 
             <p className="text-xs text-slate-500 text-center mt-4">
-              En cliquant, le téléchargement démarre immédiatement et WhatsApp s'ouvre avec un
-              message déjà écrit pour vous — il ne reste qu'à l'envoyer.
+              Un clic suffit : le téléchargement démarre immédiatement, sans inscription.
             </p>
 
             {clicked && (
-              <div className="mt-6 flex items-center justify-center gap-2 text-sm text-cyan-400">
-                <MessageCircle size={16} />
-                <span>Téléchargement lancé — n'oubliez pas d'envoyer le message WhatsApp !</span>
+              <div className="mt-4 text-sm text-cyan-400">
+                Téléchargement lancé !
               </div>
             )}
           </motion.div>

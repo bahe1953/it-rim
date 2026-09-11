@@ -1,12 +1,10 @@
 // Vercel Serverless Function
 // POST /api/download-request
-// Recoit : { nom, email, telephone, ville, produit }
+// Recoit : { nom?, email?, telephone?, ville?, produit }
 //
-// 1) Enregistre le lead dans un Google Sheet (via une Apps Script Web App, gratuit,
-//    utilise le compte Gmail existant d'IT-RIM -- voir GOOGLE_SHEET_WEBHOOK_URL).
-// 2) Envoie un email de confirmation via Resend (RESEND_API_KEY).
-// Le telechargement du logiciel se declenche cote client immediatement apres
-// la soumission du formulaire : il ne depend pas du succes de cet email.
+// Sert a compter les telechargements et, si un email est fourni, a l'enregistrer
+// et a envoyer une confirmation. Le telechargement du logiciel se declenche cote
+// client immediatement, sans attendre la reponse de cet appel (fire-and-forget).
 
 async function enregistrerDansGoogleSheet(lead: Record<string, string>) {
   const url = process.env.GOOGLE_SHEET_WEBHOOK_URL;
@@ -49,11 +47,11 @@ async function envoyerEmailConfirmation(lead: Record<string, string>) {
         subject: 'Votre telechargement Mouhassib - IT-RIM',
         html: `
           <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
-            <h2>Merci ${lead.nom} !</h2>
+            <h2>Merci${lead.nom ? ' ' + lead.nom : ''} !</h2>
             <p>Votre telechargement de <strong>Mouhassib</strong> a bien demarre depuis votre navigateur.</p>
             <p>Si le telechargement ne s'est pas lance automatiquement, cliquez ici :</p>
             <p><a href="${downloadUrl}" style="display:inline-block;padding:12px 20px;background:#0891b2;color:#fff;border-radius:8px;text-decoration:none;font-weight:bold;">Telecharger Mouhassib</a></p>
-            <p>Votre essai gratuit de 30 jours commence des l'installation. Besoin d'aide ? Repondez a cet email ou ecrivez-nous sur WhatsApp au +222 43 45 92 22.</p>
+            <p>Votre essai gratuit de 30 jours commence des l'installation.</p>
             <p>-- L'equipe IT-RIM</p>
           </div>
         `,
@@ -73,22 +71,30 @@ export default async function handler(req: any, res: any) {
 
   const { nom, email, telephone, ville, produit } = req.body || {};
 
-  if (!nom || !email || !telephone) {
-    return res.status(400).json({ error: 'Champs obligatoires manquants' });
-  }
-
-  // Validation email basique
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  // Validation email uniquement si un email est fourni (le bouton de telechargement
+  // n'en demande plus, mais on garde la compatibilite si un formulaire l'envoie).
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Email invalide' });
   }
 
-  const lead = { nom, email, telephone: telephone || '', ville: ville || '', produit: produit || 'mouhassib' };
+  const lead = {
+    nom: nom || '',
+    email: email || '',
+    telephone: telephone || '',
+    ville: ville || '',
+    produit: produit || 'mouhassib',
+  };
 
   console.log('[LEAD] Nouveau telechargement demande :', lead);
 
-  const [sheet, mail] = await Promise.all([
+  const tasks: Promise<{ ok: boolean; skipped?: boolean; error?: string }>[] = [
     enregistrerDansGoogleSheet(lead),
-    envoyerEmailConfirmation(lead),
+  ];
+  if (email) tasks.push(envoyerEmailConfirmation(lead));
+
+  const [sheet, mail] = await Promise.all([
+    tasks[0],
+    tasks[1] || Promise.resolve({ ok: true, skipped: true }),
   ]);
 
   return res.status(200).json({
