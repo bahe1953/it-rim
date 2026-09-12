@@ -5,6 +5,7 @@ export interface SoftwareCard {
   tagline: string;
   status: 'available' | 'soon';
   href: string;
+  hasPage?: boolean;
 }
 
 export interface Dictionary {
@@ -129,6 +130,20 @@ export interface Dictionary {
     title: string;
     tagline: string;
   };
+  waqoodPage: {
+    badge: string;
+    title1: string;
+    titleHighlight: string;
+    subtitle: string;
+    developedBy: string;
+    featuresBadge: string;
+    featuresTitle1: string;
+    featuresTitleHighlight: string;
+    features: { title: string; desc: string }[];
+    ctaTitle: string;
+    ctaButton: string;
+    backLink: string;
+  };
 }
 
 export const translations: Record<Lang, Dictionary> = {
@@ -251,7 +266,7 @@ export const translations: Record<Lang, Dictionary> = {
         { name: 'Mouhassib', tagline: 'Gestion commerciale et comptabilité, entièrement en arabe.', status: 'available', href: '/mouhassib' },
         { name: 'Mouhassib (Français)', tagline: 'Gestion commerciale et comptabilité, entièrement en français.', status: 'available', href: '/mouhassib' },
         { name: 'RAQIB', tagline: 'Gestion du patrimoine et des immobilisations.', status: 'soon', href: '/logiciels/raqib' },
-        { name: 'Waqood', tagline: 'Gestion de station-service.', status: 'soon', href: '/logiciels/waqood' },
+        { name: 'Waqood', tagline: 'Gestion de station-service.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
       ],
       ctaDiscover: 'Découvrir',
       ctaDemo: 'Demander une démonstration',
@@ -279,6 +294,28 @@ export const translations: Record<Lang, Dictionary> = {
     enterprise: {
       title: 'Solutions entreprises',
       tagline: 'Des solutions sur mesure pour accompagner la croissance de votre entreprise.',
+    },
+    waqoodPage: {
+      badge: 'WAQOOD (وقود)',
+      title1: 'Gestion intégrée pour',
+      titleHighlight: 'stations-service',
+      subtitle: "Maximisez le rendement de votre station-service et gardez un contrôle total sur vos opérations grâce à WAQOOD. Une solution intuitive, rapide et sécurisée, conçue pour répondre aux défis quotidiens de la gestion de carburant.",
+      developedBy: 'Développé par Smartek',
+      featuresBadge: 'Pourquoi choisir WAQOOD ?',
+      featuresTitle1: 'Fait pour',
+      featuresTitleHighlight: 'les stations-service',
+      features: [
+        { title: 'Visibilité à 360° & mode hors-ligne', desc: "Suivez vos ventes, vos stocks et vos finances en temps réel via un tableau de bord clair. La solution reste 100 % opérationnelle même sans connexion Internet." },
+        { title: 'Gestion précise des stocks & pistolets', desc: "Suivez les compteurs/index des pompes avec exactitude, éliminez les erreurs de calcul manuel et recevez des alertes automatiques en cas de niveau de stock bas." },
+        { title: 'Suivi des équipes & services', desc: "Attribuez des sessions de travail à vos pompistes, contrôlez les volumes vendus et comparez le chiffre d'affaires théorique aux encaissements réels." },
+        { title: 'Trésorerie & multi-paiements', desc: "Séparez rigoureusement votre caisse physique (espèces) des paiements digitaux (Bankily, Mobile Money, virement, cartes bancaires) pour un suivi comptable sans faille." },
+        { title: 'Gestion des clients, dettes & fournisseurs', desc: "Automatisez le suivi des livraisons de carburant, maîtrisez le crédit accordé à vos clients et enregistrez les remboursements en toute transparence." },
+        { title: 'Rapports & exportations en 1 clic', desc: "Analysez vos performances financières et exportez vos données instantanément aux formats PDF, Excel ou CSV." },
+        { title: 'Sécurité & sauvegardes', desc: "Contrôlez les accès grâce à la gestion affinée des rôles/utilisateurs et sécurisez vos données stratégiques grâce au module de sauvegarde/restauration intégré." },
+      ],
+      ctaTitle: 'Un projet de station-service ?',
+      ctaButton: 'Demander une démonstration',
+      backLink: 'Retour à nos logiciels',
     },
   },
   ar: {
@@ -400,7 +437,7 @@ export const translations: Record<Lang, Dictionary> = {
         { name: 'محاسب', tagline: 'إدارة تجارية ومحاسبة، باللغة العربية بالكامل.', status: 'available', href: '/mouhassib' },
         { name: 'محاسب (بالفرنسية)', tagline: 'إدارة تجارية ومحاسبة، باللغة الفرنسية بالكامل.', status: 'available', href: '/mouhassib' },
         { name: 'RAQIB', tagline: 'إدارة الممتلكات والأصول.', status: 'soon', href: '/logiciels/raqib' },
-        { name: 'Waqood', tagline: 'إدارة محطات الوقود.', status: 'soon', href: '/logiciels/waqood' },
+        { name: 'Waqood', tagline: 'إدارة محطات الوقود.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
       ],
       ctaDiscover: 'اكتشف',
       ctaDemo: 'اطلب عرضًا توضيحيًا',
@@ -428,6 +465,28 @@ export const translations: Record<Lang, Dictionary> = {
     enterprise: {
       title: 'حلول المؤسسات',
       tagline: 'حلول مخصصة لمواكبة نمو شركتكم.',
+    },
+    waqoodPage: {
+      badge: 'وقود (WAQOOD)',
+      title1: 'إدارة متكاملة',
+      titleHighlight: 'لمحطات الوقود',
+      subtitle: 'عزّزوا أداء محطة الوقود الخاصة بكم وحافظوا على تحكم كامل في عملياتكم بفضل وقود. حل بديهي وسريع وآمن، مصمم لمواجهة التحديات اليومية لإدارة الوقود.',
+      developedBy: 'من تطوير Smartek',
+      featuresBadge: 'لماذا تختارون وقود؟',
+      featuresTitle1: 'مصمم من أجل',
+      featuresTitleHighlight: 'محطات الوقود',
+      features: [
+        { title: 'رؤية شاملة 360° ووضع عدم الاتصال', desc: 'تابعوا مبيعاتكم ومخزونكم وأموالكم لحظيًا عبر لوحة تحكم واضحة. يبقى الحل يعمل بالكامل حتى دون اتصال بالإنترنت.' },
+        { title: 'إدارة دقيقة للمخزون والمضخات', desc: 'تابعوا عدادات/مؤشرات المضخات بدقة، وتخلصوا من أخطاء الحساب اليدوي، واستقبلوا تنبيهات تلقائية عند انخفاض المخزون.' },
+        { title: 'متابعة الفرق والخدمات', desc: 'خصّصوا جلسات عمل لعمال التعبئة، وراقبوا الكميات المباعة، وقارنوا رقم الأعمال النظري بالمقبوضات الفعلية.' },
+        { title: 'الخزينة والدفع متعدد الوسائل', desc: 'افصلوا بدقة بين صندوقكم النقدي (السيولة) والمدفوعات الرقمية (Bankily، Mobile Money، التحويل، البطاقات البنكية) لمتابعة محاسبية موثوقة.' },
+        { title: 'إدارة العملاء والديون والموردين', desc: 'أتمتوا متابعة توصيلات الوقود، وتحكموا في الائتمان الممنوح لعملائكم، وسجّلوا التسديدات بكل شفافية.' },
+        { title: 'تقارير وتصدير بنقرة واحدة', desc: 'حلّلوا أداءكم المالي وصدّروا بياناتكم فورًا بصيغ PDF أو Excel أو CSV.' },
+        { title: 'الأمان والنسخ الاحتياطي', desc: 'تحكموا في الصلاحيات بفضل إدارة دقيقة للأدوار/المستخدمين، وأمّنوا بياناتكم الاستراتيجية بفضل وحدة النسخ الاحتياطي/الاستعادة المدمجة.' },
+      ],
+      ctaTitle: 'لديكم مشروع محطة وقود؟',
+      ctaButton: 'اطلب عرضًا توضيحيًا',
+      backLink: 'العودة إلى برمجياتنا',
     },
   },
 };

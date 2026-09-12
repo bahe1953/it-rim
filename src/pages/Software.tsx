@@ -70,7 +70,7 @@ export default function Software() {
                 </div>
                 <h3 className="text-2xl font-bold text-ink mb-3">{card.name}</h3>
                 <p className="text-ink-soft mb-6 leading-relaxed">{card.tagline}</p>
-                {isSoon ? (
+                {isSoon && !card.hasPage ? (
                   <Link
                     to="/contact"
                     className="inline-flex items-center gap-2 text-ink-soft font-semibold group-hover:gap-3 group-hover:text-cyan-700 transition-all"
@@ -80,7 +80,9 @@ export default function Software() {
                 ) : (
                   <Link
                     to={card.href}
-                    className="inline-flex items-center gap-2 text-cyan-700 font-semibold group-hover:gap-3 transition-all"
+                    className={`inline-flex items-center gap-2 font-semibold group-hover:gap-3 transition-all ${
+                      isSoon ? 'text-ink-soft group-hover:text-cyan-700' : 'text-cyan-700'
+                    }`}
                   >
                     {t.software.ctaDiscover} <ArrowRight size={16} />
                   </Link>
