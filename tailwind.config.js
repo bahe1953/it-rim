@@ -9,6 +9,7 @@ export default {
           400: '#22D3EE',
           500: '#00E5FF',
           600: '#00B8CC',
+          700: '#0E7490', // variante foncee, lisible en texte sur fond clair
         },
         marine: {
           900: '#0A1929',
@@ -22,6 +23,18 @@ export default {
         gold: {
           300: '#F5D078',
           400: '#E8B84C',
+          600: '#B8860B', // variante foncee, lisible en texte sur fond clair
+        },
+        // Direction "Clair Chaleureux" : theme clair et chaleureux
+        paper: {
+          DEFAULT: '#FDF9F2', // fond de page
+          card: '#FFFDF9',    // surface de carte
+          soft: '#F3EBDA',    // bandes de section / badges neutres
+        },
+        ink: {
+          DEFAULT: '#1E2A3A', // texte principal (titres)
+          soft: '#5B5347',    // texte secondaire (paragraphes)
+          faint: '#8B8375',   // texte tertiaire (mentions discretes)
         },
       },
       fontFamily: {

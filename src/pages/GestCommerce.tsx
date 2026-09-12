@@ -16,18 +16,18 @@ export default function GestCommerce() {
             animate={{ opacity: 1, y: 0 }}
           >
             <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-marine-700 to-marine-800 flex items-center justify-center mx-auto mb-6 border border-cyan-500/20">
-              <Layers size={40} className="text-cyan-500" />
+              <Layers size={40} className="text-cyan-400" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-ink mb-6">
               <span className="gradient-text">GestCommerce</span>
             </h1>
-            <p className="text-lg text-slate-400 mb-10">
+            <p className="text-lg text-ink-soft mb-10">
               {t.gestcommerce.desc}
             </p>
             <div className="glass-card rounded-2xl p-8">
-              <p className="text-slate-300 mb-6">
+              <p className="text-ink-soft mb-6">
                 {t.gestcommerce.cardText1}
-                <br />{t.gestcommerce.cardText2} <strong className="text-cyan-500">Mouhassib</strong>.
+                <br />{t.gestcommerce.cardText2} <strong className="text-cyan-700">Mouhassib</strong>.
               </p>
               <Link to="/mouhassib" className="btn-primary text-base">
                 {t.gestcommerce.ctaButton} <ArrowRight size={18} />

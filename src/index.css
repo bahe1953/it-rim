@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * {
@@ -14,12 +14,12 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: #0A1929;
-  color: #E2E8F0;
+  background: #FDF9F2;
+  color: #1E2A3A;
   font-family: 'Inter', system-ui, sans-serif;
 }
 
-/* Direction "Signal Chaleureux" : les titres adoptent une police plus humaine
+/* Direction "Clair Chaleureux" : les titres adoptent une police plus humaine
    et accueillante (Plus Jakarta Sans) pour un rendu premium et chaleureux. */
 h1, h2, h3, h4 {
   font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
@@ -36,13 +36,13 @@ html[dir='rtl'] h1, html[dir='rtl'] h2, html[dir='rtl'] h3, html[dir='rtl'] h4 {
   letter-spacing: normal;
 }
 
-/* Scrollbar premium, degrade cyan -> or pour une touche plus chaleureuse */
+/* Scrollbar premium, sur piste claire */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0F1624;
+  background: #F3EBDA;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(#22D3EE, #E8B84C);
@@ -52,30 +52,30 @@ html[dir='rtl'] h1, html[dir='rtl'] h2, html[dir='rtl'] h3, html[dir='rtl'] h4 {
   background: linear-gradient(#00E5FF, #F5D078);
 }
 
-/* Gradient text utility - plus chaleureux, l'or prend plus de place */
+/* Gradient text utility - degrade cyan fonce -> or, lisible sur fond clair */
 .gradient-text {
-  background: linear-gradient(135deg, #00E5FF 0%, #F5D078 60%, #E8B84C 100%);
+  background: linear-gradient(120deg, #0E7490 0%, #CA8A04 55%, #E8B84C 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
 
-/* Card glass effect - plus doux, plus lumineux, teinte or subtile */
+/* Card - surface claire et chaleureuse, ombre douce doree */
 .glass-card {
-  background: linear-gradient(135deg, rgba(30, 58, 95, 0.45) 0%, rgba(232, 184, 76, 0.05) 50%, rgba(15, 37, 64, 0.6) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(245, 208, 120, 0.14);
+  background: linear-gradient(135deg, rgba(255, 253, 249, 0.92) 0%, rgba(243, 235, 218, 0.75) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(184, 134, 11, 0.16);
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(245, 208, 120, 0.32);
-  box-shadow: 0 20px 45px -12px rgba(232, 184, 76, 0.22), 0 10px 25px -10px rgba(0, 229, 255, 0.15);
+  border-color: rgba(184, 134, 11, 0.32);
+  box-shadow: 0 20px 45px -16px rgba(232, 184, 76, 0.35), 0 10px 22px -12px rgba(14, 116, 144, 0.14);
 }
 
-/* Bouton premium - degrade or -> cyan, plus chaleureux et engageant */
+/* Bouton premium - degrade or -> cyan, chaleureux et engageant */
 .btn-primary {
   background: linear-gradient(135deg, #E8B84C 0%, #00E5FF 100%);
   color: #0A1929;
@@ -95,8 +95,8 @@ html[dir='rtl'] h1, html[dir='rtl'] h2, html[dir='rtl'] h3, html[dir='rtl'] h4 {
 
 .btn-secondary {
   background: transparent;
-  color: #F5D078;
-  border: 1.5px solid rgba(245, 208, 120, 0.4);
+  color: #B8860B;
+  border: 1.5px solid rgba(184, 134, 11, 0.4);
   font-weight: 600;
   padding: 12px 28px;
   border-radius: 14px;
@@ -107,14 +107,14 @@ html[dir='rtl'] h1, html[dir='rtl'] h2, html[dir='rtl'] h3, html[dir='rtl'] h4 {
 }
 
 .btn-secondary:hover {
-  background: rgba(245, 208, 120, 0.1);
-  border-color: #F5D078;
+  background: rgba(184, 134, 11, 0.08);
+  border-color: #B8860B;
 }
 
-/* Grid pattern background - teinte or tres subtile pour la chaleur d'ambiance */
+/* Grid pattern background - lignes dorees tres subtiles sur fond clair */
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(245, 208, 120, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 208, 120, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(184, 134, 11, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184, 134, 11, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
 }

@@ -14,7 +14,7 @@ import Thanks from './pages/Thanks';
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-marine-900">
+    <div className="min-h-screen flex flex-col bg-paper">
       <Header />
       <main className="flex-1">
         <Routes>

@@ -20,10 +20,10 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-ink mb-4">
               <span className="gradient-text">{t.contact.title}</span>
             </h1>
-            <p className="text-slate-400">{t.contact.subtitle}</p>
+            <p className="text-ink-soft">{t.contact.subtitle}</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-4">
@@ -39,18 +39,18 @@ export default function Contact() {
                 className="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform"
               >
                 <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto mb-4">
-                  <c.icon size={22} className="text-cyan-500" />
+                  <c.icon size={22} className="text-cyan-700" />
                 </div>
-                <h3 className="font-semibold text-white mb-2">{c.title}</h3>
-                <p className="text-sm text-slate-400">{c.value}</p>
+                <h3 className="font-semibold text-ink mb-2">{c.title}</h3>
+                <p className="text-sm text-ink-soft">{c.value}</p>
               </motion.a>
             ))}
           </div>
 
           <div className="glass-card rounded-2xl p-8 mt-8 text-center">
-            <MapPin size={40} className="text-cyan-500 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-white mb-2">{t.contact.addressTitle}</h3>
-            <p className="text-slate-400">{t.contact.addressDesc}</p>
+            <MapPin size={40} className="text-cyan-700 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-ink mb-2">{t.contact.addressTitle}</h3>
+            <p className="text-ink-soft">{t.contact.addressDesc}</p>
           </div>
         </div>
       </section>

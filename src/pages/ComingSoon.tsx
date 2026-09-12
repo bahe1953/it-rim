@@ -15,7 +15,7 @@ export default function ComingSoon({ name, tagline }: ComingSoonProps) {
     <div className="min-h-[80vh] flex items-center justify-center pt-32 pb-24 relative">
       <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
       <div className="absolute top-1/3 -left-32 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-gold-300/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-gold-300/10 rounded-full blur-3xl" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -23,13 +23,13 @@ export default function ComingSoon({ name, tagline }: ComingSoonProps) {
         transition={{ duration: 0.6 }}
         className="relative max-w-2xl mx-auto px-6 text-center"
       >
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800 border border-slate-700 mb-6">
-          <Clock size={14} className="text-cyan-500" />
-          <span className="text-slate-300 text-sm font-semibold">{t.comingSoon.badgeLabel}</span>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-paper-soft border border-ink-faint/25 mb-6">
+          <Clock size={14} className="text-cyan-700" />
+          <span className="text-ink-soft text-sm font-semibold">{t.comingSoon.badgeLabel}</span>
         </div>
-        <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4">{name}</h1>
-        <p className="text-lg text-cyan-500 font-medium mb-6">{tagline}</p>
-        <p className="text-slate-400 max-w-md mx-auto mb-10 leading-relaxed">{t.comingSoon.bodyText}</p>
+        <h1 className="text-4xl md:text-6xl font-extrabold text-ink mb-4">{name}</h1>
+        <p className="text-lg text-cyan-700 font-medium mb-6">{tagline}</p>
+        <p className="text-ink-soft max-w-md mx-auto mb-10 leading-relaxed">{t.comingSoon.bodyText}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/contact" className="btn-primary text-base justify-center">
             {t.comingSoon.contactCta} <ArrowRight size={18} />

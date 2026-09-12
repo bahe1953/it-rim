@@ -59,20 +59,20 @@ export default function Mouhassib() {
               transition={{ duration: 0.6 }}
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-6">
-                <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-sm text-slate-300">{t.mouhassib.badge}</span>
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-sm text-ink-soft">{t.mouhassib.badge}</span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+              <h1 className="text-5xl md:text-6xl font-extrabold text-ink mb-6 leading-tight">
                 <span className="gradient-text">Mouhassib</span>
                 <br />
-                <span className="text-3xl md:text-4xl text-slate-300 font-bold">
+                <span className="text-3xl md:text-4xl text-ink-soft font-bold">
                   {t.mouhassib.heroTitleLine1}
                   <br />{t.mouhassib.heroTitleLine2}
                 </span>
               </h1>
 
-              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+              <p className="text-lg text-ink-soft mb-8 leading-relaxed">
                 {t.mouhassib.heroDesc}
               </p>
 
@@ -81,8 +81,8 @@ export default function Mouhassib() {
                   const Icon = chipIcons[i];
                   return (
                     <div key={text} className="flex items-center gap-2 px-3 py-1.5 rounded-lg glass-card text-sm">
-                      <Icon size={14} className="text-cyan-500" />
-                      <span className="text-slate-300">{text}</span>
+                      <Icon size={14} className="text-cyan-700" />
+                      <span className="text-ink-soft">{text}</span>
                     </div>
                   );
                 })}
@@ -99,19 +99,19 @@ export default function Mouhassib() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="glass-card rounded-2xl p-4 shadow-2xl">
+              <div className="glass-card rounded-2xl p-4 shadow-xl">
                 <div className="bg-marine-900 rounded-xl aspect-video flex items-center justify-center border border-cyan-500/10">
                   <div className="text-center p-8">
-                    <Package size={64} className="text-cyan-500 mx-auto mb-4" />
-                    <div className="text-slate-400 text-sm">{t.mouhassib.previewLabel}</div>
+                    <Package size={64} className="text-cyan-400 mx-auto mb-4" />
+                    <div className="text-slate-300 text-sm">{t.mouhassib.previewLabel}</div>
                     <div className="text-slate-500 text-xs mt-1">{t.mouhassib.previewSub}</div>
                   </div>
                 </div>
               </div>
               <div className="absolute -bottom-4 end-4 glass-card px-4 py-3 rounded-xl">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-slate-300 font-medium">{t.mouhassib.liveLabel}</span>
+                  <div className="w-2 h-2 rounded-full bg-green-500" />
+                  <span className="text-xs text-ink-soft font-medium">{t.mouhassib.liveLabel}</span>
                 </div>
               </div>
             </motion.div>
@@ -124,9 +124,9 @@ export default function Mouhassib() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-4">
-              <span className="text-cyan-500 text-sm font-semibold">{t.mouhassib.featuresBadge}</span>
+              <span className="text-cyan-700 text-sm font-semibold">{t.mouhassib.featuresBadge}</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-ink mb-4">
               {t.mouhassib.featuresTitle1} <span className="gradient-text">{t.mouhassib.featuresTitleHighlight}</span>
             </h2>
           </div>
@@ -144,10 +144,10 @@ export default function Mouhassib() {
                   className="glass-card rounded-2xl p-6"
                 >
                   <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4">
-                    <Icon size={22} className="text-cyan-500" />
+                    <Icon size={22} className="text-cyan-700" />
                   </div>
-                  <h3 className="font-bold text-white mb-2">{f.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{f.desc}</p>
+                  <h3 className="font-bold text-ink mb-2">{f.title}</h3>
+                  <p className="text-sm text-ink-soft leading-relaxed">{f.desc}</p>
                 </motion.div>
               );
             })}
@@ -156,16 +156,16 @@ export default function Mouhassib() {
       </section>
 
       {/* TÉLÉCHARGEMENT */}
-      <section id="telecharger" className="py-24 relative bg-marine-800/30">
+      <section id="telecharger" className="py-24 relative bg-paper-soft">
         <div className="max-w-3xl mx-auto px-6">
           <div className="text-center mb-12">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-gold-300/10 border border-gold-300/20 mb-4">
-              <span className="text-gold-300 text-sm font-semibold">{t.mouhassib.downloadBadge}</span>
+            <div className="inline-block px-4 py-1.5 rounded-full bg-gold-600/15 border border-gold-600/25 mb-4">
+              <span className="text-gold-600 text-sm font-semibold">{t.mouhassib.downloadBadge}</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-ink mb-4">
               {t.mouhassib.downloadTitle1} <span className="gradient-text">{t.mouhassib.downloadTitleHighlight}</span>
             </h2>
-            <p className="text-slate-400">
+            <p className="text-ink-soft">
               {t.mouhassib.downloadDesc1}
               <br />
               {t.mouhassib.downloadDesc2}
@@ -180,8 +180,8 @@ export default function Mouhassib() {
           >
             {count !== null && (
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
-                <Users size={14} className="text-cyan-500" />
-                <span className="text-sm text-slate-300">{countLabel}</span>
+                <Users size={14} className="text-cyan-700" />
+                <span className="text-sm text-ink-soft">{countLabel}</span>
               </div>
             )}
 
@@ -195,12 +195,12 @@ export default function Mouhassib() {
               </button>
             </div>
 
-            <p className="text-xs text-slate-500 text-center mt-4">
+            <p className="text-xs text-ink-faint text-center mt-4">
               {t.mouhassib.downloadFinePrint}
             </p>
 
             {clicked && (
-              <div className="mt-4 text-sm text-cyan-400">
+              <div className="mt-4 text-sm text-cyan-700">
                 {t.mouhassib.downloadedMsg}
               </div>
             )}
@@ -211,9 +211,9 @@ export default function Mouhassib() {
             {t.mouhassib.includes.map(item => (
               <div key={item} className="glass-card rounded-xl p-4 flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center">
-                  <Check size={16} className="text-cyan-500" />
+                  <Check size={16} className="text-cyan-700" />
                 </div>
-                <span className="text-sm text-slate-300 font-medium">{item}</span>
+                <span className="text-sm text-ink-soft font-medium">{item}</span>
               </div>
             ))}
           </div>
