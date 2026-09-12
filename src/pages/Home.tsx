@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Code, Lightbulb, Users, Sparkles, Package, Layers } from 'lucide-react';
+import { ArrowRight, Code, Lightbulb, Users, Sparkles, Package } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Home() {
@@ -116,7 +116,7 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* GESTCOMMERCE */}
+            {/* MOUHASSIB (FRANCAIS) */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -124,22 +124,22 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               className="glass-card rounded-2xl p-8 group cursor-pointer"
             >
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-marine-700 to-marine-800 flex items-center justify-center mb-6 border border-cyan-500/20">
-                <Layers size={28} className="text-cyan-400" />
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mb-6">
+                <Package size={28} className="text-marine-900" />
               </div>
-              <h3 className="text-2xl font-bold text-ink mb-3">GestCommerce</h3>
+              <h3 className="text-2xl font-bold text-ink mb-3">Mouhassib (Français)</h3>
               <p className="text-ink-soft mb-6 leading-relaxed">
-                {t.home.gestcommerceDesc}
+                {t.home.mouhassibFrDesc}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                {t.home.gestcommerceTags.map(tag => (
-                  <span key={tag} className="text-xs bg-paper-soft text-ink-soft px-2.5 py-1 rounded-md border border-ink-faint/25">
+                {t.home.mouhassibFrTags.map(tag => (
+                  <span key={tag} className="text-xs bg-cyan-500/10 text-cyan-700 px-2.5 py-1 rounded-md border border-cyan-500/20">
                     {tag}
                   </span>
                 ))}
               </div>
-              <Link to="/gestcommerce" className="inline-flex items-center gap-2 text-ink-soft font-semibold group-hover:gap-3 group-hover:text-cyan-700 transition-all">
-                {t.home.gestcommerceCta} <ArrowRight size={16} />
+              <Link to="/mouhassib" className="inline-flex items-center gap-2 text-cyan-700 font-semibold group-hover:gap-3 transition-all">
+                {t.home.mouhassibFrCta} <ArrowRight size={16} />
               </Link>
             </motion.div>
           </div>

@@ -41,6 +41,9 @@ export interface Dictionary {
     gestcommerceDesc: string;
     gestcommerceTags: string[];
     gestcommerceCta: string;
+    mouhassibFrDesc: string;
+    mouhassibFrTags: string[];
+    mouhassibFrCta: string;
     seeAllSoftware: string;
     servicesBadge: string;
     servicesTitle1: string;
@@ -167,6 +170,9 @@ export const translations: Record<Lang, Dictionary> = {
         'Solution de gestion commerciale simple et efficace : ventes, achats, stock, clients, fournisseurs. La version essentielle sans le module comptabilité.',
       gestcommerceTags: ['Simple', 'Rapide', 'Offline', 'Trial 30j'],
       gestcommerceCta: 'Découvrir GestCommerce',
+      mouhassibFrDesc: 'Le même Mouhassib, dans une interface entièrement en français : ventes, stock, factures, comptabilité, zakat.',
+      mouhassibFrTags: ['Français', 'Compta', 'Offline', 'Trial 30j'],
+      mouhassibFrCta: 'Découvrir Mouhassib',
       seeAllSoftware: 'Voir tous nos logiciels',
       servicesBadge: 'Nos services',
       servicesTitle1: 'Ce que nous',
@@ -313,6 +319,9 @@ export const translations: Record<Lang, Dictionary> = {
         'حل بسيط وفعّال لإدارة الأعمال التجارية: المبيعات، المشتريات، المخزون، العملاء، الموردون. النسخة الأساسية دون وحدة المحاسبة.',
       gestcommerceTags: ['بسيط', 'سريع', 'دون إنترنت', 'تجربة 30 يومًا'],
       gestcommerceCta: 'اكتشف GestCommerce',
+      mouhassibFrDesc: 'نفس برنامج محاسب، بواجهة كاملة باللغة الفرنسية: المبيعات، المخزون، الفواتير، المحاسبة، الزكاة.',
+      mouhassibFrTags: ['فرنسي', 'محاسبة', 'دون إنترنت', 'تجربة 30 يومًا'],
+      mouhassibFrCta: 'اكتشف محاسب',
       seeAllSoftware: 'عرض كل برمجياتنا',
       servicesBadge: 'خدماتنا',
       servicesTitle1: 'ما الذي',
