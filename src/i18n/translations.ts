@@ -74,6 +74,9 @@ export interface Dictionary {
     downloadCountSuffix: string;
     downloadCountSuffixOne: string;
     downloadButton: string;
+    downloadChooseLabel: string;
+    downloadButtonAr: string;
+    downloadButtonFr: string;
     downloadFinePrint: string;
     downloadedMsg: string;
     includes: string[];
@@ -209,6 +212,9 @@ export const translations: Record<Lang, Dictionary> = {
       downloadCountSuffix: 'téléchargements déjà effectués',
       downloadCountSuffixOne: 'téléchargement déjà effectué',
       downloadButton: 'Télécharger Mouhassib',
+      downloadChooseLabel: 'Choisissez la version du logiciel :',
+      downloadButtonAr: 'Télécharger la version arabe',
+      downloadButtonFr: 'Télécharger la version française',
       downloadFinePrint: 'Un clic suffit : le téléchargement démarre immédiatement, sans inscription.',
       downloadedMsg: 'Téléchargement lancé !',
       includes: ['Trial complet 30 jours', 'Toutes les fonctionnalités', 'Support par WhatsApp'],
@@ -352,6 +358,9 @@ export const translations: Record<Lang, Dictionary> = {
       downloadCountSuffix: 'عمليات تنزيل حتى الآن',
       downloadCountSuffixOne: 'عملية تنزيل حتى الآن',
       downloadButton: 'تحميل محاسب',
+      downloadChooseLabel: 'اختر نسخة البرنامج:',
+      downloadButtonAr: 'تحميل النسخة العربية',
+      downloadButtonFr: 'تحميل النسخة الفرنسية',
       downloadFinePrint: 'نقرة واحدة تكفي: يبدأ التحميل فورًا، دون أي تسجيل.',
       downloadedMsg: 'تم بدء التحميل!',
       includes: ['تجربة كاملة 30 يومًا', 'كل المزايا', 'دعم عبر واتساب'],

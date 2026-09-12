@@ -4,7 +4,7 @@ import {
   Package, BarChart3, ShoppingCart, Boxes, Calculator, Globe, Download,
   Check, HardDrive, Clock, Shield, Users
 } from 'lucide-react';
-import { MOUHASSIB_DOWNLOAD_URL } from '../config';
+import { MOUHASSIB_AR_DOWNLOAD_URL, MOUHASSIB_FR_DOWNLOAD_URL } from '../config';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Mouhassib() {
@@ -19,16 +19,18 @@ export default function Mouhassib() {
       .catch(() => {});
   }, []);
 
-  const handleDownload = () => {
+  const handleDownload = (version: 'ar' | 'fr') => {
+    const url = version === 'fr' ? MOUHASSIB_FR_DOWNLOAD_URL : MOUHASSIB_AR_DOWNLOAD_URL;
+
     // Ping silencieux pour compter le telechargement (n'attend pas la reponse).
     fetch('/api/download-request', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ produit: 'mouhassib' }),
+      body: JSON.stringify({ produit: `mouhassib-${version}` }),
     }).catch(() => {});
 
-    if (MOUHASSIB_DOWNLOAD_URL) {
-      window.location.href = MOUHASSIB_DOWNLOAD_URL;
+    if (url) {
+      window.location.href = url;
     }
     setClicked(true);
     setCount((c) => (c !== null ? c + 1 : c));
@@ -186,13 +188,23 @@ export default function Mouhassib() {
             )}
 
             <div>
-              <button
-                type="button"
-                onClick={handleDownload}
-                className="btn-primary text-base justify-center mx-auto"
-              >
-                <Download size={18} /> {t.mouhassib.downloadButton}
-              </button>
+              <p className="text-sm text-ink-soft font-medium mb-4">{t.mouhassib.downloadChooseLabel}</p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                <button
+                  type="button"
+                  onClick={() => handleDownload('ar')}
+                  className="btn-primary text-base justify-center"
+                >
+                  <Download size={18} /> {t.mouhassib.downloadButtonAr}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleDownload('fr')}
+                  className="btn-secondary text-base justify-center"
+                >
+                  <Download size={18} /> {t.mouhassib.downloadButtonFr}
+                </button>
+              </div>
             </div>
 
             <p className="text-xs text-ink-faint text-center mt-4">
