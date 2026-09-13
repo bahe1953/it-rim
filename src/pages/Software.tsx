@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Package, Layers, Building2, Fuel, Sparkles, Clock } from 'lucide-react';
+import { ArrowRight, ExternalLink, Package, Layers, Building2, Fuel, Sparkles, Clock } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const ICONS: Record<string, typeof Package> = {
@@ -77,6 +77,15 @@ export default function Software() {
                   >
                     {t.software.ctaDemo} <ArrowRight size={16} />
                   </Link>
+                ) : card.href.startsWith('http') ? (
+                  <a
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-semibold group-hover:gap-3 transition-all text-cyan-700"
+                  >
+                    {t.software.ctaDiscover} <ExternalLink size={16} />
+                  </a>
                 ) : (
                   <Link
                     to={card.href}

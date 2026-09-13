@@ -265,7 +265,7 @@ export const translations: Record<Lang, Dictionary> = {
       cards: [
         { name: 'Mouhassib', tagline: 'Gestion commerciale et comptabilité, entièrement en arabe.', status: 'available', href: '/mouhassib' },
         { name: 'Mouhassib (Français)', tagline: 'Gestion commerciale et comptabilité, entièrement en français.', status: 'available', href: '/mouhassib' },
-        { name: 'RAQIB', tagline: 'Gestion du patrimoine et des immobilisations.', status: 'soon', href: '/logiciels/raqib' },
+        { name: 'RAQIB', tagline: 'Gestion du patrimoine et des immobilisations.', status: 'available', href: 'https://bahe1953.github.io/raqib-landing/' },
         { name: 'Waqood', tagline: 'Gestion de station-service.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
       ],
       ctaDiscover: 'Découvrir',
@@ -436,7 +436,7 @@ export const translations: Record<Lang, Dictionary> = {
       cards: [
         { name: 'محاسب', tagline: 'إدارة تجارية ومحاسبة، باللغة العربية بالكامل.', status: 'available', href: '/mouhassib' },
         { name: 'محاسب (بالفرنسية)', tagline: 'إدارة تجارية ومحاسبة، باللغة الفرنسية بالكامل.', status: 'available', href: '/mouhassib' },
-        { name: 'RAQIB', tagline: 'إدارة الممتلكات والأصول.', status: 'soon', href: '/logiciels/raqib' },
+        { name: 'RAQIB', tagline: 'إدارة الممتلكات والأصول.', status: 'available', href: 'https://bahe1953.github.io/raqib-ar/' },
         { name: 'Waqood', tagline: 'إدارة محطات الوقود.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
       ],
       ctaDiscover: 'اكتشف',
