@@ -265,7 +265,7 @@ export const translations: Record<Lang, Dictionary> = {
       cards: [
         { name: 'Mouhassib', tagline: 'Gestion commerciale et comptabilité, entièrement en arabe.', status: 'available', href: '/mouhassib' },
         { name: 'Mouhassib (Français)', tagline: 'Gestion commerciale et comptabilité, entièrement en français.', status: 'available', href: '/mouhassib' },
-        { name: 'RAQIB', tagline: 'Gestion du patrimoine et des immobilisations.', status: 'available', href: 'https://bahe1953.github.io/raqib-landing/' },
+        { name: 'RAQIB', tagline: 'Gestion du patrimoine et des immobilisations.', status: 'available', href: '/raqib-landing.html' },
         { name: 'Waqood', tagline: 'Gestion de station-service.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
       ],
       ctaDiscover: 'Découvrir',

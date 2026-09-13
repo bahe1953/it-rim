@@ -77,7 +77,7 @@ export default function Software() {
                   >
                     {t.software.ctaDemo} <ArrowRight size={16} />
                   </Link>
-                ) : card.href.startsWith('http') ? (
+                ) : (card.href.startsWith('http') || card.href.endsWith('.html')) ? (
                   <a
                     href={card.href}
                     target="_blank"

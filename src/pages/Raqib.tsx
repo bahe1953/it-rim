@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const RAQIB_URLS: Record<'fr' | 'ar', string> = {
-  fr: 'https://bahe1953.github.io/raqib-landing/',
+  fr: '/raqib-landing.html',
   ar: 'https://bahe1953.github.io/raqib-ar/',
 };
 
