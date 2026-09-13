@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, ExternalLink, Package, Layers, Building2, Fuel, Sparkles, Clock } from 'lucide-react';
+import { ArrowRight, ExternalLink, Package, Layers, Building2, Fuel, Sparkles, Clock, Wallet } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const ICONS: Record<string, typeof Package> = {
   Mouhassib: Package,
   GestCommerce: Layers,
+  Manzeel: Wallet,
   RAQIB: Building2,
   Waqood: Fuel,
 };
