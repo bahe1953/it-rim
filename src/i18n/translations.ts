@@ -263,7 +263,7 @@ export const translations: Record<Lang, Dictionary> = {
       subtitle:
         "Des solutions professionnelles conçues par IT-RIM pour répondre aux besoins réels des entreprises en Mauritanie et à l'international.",
       cards: [
-        { name: 'Mouhassib', tagline: 'Gestion commerciale et comptabilité, entièrement en arabe.', status: 'available', href: '/mouhassib' },
+        { name: 'Mouhassib', tagline: 'Gestion commerciale et comptabilité, entièrement en arabe.', status: 'available', href: '/mouhassib-ar-landing.html' },
         { name: 'Mouhassib (Français)', tagline: 'Gestion commerciale et comptabilité, entièrement en français.', status: 'available', href: '/mouhassib-fr-landing.html' },
         { name: 'RAQIB', tagline: 'Gestion du patrimoine et des immobilisations.', status: 'available', href: '/raqib-landing.html' },
         { name: 'Waqood', tagline: 'Gestion de station-service.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
@@ -434,7 +434,7 @@ export const translations: Record<Lang, Dictionary> = {
       subtitle:
         'حلول احترافية صممتها آي تي ريم لتلبية الاحتياجات الفعلية للشركات في موريتانيا وعلى الصعيد الدولي.',
       cards: [
-        { name: 'محاسب', tagline: 'إدارة تجارية ومحاسبة، باللغة العربية بالكامل.', status: 'available', href: '/mouhassib' },
+        { name: 'محاسب', tagline: 'إدارة تجارية ومحاسبة، باللغة العربية بالكامل.', status: 'available', href: '/mouhassib-ar-landing.html' },
         { name: 'محاسب (بالفرنسية)', tagline: 'إدارة تجارية ومحاسبة، باللغة الفرنسية بالكامل.', status: 'available', href: '/mouhassib-fr-landing.html' },
         { name: 'RAQIB', tagline: 'إدارة الممتلكات والأصول.', status: 'available', href: 'https://bahe1953.github.io/raqib-ar/' },
         { name: 'Waqood', tagline: 'إدارة محطات الوقود.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
