@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOUHASSIB — La révolution digitale du commerce mauritanien | IT-RIM</title>
+<meta name="description" content="Mouhassib, le premier ERP commercial 100% mauritanien, bilingue français/arabe. 17 modules pour tout contrôler : ventes, stock, caisse, zakât et plus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=Cairo:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cyan400: #22D3EE;
+  --cyan500: #00E5FF;
+  --cyan600: #00B8CC;
+  --cyan700: #0E7490;
+  --marine900: #0A1929;
+  --marine800: #0F2540;
+  --marine700: #1E3A5F;
+  --gold300: #F5D078;
+  --gold400: #E8B84C;
+  --gold600: #B8860B;
+  --paper: #FDF9F2;
+  --paper-card: #FFFDF9;
+  --paper-soft: #F3EBDA;
+  --ink: #1E2A3A;
+  --ink-soft: #5B5347;
+  --ink-faint: #8B8375;
+  --border: rgba(30,42,58,0.10);
+  --mr-green: #00A651;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+img, svg { max-width: 100%; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.25rem, 5vw, 3rem);
+  height: 68px;
+  background: rgba(253,249,242,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.3rem; font-weight: 900; letter-spacing: 0.5px;
+  color: var(--marine900); text-decoration: none;
+}
+.nav-logo span { color: var(--cyan700); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--ink-soft); text-decoration: none; font-size: 0.86rem;
+  font-weight: 600; transition: color .2s;
+}
+.nav-links a:hover { color: var(--cyan700); }
+.nav-cta {
+  background: var(--marine900); color: var(--paper);
+  border: none; padding: 0.55rem 1.3rem; border-radius: 8px;
+  font-weight: 700; font-size: 0.85rem; cursor: pointer;
+  text-decoration: none; display: inline-flex; align-items: center;
+  transition: transform .2s, box-shadow .2s;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(10,25,41,.25); }
+
+/* ── HERO ── */
+#hero {
+  padding: 9rem clamp(1.25rem, 6vw, 5rem) 4.5rem;
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 0%, rgba(0,229,255,0.10), transparent),
+    radial-gradient(ellipse 55% 60% at 5% 90%, rgba(232,184,76,0.14), transparent),
+    var(--paper);
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(232,184,76,0.16); border: 1px solid rgba(184,134,11,0.35);
+  color: var(--gold600); font-size: 0.8rem; font-weight: 700;
+  padding: 0.4rem 1rem; border-radius: 100px;
+  margin-bottom: 1.6rem;
+  animation: fadeUp .6s ease both;
+}
+.hero-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-weight: 900; line-height: 1.02;
+  letter-spacing: -1px;
+  color: var(--marine900);
+  max-width: 950px; margin: 0 auto;
+  animation: fadeUp .7s ease .08s both;
+}
+.hero-title .accent { color: var(--cyan700); }
+.hero-sub {
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  color: var(--ink-soft); font-weight: 600;
+  max-width: 700px; margin: 1.1rem auto 0;
+  animation: fadeUp .7s ease .16s both;
+}
+.hero-letter {
+  max-width: 680px; margin: 2.2rem auto 0; text-align: start;
+  background: var(--paper-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.75rem 2rem;
+  box-shadow: 0 8px 32px rgba(10,25,41,.05);
+  animation: fadeUp .7s ease .24s both;
+}
+.hero-letter p { color: var(--ink-soft); line-height: 1.75; font-size: 0.98rem; margin-bottom: 0.9rem; }
+.hero-letter p:last-child { margin-bottom: 0; }
+.hero-letter strong { color: var(--ink); }
+.hero-btns {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  margin-top: 2.4rem;
+  animation: fadeUp .7s ease .32s both;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--cyan600), var(--cyan700));
+  color: var(--paper); border: none; padding: .85rem 2.1rem; border-radius: 10px;
+  font-weight: 700; font-size: 1rem; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: all .25s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,184,204,.35); }
+.btn-secondary {
+  background: transparent; color: var(--marine800);
+  border: 1.5px solid var(--marine800); padding: .85rem 2.1rem; border-radius: 10px;
+  font-weight: 700; font-size: 1rem; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: all .25s;
+}
+.btn-secondary:hover { background: rgba(15,37,64,.06); }
+
+/* ── STATS BAND ── */
+.stats-band {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  background: var(--marine900);
+}
+.stat-item { padding: 2.2rem 1.5rem; text-align: center; border-right: 1px solid rgba(255,255,255,.08); }
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900;
+  color: var(--gold300); line-height: 1;
+}
+.stat-label { color: rgba(255,255,255,.72); font-size: .82rem; margin-top: .5rem; font-weight: 500; }
+
+/* ── SECTION SHARED ── */
+section { padding: 5.5rem clamp(1.25rem, 6vw, 5rem); }
+.section-head { text-align: center; max-width: 720px; margin: 0 auto 3rem; }
+.section-tag {
+  display: inline-block;
+  color: var(--cyan700); font-size: .8rem; font-weight: 800;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-bottom: .8rem;
+}
+.section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 800; line-height: 1.1;
+  color: var(--marine900);
+}
+.section-sub { color: var(--ink-soft); font-size: 1.02rem; line-height: 1.6; margin-top: .9rem; }
+
+/* ── MODULES ── */
+#modules { background: var(--paper-soft); }
+.modules-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1.25rem; max-width: 1200px; margin: 0 auto;
+}
+.mod-card {
+  background: var(--paper-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.6rem;
+  transition: all .3s;
+}
+.mod-card:hover { border-color: rgba(0,184,204,.35); transform: translateY(-3px); box-shadow: 0 12px 28px rgba(10,25,41,.08); }
+.mod-top { display: flex; align-items: center; gap: .7rem; margin-bottom: .7rem; }
+.mod-num {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900;
+  font-size: .78rem; color: var(--gold600);
+  background: rgba(232,184,76,.18); border-radius: 6px;
+  width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mod-icon { font-size: 1.4rem; }
+.mod-title { font-weight: 800; font-size: 1.02rem; color: var(--marine900); }
+.mod-desc { color: var(--ink-soft); font-size: .88rem; line-height: 1.6; }
+.mod-desc strong { color: var(--ink); }
+
+/* ── IMPACT ── */
+#impact { background: var(--paper); }
+.impact-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+}
+.impact-card {
+  background: var(--paper-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.9rem 1.6rem;
+}
+.impact-icon {
+  width: 46px; height: 46px; border-radius: 10px;
+  background: rgba(0,184,204,.12); display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 1.1rem;
+}
+.impact-title { font-weight: 800; font-size: 1.02rem; color: var(--marine900); margin-bottom: .8rem; }
+.impact-list { list-style: none; }
+.impact-list li {
+  color: var(--ink-soft); font-size: .87rem; line-height: 1.6;
+  padding: .5rem 0; border-top: 1px solid var(--border);
+}
+.impact-list li:first-child { border-top: none; }
+.impact-list b { color: var(--cyan700); }
+
+/* ── VISION (dark) ── */
+#vision {
+  background: linear-gradient(150deg, var(--marine900) 0%, #0C2036 55%, #081627 100%);
+  color: var(--paper); position: relative; overflow: hidden;
+}
+#vision::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 80% 20%, rgba(0,229,255,.10), transparent),
+              radial-gradient(ellipse 50% 50% at 10% 90%, rgba(232,184,76,.10), transparent);
+}
+.vision-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; text-align: center; }
+#vision .section-tag { color: var(--gold300); }
+#vision .section-title { color: var(--paper); }
+#vision .section-sub { color: rgba(255,255,255,.68); }
+.vision-list {
+  list-style: none; text-align: start; max-width: 560px; margin: 2.5rem auto 0;
+  display: grid; gap: .9rem;
+}
+.vision-list li {
+  display: flex; gap: .85rem; align-items: flex-start;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10);
+  border-radius: 12px; padding: 1rem 1.2rem;
+  font-size: .95rem; color: rgba(255,255,255,.9);
+}
+.vision-emoji { font-size: 1.2rem; flex-shrink: 0; }
+.vision-close {
+  margin-top: 2.2rem; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem); font-weight: 800;
+  color: var(--gold300);
+}
+
+/* ── OFFER ── */
+#offer { background: var(--paper-soft); }
+.offer-grid {
+  display: grid; grid-template-columns: repeat(5,1fr);
+  gap: 1.1rem; max-width: 1250px; margin: 0 auto;
+}
+.offer-card {
+  background: var(--paper-card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 1.6rem 1.3rem; text-align: center;
+  transition: all .3s;
+}
+.offer-card:hover { border-color: rgba(184,134,11,.4); transform: translateY(-3px); box-shadow: 0 12px 28px rgba(10,25,41,.08); }
+.offer-icon { font-size: 1.9rem; margin-bottom: .8rem; }
+.offer-title { font-weight: 800; font-size: .92rem; color: var(--marine900); margin-bottom: .5rem; line-height: 1.3; }
+.offer-desc { color: var(--ink-soft); font-size: .82rem; line-height: 1.5; }
+.offer-card.highlight { background: linear-gradient(160deg, var(--marine900), var(--marine800)); border-color: var(--marine900); }
+.offer-card.highlight .offer-title,
+.offer-card.highlight .offer-desc { color: var(--paper); }
+.offer-card.highlight .offer-desc { color: rgba(255,255,255,.75); }
+
+/* ── CTA ── */
+#cta {
+  background: linear-gradient(135deg, var(--cyan700) 0%, var(--marine900) 65%);
+  text-align: center; padding: 6.5rem clamp(1.25rem, 6vw, 5rem);
+  color: var(--paper); position: relative; overflow: hidden;
+}
+#cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(232,184,76,.14), transparent);
+}
+.cta-inner { position: relative; z-index: 1; }
+.cta-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; line-height: 1.08;
+  margin-bottom: 1.1rem;
+}
+.cta-title .gold { color: var(--gold300); }
+.cta-sub { color: rgba(255,255,255,.78); font-size: 1.05rem; margin-bottom: 2.2rem; }
+.cta-contacts {
+  display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 2.2rem; font-size: .95rem; color: rgba(255,255,255,.85);
+}
+.cta-contacts a { color: var(--paper); text-decoration: none; font-weight: 600; }
+.cta-contacts a:hover { color: var(--gold300); }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+#cta .btn-primary { background: var(--gold300); color: var(--marine900); }
+#cta .btn-primary:hover { box-shadow: 0 12px 32px rgba(245,208,120,.35); }
+#cta .btn-secondary { color: var(--paper); border-color: rgba(255,255,255,.4); }
+#cta .btn-secondary:hover { background: rgba(255,255,255,.08); border-color: var(--paper); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--marine900); padding: 3rem clamp(1.25rem, 6vw, 5rem);
+  text-align: center; color: rgba(255,255,255,.55); font-size: .87rem;
+}
+footer .footer-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.4rem; font-weight: 900; color: var(--paper);
+  margin-bottom: .6rem;
+}
+footer .footer-logo span { color: var(--gold300); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 980px) {
+  .modules-grid { grid-template-columns: 1fr 1fr; }
+  .impact-grid { grid-template-columns: 1fr 1fr; }
+  .offer-grid { grid-template-columns: 1fr 1fr; }
+  .stats-band { grid-template-columns: 1fr 1fr; }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item { border-bottom: 1px solid rgba(255,255,255,.08); }
+  nav .nav-links { display: none; }
+}
+@media (max-width: 640px) {
+  .modules-grid, .impact-grid, .offer-grid { grid-template-columns: 1fr; }
+  .stats-band { grid-template-columns: 1fr 1fr; }
+  section { padding: 4rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">IT-RIM <span>· MOUHASSIB</span></a>
+  <ul class="nav-links">
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#offer">Offre</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Demander une démo</a>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <div class="hero-badge">🇲🇷 IT-RIM Nouakchott présente</div>
+  <h1 class="hero-title">MOUHASSIB<br><span class="accent">La révolution digitale du commerce mauritanien</span></h1>
+  <p class="hero-sub">Aujourd'hui, votre commerce entre dans une nouvelle ère.</p>
+
+  <div class="hero-letter reveal">
+    <p>Cher commerçant mauritanien,</p>
+    <p>Depuis des générations, vous portez l'économie de notre pays sur vos épaules. Vous vous levez avant l'aube. Vous comptez à la main. Vous notez sur des cahiers qui s'usent. Vous perdez des heures à chercher un chiffre, une facture, un client oublié.</p>
+    <p><strong>Cette époque est révolue.</strong></p>
+    <p>Aujourd'hui, IT-RIM Nouakchott vous présente Mouhassib — le premier ERP commercial 100% mauritanien, bilingue français/arabe, qui va transformer à jamais votre façon de gérer votre commerce.</p>
+  </div>
+
+  <div class="hero-btns">
+    <a href="#cta" class="btn-primary">📞 Demander une démonstration gratuite</a>
+    <a href="#modules" class="btn-secondary">🎯 Découvrir les 17 modules</a>
+  </div>
+</section>
+
+<div class="stats-band reveal">
+  <div class="stat-item"><div class="stat-num">+20%</div><div class="stat-label">de productivité</div></div>
+  <div class="stat-item"><div class="stat-num">+15%</div><div class="stat-label">de marge</div></div>
+  <div class="stat-item"><div class="stat-num">-30%</div><div class="stat-label">de pertes</div></div>
+  <div class="stat-item"><div class="stat-num">+40%</div><div class="stat-label">de fidélité client</div></div>
+</div>
+
+<!-- ══════════ MODULES ══════════ -->
+<section id="modules">
+  <div class="section-head reveal">
+    <span class="section-tag">🎯 17 modules pour tout contrôler</span>
+    <h2 class="section-title">Mouhassib, ce n'est pas un logiciel — c'est un écosystème complet</h2>
+  </div>
+
+  <div class="modules-grid">
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">1</span><span class="mod-icon">📊</span><span class="mod-title">Dashboard intelligent</span></div>
+      <p class="mod-desc">Chaque matin, ouvrez Mouhassib et voyez d'un seul coup d'œil vos ventes du jour, votre chiffre d'affaires, vos alertes stock, vos clients qui vous doivent de l'argent. <strong>Fini les surprises.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">2</span><span class="mod-icon">📦</span><span class="mod-title">Produits & catalogue</span></div>
+      <p class="mod-desc">Gérez des milliers de produits avec catégories intelligentes, codes-barres, dates de péremption, alertes automatiques. <strong>Ne perdez plus jamais un produit oublié.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">3</span><span class="mod-icon">🛒</span><span class="mod-title">Ventes</span></div>
+      <p class="mod-desc">Encaissez en quelques secondes, au comptant ou à crédit. Nouveauté : vente au poids en grammes — 2 500 g de tomates à 300 MRU/kg = <strong>750 MRU instantanément.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">4</span><span class="mod-icon">🛍️</span><span class="mod-title">Achats</span></div>
+      <p class="mod-desc">Suivez chaque achat auprès de vos fournisseurs. Historique complet, prix négociés. <strong>Négociez mieux avec des données précises en main.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">5</span><span class="mod-icon">📉</span><span class="mod-title">Stocks</span></div>
+      <p class="mod-desc">Chaque mouvement enregistré automatiquement. Alertes quand un produit devient rare, inventaire en 1 clic. <strong>Fini les ruptures qui font fuir vos clients.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">6</span><span class="mod-icon">💰</span><span class="mod-title">Caisse</span></div>
+      <p class="mod-desc">Multi-caissiers, ouverture/fermeture de caisse, contrôle des espèces. <strong>Votre argent sous contrôle total.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">7</span><span class="mod-icon">💸</span><span class="mod-title">Dépenses</span></div>
+      <p class="mod-desc">Loyer, électricité, transport, salaires... tout tracé. <strong>Sachez enfin où part votre argent.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">8</span><span class="mod-icon">👥</span><span class="mod-title">Clients</span></div>
+      <p class="mod-desc">Fiche complète de chaque client, historique d'achats, soldes de crédit. <strong>Vos clients deviennent votre force.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">9</span><span class="mod-icon">🏢</span><span class="mod-title">Fournisseurs</span></div>
+      <p class="mod-desc">Gérez vos relations professionnelles, suivez vos dettes, payez au bon moment. <strong>Une réputation solide se construit sur des paiements ponctuels.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">10</span><span class="mod-icon">📄</span><span class="mod-title">Devis</span></div>
+      <p class="mod-desc">Créez des devis professionnels en 30 secondes, convertissez en facture d'un clic. <strong>Impressionnez vos clients dès la première impression.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">11</span><span class="mod-icon">🧾</span><span class="mod-title">Factures PDF bilingues</span></div>
+      <p class="mod-desc">Factures professionnelles en arabe et français, avec votre logo et vos coordonnées. Paiements partiels gérés. <strong>Vos factures deviennent votre carte de visite.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">12</span><span class="mod-icon">📈</span><span class="mod-title">Rapports détaillés</span></div>
+      <p class="mod-desc">Ventes par jour, par produit, par catégorie. Achats analysés, marges calculées. <strong>Décisions basées sur des faits, pas sur des intuitions.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">13</span><span class="mod-icon">🧮</span><span class="mod-title">Comptabilité simplifiée</span></div>
+      <p class="mod-desc">Bilan automatique, journal des opérations, recettes et dépenses classées. <strong>La comptabilité devient enfin accessible à tous.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">14</span><span class="mod-icon">🕌</span><span class="mod-title">Zakât automatique</span></div>
+      <p class="mod-desc">Calcul intégral de votre zakât selon le nisab et les règles de la Sharia. <strong>Respectez votre devoir religieux sans effort ni erreur.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">15</span><span class="mod-icon">⚙️</span><span class="mod-title">Paramètres personnalisables</span></div>
+      <p class="mod-desc">Adaptez Mouhassib à votre commerce : TVA, devise (MRU), langue, seuils d'alertes. <strong>Un logiciel qui s'adapte à vous, pas l'inverse.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">16</span><span class="mod-icon">💾</span><span class="mod-title">Sauvegardes automatiques</span></div>
+      <p class="mod-desc">Vos données protégées jour et nuit. Un incendie, un vol, une panne ? <strong>Vos données survivent.</strong></p>
+    </div>
+    <div class="mod-card reveal">
+      <div class="mod-top"><span class="mod-num">17</span><span class="mod-icon">👨‍💼</span><span class="mod-title">Gestion utilisateurs</span></div>
+      <p class="mod-desc">Créez des comptes pour vos employés avec des permissions précises. <strong>Confiance, oui — mais avec contrôle.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ IMPACT ══════════ -->
+<section id="impact">
+  <div class="section-head reveal">
+    <span class="section-tag">🚀 L'impact sur votre commerce</span>
+    <h2 class="section-title">Ce que Mouhassib change concrètement</h2>
+  </div>
+
+  <div class="impact-grid">
+    <div class="impact-card reveal">
+      <div class="impact-icon">💰</div>
+      <div class="impact-title">Gagnez plus d'argent</div>
+      <ul class="impact-list">
+        <li><b>+20%</b> de productivité : vous vendez plus, plus vite</li>
+        <li><b>+15%</b> de marge : vous connaissez vos vrais coûts</li>
+        <li><b>-30%</b> de pertes : plus de produits périmés oubliés</li>
+        <li><b>+40%</b> de fidélité client : factures pros + service rapide</li>
+      </ul>
+    </div>
+    <div class="impact-card reveal">
+      <div class="impact-icon">⏰</div>
+      <div class="impact-title">Gagnez du temps</div>
+      <ul class="impact-list">
+        <li><b>2h/j</b> économisées sur la comptabilité manuelle</li>
+        <li><b>10 min</b> au lieu d'1h pour votre inventaire</li>
+        <li><b>30 s</b> pour créer un devis</li>
+        <li><b>1 clic</b> pour votre bilan mensuel</li>
+      </ul>
+    </div>
+    <div class="impact-card reveal">
+      <div class="impact-icon">🎯</div>
+      <div class="impact-title">Prenez de meilleures décisions</div>
+      <ul class="impact-list">
+        <li>Quel produit se vend le mieux ? <b>1 clic</b></li>
+        <li>Quel client vous doit de l'argent ? <b>Liste instantanée</b></li>
+        <li>Combien avez-vous gagné ce mois ? <b>Chiffre exact</b></li>
+        <li>Quel stock racheter ? <b>Alerte automatique</b></li>
+      </ul>
+    </div>
+    <div class="impact-card reveal">
+      <div class="impact-icon">🏆</div>
+      <div class="impact-title">Grandissez avec confiance</div>
+      <ul class="impact-list">
+        <li>Ouvrez un 2ᵉ magasin — <b>Mouhassib s'adapte</b></li>
+        <li>Embauchez des employés — <b>chacun son compte</b></li>
+        <li>Attirez plus de clients — <b>vos factures impressionnent</b></li>
+        <li>Négociez des crédits bancaires — <b>vos comptes sont clairs</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ VISION ══════════ -->
+<section id="vision">
+  <div class="vision-inner">
+    <span class="section-tag reveal">🇲🇷 L'avenir de nos commerçants</span>
+    <h2 class="section-title reveal">Imaginez la Mauritanie dans 5 ans</h2>
+
+    <ul class="vision-list reveal">
+      <li><span class="vision-emoji">🏪</span> 10 000 commerces utilisent Mouhassib</li>
+      <li><span class="vision-emoji">💰</span> 100 milliards MRU de transactions tracées et fiables</li>
+      <li><span class="vision-emoji">📊</span> Une génération de commerçants digitalisés</li>
+      <li><span class="vision-emoji">🎓</span> Nos enfants héritent d'entreprises modernes</li>
+      <li><span class="vision-emoji">🌍</span> La Mauritanie devient une référence tech en Afrique de l'Ouest</li>
+      <li><span class="vision-emoji">💼</span> Nos commerçants rivalisent avec les meilleurs du continent</li>
+    </ul>
+
+    <p class="vision-close reveal">Cette révolution commence par votre choix, aujourd'hui.</p>
+  </div>
+</section>
+
+<!-- ══════════ OFFER ══════════ -->
+<section id="offer">
+  <div class="section-head reveal">
+    <span class="section-tag">🎁 Notre engagement envers vous</span>
+    <h2 class="section-title">Une offre pensée pour votre réalité</h2>
+  </div>
+
+  <div class="offer-grid">
+    <div class="offer-card reveal">
+      <div class="offer-icon">🎁</div>
+      <div class="offer-title">30 jours d'essai gratuit</div>
+      <div class="offer-desc">Testez tout, sans engagement, sans carte bancaire.</div>
+    </div>
+    <div class="offer-card highlight reveal">
+      <div class="offer-icon">💵</div>
+      <div class="offer-title">7 500 MRU / trimestre</div>
+      <div class="offer-desc">Un prix mauritanien, pensé pour votre réalité.</div>
+    </div>
+    <div class="offer-card reveal">
+      <div class="offer-icon">🔑</div>
+      <div class="offer-title">Rent-to-own unique</div>
+      <div class="offer-desc">Après 12 mois cumulés payés, la licence vous appartient à vie.</div>
+    </div>
+    <div class="offer-card reveal">
+      <div class="offer-icon">🇲🇷</div>
+      <div class="offer-title">Support 100% mauritanien</div>
+      <div class="offer-desc">Notre équipe parle votre langue. Nous sommes vos voisins.</div>
+    </div>
+    <div class="offer-card reveal">
+      <div class="offer-icon">🔄</div>
+      <div class="offer-title">Mises à jour gratuites</div>
+      <div class="offer-desc">Chaque nouvelle fonctionnalité, offerte à nos clients existants.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section id="cta">
+  <div class="cta-inner">
+    <h2 class="cta-title">📞 Rejoignez <span class="gold">la révolution</span></h2>
+    <p class="cta-sub">Demandez votre démonstration gratuite dès aujourd'hui.</p>
+
+    <div class="cta-contacts">
+      <a href="https://wa.me/22243459222">📱 WhatsApp : +222 43 45 92 22</a>
+      <a href="mailto:contact@it-rim.net">📧 contact@it-rim.net</a>
+      <a href="https://it-rim.net">🌐 it-rim.net</a>
+    </div>
+
+    <div class="cta-btns">
+      <a href="https://wa.me/22243459222" class="btn-primary">📲 Demander une démo sur WhatsApp</a>
+      <a href="mailto:contact@it-rim.net" class="btn-secondary">📧 Nous écrire</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">🏆 MOUHASSIB <span>— Votre commerce mérite le meilleur</span></div>
+  <div>IT-RIM Nouakchott · © 2026 · Tous droits réservés.</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
