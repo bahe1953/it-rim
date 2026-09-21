@@ -23,9 +23,6 @@ export default function Footer() {
             <h3 className="font-semibold text-ink mb-4">{t.footer.productsTitle}</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/logiciels" className="text-ink-soft hover:text-cyan-700 transition">{t.nav.software}</Link></li>
-              <li><Link to="/mouhassib" className="text-ink-soft hover:text-cyan-700 transition">Mouhassib</Link></li>
-              <li><Link to="/manzeel" className="text-ink-soft hover:text-cyan-700 transition">Manzeel</Link></li>
-              <li><Link to="/gestcommerce" className="text-ink-soft hover:text-cyan-700 transition">GestCommerce</Link></li>
               <li><Link to="/services" className="text-ink-soft hover:text-cyan-700 transition">{t.nav.services}</Link></li>
             </ul>
           </div>
