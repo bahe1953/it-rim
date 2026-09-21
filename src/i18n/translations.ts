@@ -144,6 +144,26 @@ export interface Dictionary {
     ctaButton: string;
     backLink: string;
   };
+  manzeelPage: {
+    badge: string;
+    title1: string;
+    titleHighlight: string;
+    subtitle: string;
+    featuresBadge: string;
+    featuresTitle1: string;
+    featuresTitleHighlight: string;
+    features: { title: string; desc: string }[];
+    downloadBadge: string;
+    downloadTitle1: string;
+    downloadTitleHighlight: string;
+    downloadDesc: string;
+    downloadButtonFr: string;
+    downloadButtonAr: string;
+    downloadFinePrint: string;
+    ctaTitle: string;
+    ctaButton: string;
+    backLink: string;
+  };
 }
 
 export const translations: Record<Lang, Dictionary> = {
@@ -265,6 +285,7 @@ export const translations: Record<Lang, Dictionary> = {
       cards: [
         { name: 'Mouhassib', tagline: 'Gestion commerciale et comptabilité, entièrement en arabe.', status: 'available', href: '/mouhassib-ar-landing.html' },
         { name: 'Mouhassib (Français)', tagline: 'Gestion commerciale et comptabilité, entièrement en français.', status: 'available', href: '/mouhassib-fr-landing.html' },
+        { name: 'Manzeel', tagline: 'Gestion commerciale bilingue : ventes, stock, caisse et zakat.', status: 'available', href: '/manzeel', hasPage: true },
         { name: 'RAQIB', tagline: 'Gestion du patrimoine et des immobilisations.', status: 'available', href: '/raqib-landing.html' },
         { name: 'Waqood', tagline: 'Gestion de station-service.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
       ],
@@ -314,6 +335,34 @@ export const translations: Record<Lang, Dictionary> = {
         { title: 'Sécurité & sauvegardes', desc: "Contrôlez les accès grâce à la gestion affinée des rôles/utilisateurs et sécurisez vos données stratégiques grâce au module de sauvegarde/restauration intégré." },
       ],
       ctaTitle: 'Un projet de station-service ?',
+      ctaButton: 'Demander une démonstration',
+      backLink: 'Retour à nos logiciels',
+    },
+    manzeelPage: {
+      badge: 'MANZEEL',
+      title1: 'La gestion commerciale',
+      titleHighlight: 'qui parle vos deux langues',
+      subtitle:
+        "Manzeel gère vos ventes, vos achats, votre stock, votre caisse et votre zakat dans une seule application — entièrement bilingue français / arabe, factures comprises.",
+      featuresBadge: 'Ce que fait Manzeel',
+      featuresTitle1: 'Un logiciel pensé pour',
+      featuresTitleHighlight: 'les commerçants',
+      features: [
+        { title: 'Ventes comptant ou à crédit', desc: "Factures et tickets PDF bilingues, avec une mise en page entièrement adaptée à l'arabe (droite à gauche)." },
+        { title: 'Caisse qui ne part jamais dans le rouge', desc: 'Journal de caisse alimenté automatiquement, solde toujours positif, dépenses suivies par catégorie.' },
+        { title: 'Mobile money local intégré', desc: 'Bankily, Sedad, Masrvi, Click — au même titre que les espèces, la carte ou le chèque.' },
+        { title: 'Stock et fournisseurs sous contrôle', desc: 'Achats, mouvements de stock et dettes fournisseurs tracés de bout en bout.' },
+        { title: 'Zakat calculée automatiquement', desc: 'Suivi du cycle du Hawl jour après jour, nisab et taux personnalisables, rapport exportable en PDF.' },
+        { title: 'Plusieurs utilisateurs, un seul système', desc: 'Rôles admin, gérant, vendeur et caissier, avec fonctionnement en réseau local partagé.' },
+      ],
+      downloadBadge: 'Présentation',
+      downloadTitle1: 'Découvrez Manzeel',
+      downloadTitleHighlight: 'en détail',
+      downloadDesc: 'Téléchargez la présentation complète du logiciel, disponible en français et en arabe.',
+      downloadButtonFr: 'Télécharger la présentation (Français)',
+      downloadButtonAr: 'تحميل العرض التقديمي (بالعربية)',
+      downloadFinePrint: 'Fichier PowerPoint (.pptx), sans inscription requise.',
+      ctaTitle: 'Un projet de digitalisation pour votre commerce ?',
       ctaButton: 'Demander une démonstration',
       backLink: 'Retour à nos logiciels',
     },
@@ -436,6 +485,7 @@ export const translations: Record<Lang, Dictionary> = {
       cards: [
         { name: 'محاسب', tagline: 'إدارة تجارية ومحاسبة، باللغة العربية بالكامل.', status: 'available', href: '/mouhassib-ar-landing.html' },
         { name: 'محاسب (بالفرنسية)', tagline: 'إدارة تجارية ومحاسبة، باللغة الفرنسية بالكامل.', status: 'available', href: '/mouhassib-fr-landing.html' },
+        { name: 'Manzeel', tagline: 'إدارة تجارية ثنائية اللغة: المبيعات والمخزون والصندوق والزكاة.', status: 'available', href: '/manzeel', hasPage: true },
         { name: 'RAQIB', tagline: 'إدارة الممتلكات والأصول.', status: 'available', href: 'https://bahe1953.github.io/raqib-ar/' },
         { name: 'Waqood', tagline: 'إدارة محطات الوقود.', status: 'soon', href: '/logiciels/waqood', hasPage: true },
       ],
@@ -485,6 +535,34 @@ export const translations: Record<Lang, Dictionary> = {
         { title: 'الأمان والنسخ الاحتياطي', desc: 'تحكموا في الصلاحيات بفضل إدارة دقيقة للأدوار/المستخدمين، وأمّنوا بياناتكم الاستراتيجية بفضل وحدة النسخ الاحتياطي/الاستعادة المدمجة.' },
       ],
       ctaTitle: 'لديكم مشروع محطة وقود؟',
+      ctaButton: 'اطلب عرضًا توضيحيًا',
+      backLink: 'العودة إلى برمجياتنا',
+    },
+    manzeelPage: {
+      badge: 'MANZEEL',
+      title1: 'الإدارة التجارية',
+      titleHighlight: 'التي تتحدث لغتيكم',
+      subtitle:
+        'يدير Manzeel مبيعاتكم ومشترياتكم ومخزونكم وصندوقكم وزكاتكم في تطبيق واحد — ثنائي اللغة بالكامل (فرنسي/عربي)، بما في ذلك الفواتير.',
+      featuresBadge: 'ما الذي يقدمه Manzeel',
+      featuresTitle1: 'برنامج مصمم من أجل',
+      featuresTitleHighlight: 'التجار',
+      features: [
+        { title: 'بيع نقدي أو بالأجل', desc: 'فواتير وإيصالات PDF ثنائية اللغة، بتصميم متوافق تمامًا مع الكتابة العربية (من اليمين إلى اليسار).' },
+        { title: 'صندوق لا يقع في العجز أبدًا', desc: 'سجل صندوق يُغذّى تلقائيًا، رصيد إيجابي دائمًا، ومصاريف متابعة حسب الفئة.' },
+        { title: 'خدمات الدفع المحلية عبر الهاتف مدمجة', desc: 'بنكيلي، سداد، مصرفي، كليك — بنفس مستوى النقد أو البطاقة أو الشيك.' },
+        { title: 'المخزون والموردون تحت السيطرة', desc: 'المشتريات وحركات المخزون وديون الموردين موثقة من الألف إلى الياء.' },
+        { title: 'حساب الزكاة تلقائيًا', desc: 'متابعة دورة الحول يومًا بيوم، نصاب ومعدل قابلان للتخصيص، وتقرير قابل للتصدير بصيغة PDF.' },
+        { title: 'عدة مستخدمين، نظام واحد', desc: 'أدوار المدير والمسؤول والبائع وأمين الصندوق، مع عمل عبر شبكة محلية مشتركة.' },
+      ],
+      downloadBadge: 'العرض التقديمي',
+      downloadTitle1: 'اكتشفوا Manzeel',
+      downloadTitleHighlight: 'بالتفصيل',
+      downloadDesc: 'حمّلوا العرض التقديمي الكامل للبرنامج، متوفر باللغتين الفرنسية والعربية.',
+      downloadButtonFr: 'Télécharger la présentation (Français)',
+      downloadButtonAr: 'تحميل العرض التقديمي (بالعربية)',
+      downloadFinePrint: 'ملف PowerPoint (.pptx)، دون الحاجة للتسجيل.',
+      ctaTitle: 'لديكم مشروع لرقمنة تجارتكم؟',
       ctaButton: 'اطلب عرضًا توضيحيًا',
       backLink: 'العودة إلى برمجياتنا',
     },
