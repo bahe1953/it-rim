@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Mouhassib from './pages/Mouhassib';
+import MouhassibFR from './pages/MouhassibFR';
 import Manzeel from './pages/Manzeel';
 import GestCommerce from './pages/GestCommerce';
 import Software from './pages/Software';
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/logiciels/raqib" element={<Raqib />} />
           <Route path="/logiciels/waqood" element={<Waqood />} />
           <Route path="/mouhassib" element={<Mouhassib />} />
+          <Route path="/mouhassib-fr" element={<MouhassibFR />} />
           <Route path="/manzeel" element={<Manzeel />} />
           <Route path="/gestcommerce" element={<GestCommerce />} />
           <Route path="/services" element={<Services />} />

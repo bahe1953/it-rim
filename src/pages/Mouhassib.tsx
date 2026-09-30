@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   Package, BarChart3, ShoppingCart, Boxes, Calculator, Globe, Download,
   Check, HardDrive, Clock, Shield, Users
@@ -93,6 +94,11 @@ export default function Mouhassib() {
               <a href="#telecharger" className="btn-primary text-base">
                 <Download size={18} /> {t.mouhassib.ctaFree}
               </a>
+              {lang === 'fr' && (
+                <Link to="/mouhassib-fr" className="block mt-4 text-sm font-semibold text-cyan-700 underline underline-offset-4">
+                  Découvrir Mouhassib FR en détail (démonstration vidéo)
+                </Link>
+              )}
             </motion.div>
 
             <motion.div
