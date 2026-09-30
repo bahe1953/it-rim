@@ -6,6 +6,12 @@
 // et a envoyer une confirmation. Le telechargement du logiciel se declenche cote
 // client immediatement, sans attendre la reponse de cet appel (fire-and-forget).
 
+// Memes liens que src/config.ts (a changer ensemble lors d'une nouvelle version).
+const LIEN_MOUHASSIB_AR =
+  'https://github.com/bahe1953/it-rim/releases/download/mouhassib-ar-v1.1.0/Mouhassib-Setup-1.1.0.exe';
+const LIEN_MOUHASSIB_FR =
+  'https://github.com/bahe1953/it-rim/releases/download/mouhassib-fr-v1.1.0/Mouhassib-FR-Setup-1.1.0.exe';
+
 async function enregistrerDansGoogleSheet(lead: Record<string, string>) {
   const url = process.env.GOOGLE_SHEET_WEBHOOK_URL;
   if (!url) {
@@ -32,7 +38,7 @@ async function envoyerEmailConfirmation(lead: Record<string, string>) {
     return { ok: false, skipped: true };
   }
   const from = process.env.RESEND_FROM || 'IT-RIM <onboarding@resend.dev>';
-  const downloadUrl = process.env.MOUHASSIB_DOWNLOAD_URL || 'https://it-rim.net/mouhassib#telecharger';
+  const downloadUrl = lead.produit === 'mouhassib-fr' ? LIEN_MOUHASSIB_FR : LIEN_MOUHASSIB_AR;
 
   try {
     const res = await fetch('https://api.resend.com/emails', {

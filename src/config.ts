@@ -1,18 +1,15 @@
 // Configuration centralisee du site IT-RIM.
 
-// URL publique du fichier installeur Mouhassib version arabe (.exe).
-// A heberger sur une GitHub Release (jusqu'a 2 Go, gratuit) et a renseigner
-// via la variable d'environnement Vercel VITE_MOUHASSIB_DOWNLOAD_URL.
-// Exemple : https://github.com/bahe1953/it-rim/releases/download/v7.3/Mouhassib-v7.3-FINAL.exe
+// Liens des installeurs Mouhassib (GitHub Releases du depot bahe1953/it-rim).
+// Ils sont ecrits ici, dans le code, plutot que dans les variables d'environnement Vercel :
+// pour publier une nouvelle version, il suffit de changer ces deux lignes puis de faire
+// « git push » (Vercel redeploie alors le site automatiquement).
+// Version 1.1.0 publiee le 30/09/2026.
 export const MOUHASSIB_AR_DOWNLOAD_URL =
-  import.meta.env.VITE_MOUHASSIB_DOWNLOAD_URL || '';
+  'https://github.com/bahe1953/it-rim/releases/download/mouhassib-ar-v1.1.0/Mouhassib-Setup-1.1.0.exe';
 
-// URL publique du fichier installeur Mouhassib version francaise (.exe).
-// Meme principe que la version arabe : a heberger sur une GitHub Release et
-// a renseigner via la variable d'environnement Vercel VITE_MOUHASSIB_FR_DOWNLOAD_URL.
-// Exemple : https://github.com/bahe1953/it-rim/releases/download/v7.3/Mouhassib-FR-v7.3-FINAL.exe
 export const MOUHASSIB_FR_DOWNLOAD_URL =
-  import.meta.env.VITE_MOUHASSIB_FR_DOWNLOAD_URL || '';
+  'https://github.com/bahe1953/it-rim/releases/download/mouhassib-fr-v1.1.0/Mouhassib-FR-Setup-1.1.0.exe';
 
 // Alias conserve pour compatibilite (utilise historiquement pour la version arabe).
 export const MOUHASSIB_DOWNLOAD_URL = MOUHASSIB_AR_DOWNLOAD_URL;
