@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 // Affiche un contenu dessiné à une taille fixe (ex. 1040 × 660) en le réduisant pour qu'il
