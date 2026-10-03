@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { swapLocale, type Locale } from "@/i18n/config";
 import { Arrow, Logo, WhatsApp } from "./icons";
 
@@ -86,8 +87,8 @@ export default function Header({ lang, nav, labels, whatsappUrl }: Props) {
         </button>
       </div>
 
-      {open && (
-        <div className="fixed inset-0 z-[60] bg-ink/30 xl:hidden" onClick={(e) => e.target === e.currentTarget && setOpen(false)}>
+      {open && createPortal(
+        <div dir={lang === "ar" ? "rtl" : "ltr"} className="fixed inset-0 z-[60] bg-ink/30 xl:hidden" onClick={(e) => e.target === e.currentTarget && setOpen(false)}>
           <div id="mobile-menu" role="dialog" aria-modal="true" aria-label={labels.menu}
             className="absolute inset-y-0 end-0 flex w-[min(88vw,380px)] flex-col gap-5 overflow-auto bg-white px-5 pt-[calc(18px+env(safe-area-inset-top,0px))] pb-[calc(24px+env(safe-area-inset-bottom,0px))]">
             <div className="flex items-center justify-between">
@@ -108,7 +109,8 @@ export default function Header({ lang, nav, labels, whatsappUrl }: Props) {
               <a href={whatsappUrl} target="_blank" rel="noopener" className="btn btn-wa"><WhatsApp />WhatsApp</a>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </header>
   );
