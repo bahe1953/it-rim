@@ -93,7 +93,7 @@ export function WorkShowcase({ lang, withHead = true }: { lang: Locale; withHead
         )}
         <div className="grid gap-5 lg:grid-cols-[2.6fr_1fr]">
           <article className="card grid items-center gap-6 p-3.5 md:grid-cols-[1.15fr_1fr] md:gap-8 md:p-5">
-            <div className="laptop"><Image src={p.image} alt={p.name[lang]} width={345} height={168} sizes="(max-width: 860px) 90vw, 460px" className="block h-auto w-full rounded-md" /></div>
+            <div className="laptop"><Image src={p.image} alt={p.name[lang]} width={1062} height={664} sizes="(max-width: 860px) 90vw, 460px" className="block h-auto w-full rounded-md" /></div>
             <div className="grid min-w-0 gap-3.5 pe-2">
               <span className="w-fit rounded-full bg-green-100 px-2.5 py-1 text-xs font-bold text-green-800">{p.type[lang]}</span>
               <h3 className="text-[clamp(22px,2.2vw,27px)]">{p.name[lang]}</h3>

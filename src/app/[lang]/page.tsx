@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { hasLocale, siteUrl } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { products } from "@/content/products";
+import HeroShowcase from "@/components/HeroShowcase";
 import { Arrow, Globe, Grid, Play, Shield, Users } from "@/components/icons";
 import {
   ContactSection, ExpertiseSection, ProcessSection, ProductCard, StrengthsBand, WorkShowcase,
@@ -39,9 +39,8 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               ))}
             </ul>
           </div>
-          <div className="relative mx-auto w-full max-w-[620px] max-md:order-first md:max-w-none">
-            <Image src="/images/hero-nouakchott.webp" alt={d.hero.imageAlt} width={668} height={520} priority
-              sizes="(max-width: 768px) 92vw, 46vw" className="rise h-auto w-full drop-shadow-[0_30px_40px_rgba(15,39,66,0.12)]" />
+          <div className="relative min-w-0 max-md:order-first">
+            <HeroShowcase lang={lang} minis={products.filter((p) => p.slug !== "mouhassib").map((p) => ({ src: p.image, name: p.name[lang], color: ({ w: "#EA6A0C", z: "#15924B", r: "#5650D6", m: "#1E7FD8" } as const)[p.accent] }))} />
           </div>
         </div>
       </section>

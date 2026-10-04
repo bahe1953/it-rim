@@ -27,7 +27,7 @@ export function pageMetadata(lang: Locale, path: string, title?: string, descrip
       url: `${siteUrl}/${lang}${path}`,
       locale: lang === "ar" ? "ar_MR" : "fr_MR",
       alternateLocale: lang === "ar" ? ["fr_MR"] : ["ar_MR"],
-      images: [{ url: "/images/hero-nouakchott.webp" }],
+      images: [{ url: "/images/mouhassib.webp" }],
     },
   };
 }

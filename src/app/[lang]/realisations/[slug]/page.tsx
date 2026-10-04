@@ -55,7 +55,7 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/realisati
             {p.url ? <a href={p.url} target="_blank" rel="noopener" className="btn btn-p w-fit">{d.work.visit}<Arrow /></a>
               : <span className="btn w-fit cursor-default border border-dashed border-line text-sm text-ink-soft">{d.work.urlPending}</span>}
           </div>
-          <div className="laptop"><Image src={p.image} alt={p.name[lang]} width={345} height={168} priority sizes="(max-width: 768px) 92vw, 52vw" className="block h-auto w-full rounded-md" /></div>
+          <div className="laptop"><Image src={p.image} alt={p.name[lang]} width={1062} height={664} priority sizes="(max-width: 768px) 92vw, 52vw" className="block h-auto w-full rounded-md" /></div>
         </div>
       </section>
       <section className="sec !pt-6">

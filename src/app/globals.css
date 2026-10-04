@@ -166,3 +166,5 @@
 
 /* Footer */
 .footer { background: linear-gradient(180deg, #eaf5ff, #f6fbff); border-top: 1px solid var(--color-line); }
+
+@keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }

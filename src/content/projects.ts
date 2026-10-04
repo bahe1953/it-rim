@@ -28,13 +28,13 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "oulemas-de-mauritanie",
-    name: { fr: "Oulemas de Mauritanie", ar: "علماء موريتانيا" },
+    name: { fr: "Haute Instance des Oulémas de Mauritanie", ar: "هيئة العلماء الموريتانيين" },
     type: { fr: "Plateforme web", ar: "منصة ويب" },
     summary: {
-      fr: "Une plateforme numérique dédiée aux savants, aux sciences islamiques et au patrimoine scientifique mauritanien.",
-      ar: "منصة رقمية مخصصة للعلماء والعلوم الإسلامية والتراث العلمي الموريتاني.",
+      fr: "Le site bilingue de la Haute Instance des Oulémas de Mauritanie : l'institution, sa structure, le patrimoine scientifique et les grands savants.",
+      ar: "الموقع ثنائي اللغة لهيئة العلماء الموريتانيين: الهيئة وهيكلها والتراث العلمي وكبار العلماء.",
     },
-    url: null,
+    url: "https://oulema.vercel.app",
     image: "/images/oulemas.webp",
     languages: ["FR", "العربية"],
     technologies: ["Next.js", "PostgreSQL", "Responsive"],

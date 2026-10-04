@@ -33,7 +33,6 @@ const fr = {
     ctaApps: "Découvrir nos applications",
     ctaWork: "Voir nos réalisations",
     badges: ["Solutions locales et internationales", "Technologies modernes", "Accompagnement de A à Z"],
-    imageAlt: "Quartier d'affaires de Nouakchott",
   },
   apps: {
     eyebrow: "Nos applications",
@@ -271,7 +270,6 @@ const ar: Dictionary = {
     ctaApps: "اكتشف تطبيقاتنا",
     ctaWork: "شاهد أعمالنا",
     badges: ["حلول محلية ودولية", "تقنيات حديثة", "مرافقة شاملة من الفكرة إلى الإطلاق"],
-    imageAlt: "حي الأعمال في نواكشوط",
   },
   apps: {
     eyebrow: "تطبيقاتنا",
