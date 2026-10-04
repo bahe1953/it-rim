@@ -8,7 +8,9 @@ import { z } from "zod";
  * Aucun backend n'est imposé. L'envoi se configure par variables d'environnement :
  *  - RESEND_API_KEY (+ CONTACT_TO, défaut contact@it-rim.net ; + RESEND_FROM ou CONTACT_FROM) : envoi par email via l'API Resend,
  *    avec les mêmes variables que le site actuel sur Vercel ;
- *  - ou CONTACT_WEBHOOK_URL : POST JSON vers un webhook (Make, n8n, Supabase Edge Function, etc.).
+ *  - CONTACT_WEBHOOK_URL : POST JSON vers un webhook (Make, n8n, Supabase Edge Function, etc.) ;
+ *  - GOOGLE_SHEET_WEBHOOK_URL : copie de chaque demande dans le Google Sheet existant (filet de sécurité).
+ * Tous les canaux configurés sont utilisés ; la demande est acceptée si au moins un l'a reçue.
  * Sans configuration, le formulaire répond « not_configured » et invite à écrire sur WhatsApp :
  * aucune demande n'est perdue silencieusement.
  */
@@ -80,9 +82,12 @@ export async function submitForm(_prev: FormState, formData: FormData): Promise<
     .filter(Boolean)
     .join("\n");
 
-  try {
-    if (process.env.RESEND_API_KEY) {
-      const to = (process.env.CONTACT_TO ?? "contact@it-rim.net").split(",");
+  // Chaque canal configuré est tenté ; la demande est acceptée dès qu'un canal l'a bien reçue.
+  const results: boolean[] = [];
+
+  if (process.env.RESEND_API_KEY) {
+    const to = (process.env.CONTACT_TO ?? "contact@it-rim.net").split(",").map((s) => s.trim()).filter(Boolean);
+    try {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
@@ -94,18 +99,52 @@ export async function submitForm(_prev: FormState, formData: FormData): Promise<
           text,
         }),
       });
-      return res.ok ? { status: "ok" } : { status: "error" };
+      if (!res.ok) console.error("[FORM] Resend a refusé l'envoi :", res.status, await res.text().catch(() => ""));
+      results.push(res.ok);
+    } catch (err) {
+      console.error("[FORM] Erreur Resend :", err);
+      results.push(false);
     }
-    if (process.env.CONTACT_WEBHOOK_URL) {
+  }
+
+  if (process.env.CONTACT_WEBHOOK_URL) {
+    try {
       const res = await fetch(process.env.CONTACT_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, subject, receivedAt: new Date().toISOString() }),
       });
-      return res.ok ? { status: "ok" } : { status: "error" };
+      if (!res.ok) console.error("[FORM] Webhook en erreur :", res.status);
+      results.push(res.ok);
+    } catch (err) {
+      console.error("[FORM] Erreur webhook :", err);
+      results.push(false);
     }
-  } catch {
-    return { status: "error" };
   }
-  return { status: "not_configured" };
+
+  // Copie de secours dans le Google Sheet déjà utilisé par le site (colonnes Date, Nom, Email, Telephone, Ville, Produit).
+  if (process.env.GOOGLE_SHEET_WEBHOOK_URL) {
+    try {
+      const res = await fetch(process.env.GOOGLE_SHEET_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date: new Date().toISOString(),
+          nom: data.name,
+          email: data.email,
+          telephone: data.phone,
+          ville: data.company,
+          produit: `[${data.kind}]${data.product ? ` ${data.product}` : ""}${data.types.length ? ` (${data.types.join(", ")})` : ""}${data.message ? ` : ${data.message}` : ""}`.slice(0, 4500),
+        }),
+      });
+      if (!res.ok) console.error("[FORM] Google Sheet en erreur :", res.status);
+      results.push(res.ok);
+    } catch (err) {
+      console.error("[FORM] Erreur Google Sheet :", err);
+      results.push(false);
+    }
+  }
+
+  if (results.length === 0) return { status: "not_configured" };
+  return results.some(Boolean) ? { status: "ok" } : { status: "error" };
 }

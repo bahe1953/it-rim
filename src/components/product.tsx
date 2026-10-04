@@ -5,8 +5,7 @@ import type { Product } from "@/content/products";
 import { releaseUrl, type Release } from "@/content/releases";
 import { site } from "@/content/site";
 import type { TrialState } from "@/lib/trial";
-import Newsletter from "./Newsletter";
-import { Arrow, Check, Clock, Download, Flask, Windows } from "./icons";
+import { Arrow, Check, Clock, Download, Flask, WhatsApp, Windows } from "./icons";
 
 const fmtDate = (iso: string, lang: Locale) =>
   new Intl.DateTimeFormat(lang === "ar" ? "ar-MR-u-nu-latn" : "fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date(iso));
@@ -83,8 +82,7 @@ export function DownloadCard({ p, lang, release }: { p: Product; lang: Locale; r
         <div className="grid gap-2.5 rounded-2xl border border-dashed border-line bg-canvas p-4">
           <p className="font-bold">{d.soon}</p>
           <p className="text-sm text-ink-soft">{d.soonText}</p>
-          <Newsletter lang={lang} kind="notify" product={p.slug} placeholder={dict.footer.newsletterPlaceholder}
-            ok={dict.footer.newsletterOk} notConfigured={dict.contact.form.notConfigured} invalid={dict.contact.form.invalidEmail} submitLabel={d.notify} />
+          <a href={whatsappFor(d.notifyMsg(p.name[lang]))} target="_blank" rel="noopener" className="btn btn-wa btn-sm w-fit"><WhatsApp size={16} />{d.notify}</a>
         </div>
       )}
     </div>

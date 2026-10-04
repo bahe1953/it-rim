@@ -3,7 +3,6 @@ import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { site } from "@/content/site";
 import { Facebook, LinkedIn, Logo, Mail, Pin, WhatsApp, YouTube } from "./icons";
-import Newsletter from "./Newsletter";
 import { LangSwitch } from "./Header";
 
 export default function Footer({ lang }: { lang: Locale }) {
@@ -64,8 +63,7 @@ export default function Footer({ lang }: { lang: Locale }) {
           <div className="sm:col-span-2 lg:col-span-1">
             <h2 className="mb-2 text-[15px] font-extrabold">{d.footer.newsletter}</h2>
             <p className="mb-3 text-[13.5px] text-ink-soft">{d.footer.newsletterText}</p>
-            <Newsletter lang={lang} placeholder={d.footer.newsletterPlaceholder} ok={d.footer.newsletterOk}
-              notConfigured={d.contact.form.notConfigured} invalid={d.contact.form.invalidEmail} submitLabel={d.contact.form.send} />
+            <a href={`${site.whatsappUrl}?text=${encodeURIComponent(d.footer.newsletterMsg)}`} target="_blank" rel="noopener" className="btn btn-wa"><WhatsApp size={18} />{d.footer.newsletterCta}</a>
           </div>
         </div>
 
