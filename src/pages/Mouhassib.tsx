@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { MOUHASSIB_AR_DOWNLOAD_URL, MOUHASSIB_FR_DOWNLOAD_URL } from '../config';
 import { useLanguage } from '../i18n/LanguageContext';
+import VideoDemo from '../components/mouhassib/VideoDemo';
 
 export default function Mouhassib() {
   const { t, lang } = useLanguage();
@@ -160,6 +161,21 @@ export default function Mouhassib() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* DÉMONSTRATION VIDÉO (60 s, en arabe ou en français selon la langue du site) */}
+      <section id="demonstration" className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-ink mb-3">
+              {lang === 'ar' ? 'محاسب في دقيقة واحدة' : 'Mouhassib en une minute'}
+            </h2>
+            <p className="text-ink-soft">
+              {lang === 'ar' ? 'شاهد كيف يسيّر محاسب مبيعاتك ومخزونك وصندوقك. اضغط على «تشغيل التعليق الصوتي» للاستماع.' : 'Ventes, stock, clients, caisse : la démonstration complète. Cliquez sur « Activer la voix off » pour le son.'}
+            </p>
+          </div>
+          <VideoDemo langue={lang === 'ar' ? 'ar' : 'fr'} />
         </div>
       </section>
 

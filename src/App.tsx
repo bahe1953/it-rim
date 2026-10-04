@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -13,8 +13,13 @@ import Raqib from './pages/Raqib';
 import Waqood from './pages/Waqood';
 import Contact from './pages/Contact';
 import Thanks from './pages/Thanks';
+import EssaiMouhassib from './pages/EssaiMouhassib';
 
 export default function App() {
+  const { pathname } = useLocation();
+  // Landing page de conversion : page autonome, sans en-tete ni pied de site.
+  if (pathname === '/essai' || pathname === '/essai/') return <EssaiMouhassib />;
+
   return (
     <div className="min-h-screen flex flex-col bg-paper">
       <Header />
