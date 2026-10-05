@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { site } from "@/content/site";
-import { Facebook, LinkedIn, Logo, Mail, Pin, WhatsApp, YouTube } from "./icons";
+import { BrandLogo, Facebook, LinkedIn, Mail, Pin, WhatsApp, YouTube } from "./icons";
 import { LangSwitch } from "./Header";
 
 export default function Footer({ lang }: { lang: Locale }) {
@@ -28,7 +28,7 @@ export default function Footer({ lang }: { lang: Locale }) {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-[1.5fr_.8fr_1.2fr_1.3fr]">
           <div className="grid content-start gap-3.5 sm:col-span-2 lg:col-span-1">
             <Link href={`/${lang}`} className="flex w-fit items-center gap-2.5" dir="ltr">
-              <Logo size={40} />
+              <BrandLogo size={64} />
               <span className="leading-none">
                 <span className="block font-[family-name:var(--font-lat)] text-[21px] font-extrabold text-ink">IT-RIM</span>
                 <span className="mt-1 block font-[family-name:var(--font-lat)] text-[10px] font-semibold text-blue">Digital Products &amp; Business Solutions</span>

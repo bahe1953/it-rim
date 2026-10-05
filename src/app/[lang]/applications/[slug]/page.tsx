@@ -10,6 +10,7 @@ import MouhassibLanding from "@/components/mouhassib/MouhassibLanding";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 import { trialState } from "@/lib/trial";
+import { showcaseItems } from "@/content/showcase";
 import { Arrow, Download, Flask, ProductIcon, Video, WhatsApp } from "@/components/icons";
 import { DownloadCard, FeatureList, TrialCard, whatsappFor } from "@/components/product";
 
@@ -30,6 +31,11 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
   const dict = getDictionary(lang);
   const d = dict.product;
   const s = d.sections;
+  const sc = dict.showcase;
+  const showItem = showcaseItems(lang).find((i) => i.id === p.slug);
+  const screens = showItem?.screens ?? [];
+  const film = showItem && p.slug !== "mouhassib" ? showItem.video.src : null;
+  const heroImg = screens.length ? { src: screens[0].src, w: 757, h: 500 } : { src: `/images/cards/${p.slug}-${lang}.webp`, w: 1120, h: 630 };
   const release = releases[p.slug];
   const req = requirements[p.slug];
   const faq = d.faq(p.name[lang], p.trial.days);
@@ -77,7 +83,11 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
               <span aria-hidden="true">/</span><span className="text-ink">{p.name[lang]}</span>
             </nav>
             <div className="flex items-center gap-4">
-              <span className="p-icon size-16 rounded-[18px]"><ProductIcon accent={p.accent} size={30} /></span>
+              {p.logo ? (
+                <span className="grid size-18 shrink-0 place-items-center rounded-[20px] border border-line bg-white p-2 shadow-[var(--shadow-card)]"><Image src={p.logo} alt="" width={64} height={62} className="h-auto w-full" /></span>
+              ) : (
+                <span className="p-icon size-16 rounded-[18px]"><ProductIcon accent={p.accent} size={30} /></span>
+              )}
               <div>
                 <h1 className="text-[clamp(34px,4.4vw,52px)]">{p.name[lang]}</h1>
                 <p className="font-semibold text-[var(--c)]">{p.category[lang]}</p>
@@ -105,7 +115,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
           </div>
           <div className="relative">
             <div className="pointer-events-none absolute -inset-[12%] rounded-full bg-[radial-gradient(closest-side,var(--cb),transparent_70%)]" />
-            <div className="laptop relative"><Image src={p.image} alt={p.name[lang]} width={254} height={108} priority sizes="(max-width: 768px) 92vw, 50vw" className="block h-auto w-full rounded-md" /></div>
+            <div className="laptop relative"><Image src={heroImg.src} alt={p.name[lang]} width={heroImg.w} height={heroImg.h} priority sizes="(max-width: 768px) 92vw, 50vw" className="block h-auto w-full rounded-md" /></div>
           </div>
         </div>
       </section>
@@ -147,6 +157,32 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
         </div>
       </section>
 
+      {/* Circuit de travail et modules */}
+      {p.flow && (
+        <section className="sec scroll-mt-32 !pb-0" id="fonctionnement">
+          <div className="wrap grid gap-8">
+            <div className="head"><div><p className="eyebrow">{sc.flow}</p><h2 className="h2">{p.name[lang]}</h2></div></div>
+            <ol className="grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
+              {p.flow[lang].map((st, i) => (
+                <li key={st} className="card relative grid justify-items-center gap-2 px-4 py-6 text-center">
+                  <span className="grid size-11 place-items-center rounded-full bg-[linear-gradient(145deg,var(--cg),var(--c))] text-lg font-extrabold text-white">{i + 1}</span>
+                  <span className="text-lg font-extrabold">{st}</span>
+                  {i < p.flow![lang].length - 1 && <span className="absolute top-1/2 -end-3 hidden -translate-y-1/2 text-[var(--c)] lg:block"><Arrow size={18} /></span>}
+                </li>
+              ))}
+            </ol>
+            {p.modules && (
+              <div className="grid gap-3">
+                <h3 className="text-lg">{sc.modules}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {p.modules[lang].map((m) => <span key={m} className="rounded-xl border border-line bg-white px-3.5 py-2 text-sm font-semibold">{m}</span>)}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Fonctionnalités */}
       <section className="sec scroll-mt-32" id="fonctionnalites">
         <div className="wrap">
@@ -160,13 +196,26 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
         <div className="wrap grid gap-6 lg:grid-cols-2">
           <div className="grid content-start gap-4">
             <h2 className="text-2xl">{s.screenshots}</h2>
-            <div className="laptop"><Image src={p.image} alt={`${s.screenshots} · ${p.name[lang]}`} width={254} height={108} sizes="(max-width: 1024px) 92vw, 600px" className="block h-auto w-full rounded-md" /></div>
-            <p className="text-sm text-ink-soft">{d.screenshotsNote}</p>
+            {screens.length > 0 ? (
+              <div className="grid grid-cols-2 gap-3">
+                {screens.map((sc) => (
+                  <a key={sc.src} href={sc.src} target="_blank" rel="noopener" className="card overflow-hidden p-1.5 transition hover:border-[var(--c)]">
+                    <Image src={sc.src} alt={sc.caption} width={760} height={500} sizes="(max-width: 1024px) 45vw, 300px" className="block aspect-[3/2] h-auto w-full rounded-lg bg-white object-cover object-top" />
+                    <span className="block px-1.5 pt-1.5 pb-0.5 text-[12.5px] font-semibold text-ink-2">{sc.caption}</span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <>
+                <div className="laptop"><Image src={`/images/cards/${p.slug}-${lang}.webp`} alt={`${s.screenshots} · ${p.name[lang]}`} width={1120} height={630} sizes="(max-width: 1024px) 92vw, 600px" className="block h-auto w-full rounded-md" /></div>
+                <p className="text-sm text-ink-soft">{d.screenshotsNote}</p>
+              </>
+            )}
           </div>
           <div className="grid content-start gap-4 scroll-mt-32" id="video">
             <h2 className="text-2xl">{s.video}</h2>
-            {p.demoVideo ? (
-              <a href={p.demoVideo} target="_blank" rel="noopener" className="card grid aspect-video place-items-center text-[var(--c)]"><Video size={44} /></a>
+            {film ? (
+              <video src={film} poster={film.replace(".mp4", ".jpg")} controls playsInline preload="metadata" className="aspect-video w-full rounded-[20px] bg-[#0b1d33] shadow-[0_30px_60px_-30px_rgba(10,40,80,.6)]" />
             ) : (
               <div className="grid aspect-video place-items-center rounded-[20px] border border-dashed border-line bg-white p-6 text-center">
                 <div className="grid justify-items-center gap-3 text-ink-soft"><Video size={40} /><p className="font-semibold">{d.videoSoon}</p></div>

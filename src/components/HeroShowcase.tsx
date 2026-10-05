@@ -12,7 +12,7 @@ type Mini = { src: string; name: string; color: string };
  * des autres applications IT-RIM. Remplace l'ancienne photo de bâtiments.
  */
 export default function HeroShowcase({ lang, minis }: { lang: Locale; minis: Mini[] }) {
-  const pos = ["-top-6 end-[-4%] w-[42%]", "bottom-[-8%] start-[-6%] w-[40%]", "bottom-[-12%] end-[2%] w-[38%]"];
+  const pos = ["-top-8 end-[-5%] w-[34%]", "bottom-[-10%] start-[-7%] w-[33%]", "bottom-[-14%] end-[0%] w-[31%]"];
   return (
     <div className="relative mx-4 mt-6 mb-14 md:mx-6">
       <div className="pointer-events-none absolute -inset-[12%] rounded-full bg-[radial-gradient(closest-side,rgba(56,189,248,0.25),transparent_70%)]" />
@@ -28,7 +28,7 @@ export default function HeroShowcase({ lang, minis }: { lang: Locale; minis: Min
           <figcaption className="flex items-center gap-1.5 border-b border-line bg-[#fcfeff] px-2.5 py-1.5 text-[11px] font-bold text-ink">
             <span className="size-2 rounded-full" style={{ background: m.color }} />{m.name}
           </figcaption>
-          <Image src={m.src} alt={m.name} width={254} height={108} sizes="220px" className="block h-auto w-full" />
+          <Image src={m.src} alt={m.name} width={1120} height={630} sizes="240px" className="block h-auto w-full" />
         </figure>
       ))}
     </div>

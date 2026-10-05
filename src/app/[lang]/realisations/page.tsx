@@ -3,7 +3,9 @@ import type { Metadata } from "next";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
-import { ContactSection, SectionHead, WorkShowcase } from "@/components/sections";
+import { ContactSection, SectionHead } from "@/components/sections";
+import Showcase from "@/components/Showcase";
+import { showcaseItems, showcaseLabels } from "@/content/showcase";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/realisations">): Promise<Metadata> {
   const { lang } = await params;
@@ -21,7 +23,11 @@ export default async function WorkPage({ params }: PageProps<"/[lang]/realisatio
       <section className="hero !pb-10">
         <div className="wrap relative z-10"><SectionHead as="h1" eyebrow={d.work.eyebrow} title={d.workPage.title} subtitle={d.work.subtitle} /></div>
       </section>
-      <WorkShowcase lang={lang} withHead={false} />
+      <section className="sec !pt-4">
+        <div className="wrap">
+          <Showcase lang={lang} items={showcaseItems(lang).filter((i) => i.kind === "web")} labels={showcaseLabels(lang)} tabs={false} />
+        </div>
+      </section>
       <ContactSection lang={lang} />
     </>
   );

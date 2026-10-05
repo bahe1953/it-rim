@@ -4,9 +4,11 @@ import { hasLocale, siteUrl } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { products } from "@/content/products";
 import HeroShowcase from "@/components/HeroShowcase";
+import Showcase from "@/components/Showcase";
+import { showcaseItems, showcaseLabels } from "@/content/showcase";
 import { Arrow, Globe, Grid, Play, Shield, Users } from "@/components/icons";
 import {
-  ContactSection, ExpertiseSection, ProcessSection, ProductCard, StrengthsBand, WorkShowcase,
+  ContactSection, ExpertiseSection, ProcessSection, StrengthsBand,
 } from "@/components/sections";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
@@ -40,30 +42,27 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </ul>
           </div>
           <div className="relative min-w-0 max-md:order-first">
-            <HeroShowcase lang={lang} minis={products.filter((p) => p.slug !== "mouhassib").map((p) => ({ src: p.image, name: p.name[lang], color: ({ w: "#EA6A0C", z: "#15924B", r: "#5650D6", m: "#1E7FD8" } as const)[p.accent] }))} />
+            <HeroShowcase lang={lang} minis={products.filter((p) => p.slug !== "mouhassib").map((p) => ({ src: `/images/cards/${p.slug}-${lang}.webp`, name: p.name[lang], color: ({ w: "#EA6A0C", z: "#15924B", r: "#5650D6", m: "#1E7FD8" } as const)[p.accent] }))} />
           </div>
         </div>
       </section>
 
-      {/* APPLICATIONS */}
+      {/* LOGICIELS ET RÉALISATIONS */}
       <section className="sec !pt-6 md:!pt-10" id="applications" aria-labelledby="apps-title">
         <div className="wrap">
           <div className="head">
             <div>
-              <p className="eyebrow">{d.apps.eyebrow}</p>
-              <h2 id="apps-title" className="h2">{d.apps.title}</h2>
-              <p className="sub">{d.apps.subtitle}</p>
+              <p className="eyebrow">{d.showcase.eyebrow}</p>
+              <h2 id="apps-title" className="h2">{d.showcase.title}</h2>
+              <p className="sub">{d.showcase.subtitle}</p>
             </div>
             <Link href={`/${lang}/applications`} className="btn btn-o">{d.apps.all}<Arrow /></Link>
           </div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-            {products.map((p) => <ProductCard key={p.slug} p={p} lang={lang} />)}
-          </div>
+          <Showcase lang={lang} items={showcaseItems(lang)} labels={showcaseLabels(lang)} />
         </div>
       </section>
 
       <StrengthsBand lang={lang} />
-      <WorkShowcase lang={lang} />
       <ProcessSection lang={lang} />
       <ExpertiseSection lang={lang} />
       <ContactSection lang={lang} />

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { swapLocale, type Locale } from "@/i18n/config";
-import { Arrow, Logo, WhatsApp } from "./icons";
+import { Arrow, BrandLogo, WhatsApp } from "./icons";
 
 type NavItem = { href: string; label: string };
 type Props = {
@@ -66,7 +66,7 @@ export default function Header({ lang, nav, labels, whatsappUrl }: Props) {
     <header className="hdr" data-scrolled={scrolled}>
       <div className="wrap flex h-16 items-center gap-6 lg:h-[74px]">
         <Link href={`/${lang}`} className="flex items-center gap-2.5" dir="ltr" aria-label="IT-RIM">
-          <Logo size={40} />
+          <BrandLogo size={46} priority />
           <span className="leading-none">
             <span className="block font-[family-name:var(--font-lat)] text-[21px] font-extrabold tracking-tight text-ink">IT-RIM</span>
             <span className="mt-1 hidden font-[family-name:var(--font-lat)] text-[10px] font-semibold text-blue sm:block">Digital Products &amp; Business Solutions</span>

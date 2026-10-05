@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import Image from "next/image";
 
 type P = SVGProps<SVGSVGElement> & { size?: number };
 const base = (size = 20, p: P) => ({ width: size, height: size, viewBox: "0 0 24 24", "aria-hidden": true, focusable: false as const, ...p });
@@ -46,7 +47,7 @@ export const ProductIcon = ({ accent, size = 24 }: { accent: "m" | "w" | "z" | "
   const b = base(size, {});
   if (accent === "m") return <svg {...b} fill="currentColor"><rect x="4" y="12" width="4" height="8" rx="1" /><rect x="10" y="7" width="4" height="13" rx="1" /><rect x="16" y="3" width="4" height="17" rx="1" /></svg>;
   if (accent === "w") return <svg {...b} {...stroke}><path d="M4 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 21h12" /><path d="M6.5 7h5v4h-5z" fill="currentColor" fillOpacity={0.3} /><path d="M14 9h2a2 2 0 0 1 2 2v6a1.5 1.5 0 0 0 3 0V8l-3-3" /></svg>;
-  if (accent === "z") return <svg {...b} {...stroke}><path d="M6 11V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4" /><path d="M4 11a2 2 0 0 1 2 2v1h12v-1a2 2 0 1 1 2 2v2H4v-2a2 2 0 1 1 0-4zM6 17v2M18 17v2" /></svg>;
+  if (accent === "z") return <svg {...b} {...stroke}><path d="M3 4h2.2l2.3 10.5a1.5 1.5 0 0 0 1.5 1.2h8.4a1.5 1.5 0 0 0 1.5-1.1L21 8H6.2" /><circle cx="9.5" cy="19.5" r="1.4" /><circle cx="17" cy="19.5" r="1.4" /></svg>;
   return (
     <svg {...b} fill="currentColor"><path d="M4 21V9l6-3v15zM11 21V3l9 4v14z" /><g fill="#fff" fillOpacity={0.85}><rect x="6" y="11" width="2" height="2" /><rect x="6" y="15" width="2" height="2" /><rect x="13.5" y="8" width="2" height="2" /><rect x="16.5" y="9" width="2" height="2" /><rect x="13.5" y="12" width="2" height="2" /><rect x="16.5" y="13" width="2" height="2" /><rect x="14.5" y="17" width="3" height="4" /></g></svg>
   );
@@ -59,4 +60,14 @@ export const Logo = ({ size = 42 }: { size?: number }) => (
     <path d="M19 30v-6M24 32v-11M29 30v-6" stroke="url(#itrim-lg)" strokeWidth="4" strokeLinecap="round" />
     <circle cx="24" cy="38" r="3" fill="#0272B8" />
   </svg>
+);
+export const Close = ({ size = 20, ...p }: P) => <svg {...base(size, p)} {...stroke} strokeWidth={2.4}><path d="M6 6l12 12M18 6L6 18" /></svg>;
+export const Chevron = ({ size = 20, ...p }: P) => (
+  <span className="flip"><svg {...base(size, p)} {...stroke} strokeWidth={2.4}><path d="M9 5l7 7-7 7" /></svg></span>
+);
+
+/** Logo officiel IT-RIM (badge rond). */
+export const BrandLogo = ({ size = 44, priority = false }: { size?: number; priority?: boolean }) => (
+  <Image src="/images/logo-itrim.png" alt="IT-RIM" width={size} height={size} priority={priority}
+    className="shrink-0 rounded-full shadow-[0_6px_16px_-6px_rgba(0,60,40,.55)] ring-2 ring-white" />
 );

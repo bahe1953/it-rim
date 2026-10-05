@@ -30,6 +30,12 @@ export type Product = {
   developedBy?: L;
   /** Documents de présentation téléchargeables ou consultables. */
   documents?: { lang: Locale; href: string; label: L }[];
+  /** Logo propre à l'application. */
+  logo?: string;
+  /** Circuit de travail du logiciel, étape par étape. */
+  flow?: LL;
+  /** Modules (écrans) du logiciel. */
+  modules?: LL;
 };
 
 export const products: Product[] = [
@@ -77,7 +83,7 @@ export const products: Product[] = [
     demoVideo: null,
     platforms: ["Windows 10", "Windows 11"],
     image: "/images/waqood.webp",
-    developedBy: { fr: "Développé par Smartek", ar: "من تطوير Smartek" },
+    developedBy: { fr: "Développé avec Smartek", ar: "طُوِّر بالتعاون مع Smartek" },
     name: { fr: "Waqood", ar: "وقود" },
     category: { fr: "Gestion de station-service", ar: "إدارة محطات الوقود" },
     summary: {
@@ -85,8 +91,8 @@ export const products: Product[] = [
       ar: "حل بديهي وسريع وآمن لإدارة المضخات والوقود والفرق والصندوق في محطة الوقود.",
     },
     features: {
-      fr: ["Index des pompes et stocks", "Suivi des équipes de pompistes", "Caisse et paiements mobiles", "Clients, dettes et fournisseurs", "Rapports PDF, Excel et CSV", "Rôles, sauvegarde et restauration", "Fonctionne hors ligne"],
-      ar: ["عدادات المضخات والمخزون", "متابعة فرق عمال التعبئة", "الصندوق والدفع عبر الهاتف", "العملاء والديون والموردون", "تقارير PDF وExcel وCSV", "الأدوار والنسخ الاحتياطي", "يعمل دون إنترنت"],
+      fr: ["Carburants, pompes et index", "Livraisons : le stock monte tout seul", "Ventes : stock et caisse à jour", "Suivi des équipes de pompistes", "Clients, dettes et dépenses", "Caisse et paiements mobiles", "Rapports PDF, Excel et CSV", "100 % hors ligne, sauvegarde en un fichier"],
+      ar: ["الوقود والمضخات والعدادات", "التوريدات: يرتفع المخزون تلقائياً", "المبيعات: تحديث المخزون والصندوق", "متابعة فرق عمال التعبئة", "العملاء والديون والمصاريف", "الصندوق والدفع عبر الهاتف", "تقارير PDF وExcel وCSV", "يعمل دون إنترنت، ونسخ احتياطي بملف واحد"],
     },
     presentation: {
       fr: "Maximisez le rendement de votre station-service et gardez un contrôle total sur vos opérations grâce à Waqood, conçu pour les défis quotidiens de la gestion de carburant.",
@@ -101,7 +107,16 @@ export const products: Product[] = [
       ar: "يتابع وقود عدادات المضخات، ويخصص جلسات عمل لعمال التعبئة، ويفصل النقد عن المدفوعات الرقمية (Bankily وMobile Money والتحويل والبطاقة)، ويقارن النظري بالفعلي، ويبقى يعمل دون إنترنت.",
     },
     forWhom: { fr: ["Stations-service", "Réseaux de stations", "Distributeurs de carburant"], ar: ["محطات الوقود", "شبكات المحطات", "موزعو الوقود"] },
-    technologies: { fr: ["Application de bureau Windows", "Fonctionne hors ligne"], ar: ["تطبيق مكتبي لويندوز", "يعمل دون إنترنت"] },
+    technologies: { fr: ["Application de bureau Windows", "100 % hors ligne", "Base de données locale SQLite"], ar: ["تطبيق مكتبي لويندوز", "يعمل دون إنترنت كلياً", "قاعدة بيانات محلية SQLite"] },
+    logo: "/images/waqood-logo.png",
+    flow: {
+      fr: ["Livraison", "Stock", "Vente", "Caisse", "Rapports"],
+      ar: ["التوريد", "المخزون", "البيع", "الصندوق", "التقارير"],
+    },
+    modules: {
+      fr: ["Tableau de bord", "Carburants", "Pompes", "Livraisons", "Ventes", "Clients", "Dépenses", "Caisse", "Rapports", "Paramètres", "Sauvegarde"],
+      ar: ["لوحة القيادة", "الوقود", "المضخات", "التوريدات", "المبيعات", "العملاء", "المصاريف", "الصندوق", "التقارير", "الإعدادات", "النسخ الاحتياطي"],
+    },
   },
   {
     slug: "manzeel",
