@@ -46,6 +46,14 @@ export const releases: Record<string, Release> = {
   waqood: { ...empty },
   manzeel: { ...empty },
   raqib: { ...empty },
+  // GestPhone IT 1.2.0 (installateur Windows NSIS 64 bits, 104 664 498 octets), à publier dans les Releases du dépôt bahe1953/GestPhone-IT.
+  gestphone: {
+    version: "1.2.0",
+    date: "2026-10-05",
+    sizeMb: 100,
+    url: "https://github.com/bahe1953/GestPhone-IT/releases/download/v1.2.0/GestPhone-IT-Setup.exe",
+    sha256: "d3cc33dec76ef3ae944cf83dd75521ff3d9fe2986cadfec16e585e19d7bd1d07",
+  },
 };
 
 const baseReq: Requirements = { os: "Windows 10 / Windows 11", cpu: null, ram: null, disk: null, network: null };
@@ -55,4 +63,5 @@ export const requirements: Record<string, Requirements> = {
   waqood: { ...baseReq },
   manzeel: { ...baseReq },
   raqib: { ...baseReq },
+  gestphone: { ...baseReq, os: "Windows 10 / Windows 11 (64 bits)" },
 };

@@ -4,7 +4,7 @@ type L = Record<Locale, string>;
 type LL = Record<Locale, string[]>;
 
 export type ProductStatus = "available" | "beta" | "soon";
-export type Accent = "m" | "w" | "z" | "r";
+export type Accent = "m" | "w" | "z" | "r" | "p";
 
 export type Product = {
   slug: string;
@@ -191,6 +191,54 @@ export const products: Product[] = [
     },
     forWhom: { fr: ["Administrations et organismes publics", "Entreprises", "Établissements et ONG"], ar: ["الإدارات والهيئات العمومية", "الشركات", "المؤسسات والمنظمات"] },
     technologies: { fr: ["WinDev client-serveur", "Déploiement en réseau local", "Interface FR / AR"], ar: ["WinDev خادم-عميل", "تشغيل عبر شبكة محلية", "واجهة بالعربية والفرنسية"] },
+  },
+  {
+    slug: "gestphone",
+    accent: "p",
+    status: "available",
+    trial: { enabled: true, days: 30 },
+    demoVideo: null,
+    platforms: ["Windows 10", "Windows 11"],
+    image: "/images/gestphone/fr-tableau-de-bord.webp",
+    logo: "/images/gestphone-logo.png",
+    name: { fr: "GestPhone IT", ar: "GestPhone IT" },
+    category: { fr: "Boutiques de téléphones et d'informatique", ar: "محلات الهواتف والمعلوميات" },
+    summary: {
+      fr: "La gestion complète d'une boutique de téléphones et d'informatique : point de vente, suivi par IMEI, stock, achats, caisse, SAV et garanties, hors ligne.",
+      ar: "الإدارة الكاملة لمحل الهواتف والمعلوميات: نقطة البيع، والتتبع برقم IMEI، والمخزون، والمشتريات، والصندوق، وخدمة ما بعد البيع والضمان، دون إنترنت.",
+    },
+    features: {
+      fr: ["Point de vente rapide, code-barres (F1)", "Produits et suivi par IMEI", "Stock, inventaire et valorisation", "Achats et fournisseurs", "Caisse : espèces, Bankily, Sedad", "Ventes comptant ou à crédit", "SAV et garanties par IMEI", "Rapports : CA, bénéfice, marges"],
+      ar: ["نقطة بيع سريعة بالباركود (F1)", "المنتجات والتتبع برقم IMEI", "المخزون والجرد والتقييم", "المشتريات والموردون", "الصندوق: نقداً، بنكيلي، سداد", "بيع نقدي أو بالأجل", "خدمة ما بعد البيع والضمان برقم IMEI", "التقارير: رقم الأعمال والأرباح والهوامش"],
+    },
+    presentation: {
+      fr: "GestPhone IT réunit en un seul logiciel tout ce qu'une boutique de téléphones et d'informatique gère chaque jour : vendre, suivre chaque appareil par son IMEI, réapprovisionner, encaisser et assurer la garantie.",
+      ar: "يجمع GestPhone IT في برنامج واحد كل ما يديره محل الهواتف والمعلوميات يومياً: البيع، وتتبع كل جهاز برقم IMEI، وإعادة التموين، والتحصيل، وضمان ما بعد البيع.",
+    },
+    problem: {
+      fr: "Chaque téléphone a son IMEI, son prix et sa garantie : avec un cahier ou Excel, on perd la trace du stock réel, des ventes à crédit et des appareils revenus en SAV.",
+      ar: "لكل هاتف رقم IMEI وسعر وضمان: ومع الدفتر أو إكسل تضيع متابعة المخزون الفعلي والبيع بالأجل والأجهزة العائدة للصيانة.",
+    },
+    solution: {
+      fr: "GestPhone IT enregistre chaque vente au point de vente, suit chaque appareil par son IMEI jusqu'à la fin de sa garantie, met à jour le stock et la caisse (espèces, Bankily, Sedad) et calcule le bénéfice du jour, sans Internet.",
+      ar: "يسجّل GestPhone IT كل عملية بيع في نقطة البيع، ويتتبع كل جهاز برقم IMEI حتى نهاية ضمانه، ويحدّث المخزون والصندوق (نقداً، بنكيلي، سداد)، ويحسب ربح اليوم، دون إنترنت.",
+    },
+    forWhom: {
+      fr: ["Boutiques de téléphones", "Magasins d'informatique", "Revendeurs d'accessoires"],
+      ar: ["محلات الهواتف", "محلات المعلوميات", "بائعو الإكسسوارات"],
+    },
+    technologies: {
+      fr: ["Application de bureau Windows (64 bits)", "100 % hors ligne", "Interface FR / AR", "Base de données locale SQLite"],
+      ar: ["تطبيق مكتبي لويندوز (64 بت)", "يعمل دون إنترنت كلياً", "واجهة بالعربية والفرنسية", "قاعدة بيانات محلية SQLite"],
+    },
+    flow: {
+      fr: ["Achat", "Stock par IMEI", "Vente", "Caisse", "Garantie / SAV"],
+      ar: ["الشراء", "المخزون برقم IMEI", "البيع", "الصندوق", "الضمان / الصيانة"],
+    },
+    modules: {
+      fr: ["Tableau de bord", "Point de vente", "Ventes", "Produits & IMEI", "Stock", "Achats", "Clients", "Fournisseurs", "Caisse", "SAV / Garanties", "Rapports", "Utilisateurs", "Paramètres", "Sauvegarde"],
+      ar: ["لوحة التحكم", "نقطة البيع", "المبيعات", "المنتجات و IMEI", "المخزون", "المشتريات", "العملاء", "الموردون", "الصندوق", "خدمة ما بعد البيع / الضمان", "التقارير", "المستخدمون", "الإعدادات", "النسخ الاحتياطي"],
+    },
   },
 ];
 
