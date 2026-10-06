@@ -4,7 +4,7 @@ type L = Record<Locale, string>;
 type LL = Record<Locale, string[]>;
 
 export type ProductStatus = "available" | "beta" | "soon";
-export type Accent = "m" | "w" | "z" | "r" | "p";
+export type Accent = "m" | "w" | "z" | "r" | "p" | "b";
 
 export type Product = {
   slug: string;
@@ -238,6 +238,54 @@ export const products: Product[] = [
     modules: {
       fr: ["Tableau de bord", "Point de vente", "Ventes", "Produits & IMEI", "Stock", "Achats", "Clients", "Fournisseurs", "Caisse", "SAV / Garanties", "Rapports", "Utilisateurs", "Paramètres", "Sauvegarde"],
       ar: ["لوحة التحكم", "نقطة البيع", "المبيعات", "المنتجات و IMEI", "المخزون", "المشتريات", "العملاء", "الموردون", "الصندوق", "خدمة ما بعد البيع / الضمان", "التقارير", "المستخدمون", "الإعدادات", "النسخ الاحتياطي"],
+    },
+  },
+  {
+    slug: "mbourou",
+    accent: "b",
+    status: "available",
+    trial: { enabled: true, days: 30 },
+    demoVideo: null,
+    platforms: ["Windows 10", "Windows 11", "Linux", "macOS"],
+    image: "/images/mbourou/fr-tableau-de-bord.webp",
+    logo: "/images/mbourou-logo.png",
+    name: { fr: "Mbourou", ar: "مبرو" },
+    category: { fr: "Gestion de boulangerie", ar: "إدارة المخابز" },
+    summary: {
+      fr: "La gestion complète d'une boulangerie, 100 % hors ligne : caisse, production, stocks de farine et de levure, prix de revient et bénéfice réel.",
+      ar: "الإدارة الكاملة للمخبزة دون إنترنت: نقطة البيع، والإنتاج، ومخزون الدقيق والخميرة، وسعر التكلفة، والربح الحقيقي.",
+    },
+    features: {
+      fr: ["Point de vente tactile, ticket 80 mm", "Production et fournées", "Recettes et prix de revient", "Stocks farine, levure et matières (PMP)", "Caisse : espèces, Bankily, Sedad, Masrivi", "Clients à crédit et fournisseurs", "Inventaire, pertes et invendus", "Rapports : CA, marge, bénéfice net"],
+      ar: ["نقطة بيع باللمس وتذكرة 80 ملم", "الإنتاج والخبزات", "الوصفات وسعر التكلفة", "مخزون الدقيق والخميرة والمواد (متوسط مرجّح)", "الصندوق: نقداً، بنكيلي، سداد، مصرفي", "العملاء بالأجل والموردون", "الجرد والخسائر وغير المبيع", "التقارير: رقم الأعمال والهامش والربح الصافي"],
+    },
+    presentation: {
+      fr: "Mbourou est pensé pour les boulangeries mauritaniennes : vendre au comptoir, enregistrer chaque fournée, suivre la farine et la levure, et connaître le vrai coût de chaque pain, en français et en arabe.",
+      ar: "صُمّم مبرو للمخابز الموريتانية: البيع على الشباك، وتسجيل كل خبزة، ومتابعة الدقيق والخميرة، ومعرفة التكلفة الحقيقية لكل خبز، بالعربية والفرنسية.",
+    },
+    problem: {
+      fr: "La farine augmente, les charges montent et le vrai coût du pain échappe. Sans suivi précis, la production, les ventes et la caisse ne concordent plus.",
+      ar: "يرتفع سعر الدقيق وتزداد المصاريف ويغيب السعر الحقيقي لتكلفة الخبز. ودون متابعة دقيقة، لا يتطابق الإنتاج والمبيعات والصندوق.",
+    },
+    solution: {
+      fr: "Mbourou calcule le prix de revient de chaque produit, déduit les matières à chaque fournée, contrôle la caisse et affiche le bénéfice réel. Tout fonctionne sans Internet, et les données tiennent dans un seul fichier facile à sauvegarder sur clé USB.",
+      ar: "يحسب مبرو سعر تكلفة كل منتج، ويخصم المواد مع كل خبزة، ويراقب الصندوق، ويعرض الربح الحقيقي. يعمل كل شيء دون إنترنت، وتُحفظ البيانات في ملف واحد سهل النسخ على مفتاح USB.",
+    },
+    forWhom: {
+      fr: ["Boulangeries", "Pâtisseries", "Points de vente de pain"],
+      ar: ["المخابز", "محلات الحلويات", "نقاط بيع الخبز"],
+    },
+    technologies: {
+      fr: ["100 % hors ligne", "Interface FR / AR", "Base de données locale SQLite", "2ᵉ caisse sur le réseau local"],
+      ar: ["يعمل دون إنترنت كلياً", "واجهة بالعربية والفرنسية", "قاعدة بيانات محلية SQLite", "صندوق ثانٍ عبر الشبكة المحلية"],
+    },
+    flow: {
+      fr: ["Achat de matières", "Recette", "Fournée", "Vente", "Caisse", "Bénéfice"],
+      ar: ["شراء المواد", "الوصفة", "الخبزة", "البيع", "الصندوق", "الربح"],
+    },
+    modules: {
+      fr: ["Tableau de bord", "Ventes (POS)", "Produits", "Matières premières", "Production", "Recettes & prix de revient", "Achats", "Clients", "Fournisseurs", "Caisse", "Dépenses", "Inventaire", "Rapports", "Employés", "Paramètres"],
+      ar: ["لوحة التحكم", "المبيعات (نقطة البيع)", "المنتجات", "المواد الأولية", "الإنتاج", "الوصفات وسعر التكلفة", "المشتريات", "العملاء", "الموردون", "الصندوق", "المصاريف", "الجرد", "التقارير", "الموظفون", "الإعدادات"],
     },
   },
 ];

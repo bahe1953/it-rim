@@ -54,6 +54,7 @@ export const releases: Record<string, Release> = {
     url: "https://github.com/bahe1953/GestPhone-IT/releases/download/v1.2.0/GestPhone-IT-Setup.exe",
     sha256: "d3cc33dec76ef3ae944cf83dd75521ff3d9fe2986cadfec16e585e19d7bd1d07",
   },
+  mbourou: { ...empty },
 };
 
 const baseReq: Requirements = { os: "Windows 10 / Windows 11", cpu: null, ram: null, disk: null, network: null };
@@ -64,4 +65,5 @@ export const requirements: Record<string, Requirements> = {
   manzeel: { ...baseReq },
   raqib: { ...baseReq },
   gestphone: { ...baseReq, os: "Windows 10 / Windows 11 (64 bits)" },
+  mbourou: { ...baseReq, os: "Windows 10 / 11, Linux, macOS · Node.js 22.13+", network: "Aucune · بدون إنترنت" },
 };

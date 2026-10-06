@@ -42,7 +42,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
             </ul>
           </div>
           <div className="relative min-w-0 max-md:order-first">
-            <HeroShowcase lang={lang} minis={products.filter((p) => ["waqood", "manzeel", "raqib"].includes(p.slug)).map((p) => ({ src: `/images/cards/${p.slug}-${lang}.webp`, name: p.name[lang], color: ({ w: "#EA6A0C", z: "#15924B", r: "#5650D6", m: "#1E7FD8", p: "#0273B8" } as const)[p.accent] }))} />
+            <HeroShowcase lang={lang} minis={products.filter((p) => ["waqood", "manzeel", "raqib"].includes(p.slug)).map((p) => ({ src: `/images/cards/${p.slug}-${lang}.webp`, name: p.name[lang], color: ({ w: "#EA6A0C", z: "#15924B", r: "#5650D6", m: "#1E7FD8", p: "#0273B8", b: "#B45309" } as const)[p.accent] }))} />
           </div>
         </div>
       </section>

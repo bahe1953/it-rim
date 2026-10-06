@@ -35,6 +35,7 @@ const colors = {
   z: { c: "#15924b", g: "#22c55e", bg: "#e7f7ee" },
   r: { c: "#5650d6", g: "#7c6cf2", bg: "#eeedfd" },
   p: { c: "#0273b8", g: "#0ea5e9", bg: "#e0f2fe" },
+  b: { c: "#b45309", g: "#f59e0b", bg: "#fdf3e4" },
 } as const;
 
 /** Captures réelles de RAQIB (issues de sa page de présentation). */
@@ -67,6 +68,19 @@ const gestScreens: [string, string, string][] = [
   ["rapports", "Rapports", "التقارير"],
 ];
 
+/** Captures réelles de Mbourou (données de démonstration générées par le logiciel). */
+const mbourouScreens: [string, string, string][] = [
+  ["tableau-de-bord", "Tableau de bord", "لوحة التحكم"],
+  ["point-de-vente", "Point de vente", "نقطة البيع"],
+  ["produits", "Produits", "المنتجات"],
+  ["matieres", "Matières premières", "المواد الأولية"],
+  ["production", "Production et fournées", "الإنتاج والخبزات"],
+  ["prix-de-revient", "Recettes et prix de revient", "الوصفات وسعر التكلفة"],
+  ["caisse", "Caisse", "الصندوق"],
+  ["inventaire", "Inventaire", "الجرد"],
+  ["rapports", "Rapports", "التقارير"],
+];
+
 const wa = (text: string) => `${site.whatsappUrl}?text=${encodeURIComponent(text)}`;
 
 export function showcaseItems(lang: Locale): ShowItem[] {
@@ -94,7 +108,7 @@ export function showcaseItems(lang: Locale): ShowItem[] {
       logo: p.logo ?? null,
       flow: p.flow?.[lang] ?? [],
       modules: p.modules?.[lang] ?? [],
-      screens: p.slug === "gestphone" ? gestScreens.map(([f, fr, ar]) => ({ src: `/images/gestphone/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "raqib" ? raqibScreens.map(([f, fr, ar]) => ({ src: `/images/raqib/${f}.webp`, caption: lang === "fr" ? fr : ar })) : [],
+      screens: p.slug === "mbourou" ? mbourouScreens.map(([f, fr, ar]) => ({ src: `/images/mbourou/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "gestphone" ? gestScreens.map(([f, fr, ar]) => ({ src: `/images/gestphone/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "raqib" ? raqibScreens.map(([f, fr, ar]) => ({ src: `/images/raqib/${f}.webp`, caption: lang === "fr" ? fr : ar })) : [],
       details: { href: `/${lang}/applications/${p.slug}`, label: d.details, external: false },
       download: url && p.trial.enabled ? `/${lang}/applications/${p.slug}#telecharger` : null,
       whatsapp: { href: wa(d.demoMsg(p.name[lang])), label: d.demo },
