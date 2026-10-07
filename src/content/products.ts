@@ -4,7 +4,7 @@ type L = Record<Locale, string>;
 type LL = Record<Locale, string[]>;
 
 export type ProductStatus = "available" | "beta" | "soon";
-export type Accent = "m" | "w" | "z" | "r" | "p" | "b";
+export type Accent = "m" | "w" | "z" | "r" | "p" | "b" | "q";
 
 export type Product = {
   slug: string;
@@ -74,6 +74,54 @@ export const products: Product[] = [
       ar: ["محلات التجزئة والجملة", "المؤسسات الصغيرة والمتوسطة", "الموزعون"],
     },
     technologies: { fr: ["Application de bureau Windows"], ar: ["تطبيق مكتبي لويندوز"] },
+  },
+  {
+    slug: "mouhassib-pro",
+    accent: "q",
+    status: "available",
+    trial: { enabled: true, days: 30 },
+    demoVideo: null,
+    platforms: ["Windows 10", "Windows 11"],
+    image: "/images/mouhassib-pro/fr-tableau-de-bord.webp",
+    logo: "/images/mouhassib-pro-logo.png",
+    name: { fr: "Mouhassib Pro", ar: "محاسب برو" },
+    category: { fr: "Gestion commerciale multi-postes en réseau", ar: "تسيير تجاري متعدد المراكز عبر الشبكة" },
+    summary: {
+      fr: "La version réseau de Mouhassib : plusieurs caisses reliées à un serveur, plusieurs entrepôts, devis et factures, comptabilité et Zakât, sur une base PostgreSQL.",
+      ar: "النسخة الشبكية من محاسب: عدة صناديق مرتبطة بخادم واحد، وعدة مستودعات، وعروض أسعار وفواتير، ومحاسبة وزكاة، على قاعدة بيانات PostgreSQL.",
+    },
+    features: {
+      fr: ["Plusieurs caisses en réseau local", "Plusieurs entrepôts et transferts", "Ventes, achats, code-barres", "Devis et factures clients", "Comptabilité : journaux, balance, bilan", "Calcul de la Zakât", "Caisse : espèces, Bankily, Sedad, Masrivi", "Utilisateurs, rôles et sauvegardes"],
+      ar: ["عدة صناديق عبر الشبكة المحلية", "عدة مستودعات وتحويلات", "المبيعات والمشتريات والباركود", "عروض الأسعار وفواتير العملاء", "المحاسبة: اليوميات والميزان والميزانية", "حساب الزكاة", "الصندوق: نقداً، بنكيلي، سداد، مصرفي", "المستخدمون والصلاحيات والنسخ الاحتياطي"],
+    },
+    presentation: {
+      fr: "Mouhassib Pro reprend tout Mouhassib et l'ouvre au travail à plusieurs : un ordinateur serveur garde les données, chaque caisse s'y connecte par le réseau local, et le stock est suivi dépôt par dépôt.",
+      ar: "يضم محاسب برو كل ما في محاسب ويفتحه للعمل الجماعي: حاسوب خادم يحفظ البيانات، وكل صندوق يتصل به عبر الشبكة المحلية، ويُتابَع المخزون مستودعاً بمستودع.",
+    },
+    problem: {
+      fr: "Dès qu'un commerce a deux caisses ou un dépôt, chaque poste a ses propres chiffres : le stock, la caisse et les comptes ne concordent plus, et la comptabilité se refait à la main.",
+      ar: "بمجرد أن يكون للمحل صندوقان أو مستودع، يصبح لكل مركز أرقامه الخاصة: فلا يتطابق المخزون والصندوق والحسابات، وتُعاد المحاسبة يدوياً.",
+    },
+    solution: {
+      fr: "Toutes les caisses écrivent dans une seule base sur le serveur : chaque vente met à jour en temps réel le stock du bon entrepôt, la caisse et les écritures comptables, avec une clé réseau qui protège l'accès.",
+      ar: "تسجّل كل الصناديق في قاعدة واحدة على الخادم: كل عملية بيع تحدّث فوراً مخزون المستودع المعني والصندوق والقيود المحاسبية، مع مفتاح شبكة يحمي الوصول.",
+    },
+    forWhom: {
+      fr: ["Commerces avec plusieurs caisses", "Grossistes et distributeurs avec dépôts", "PME qui tiennent une comptabilité"],
+      ar: ["المحلات ذات الصناديق المتعددة", "تجار الجملة والموزعون ذوو المستودعات", "المؤسسات الصغيرة والمتوسطة التي تمسك محاسبة"],
+    },
+    technologies: {
+      fr: ["Application de bureau Windows", "Serveur PostgreSQL + postes clients", "Réseau local, sans Internet", "Interface FR / AR"],
+      ar: ["تطبيق مكتبي لويندوز", "خادم PostgreSQL ومراكز عميلة", "شبكة محلية دون إنترنت", "واجهة بالعربية والفرنسية"],
+    },
+    flow: {
+      fr: ["Achat", "Entrepôt", "Vente en caisse", "Facture", "Comptabilité", "Zakât"],
+      ar: ["الشراء", "المستودع", "البيع في الصندوق", "الفاتورة", "المحاسبة", "الزكاة"],
+    },
+    modules: {
+      fr: ["Tableau de bord", "Produits", "Ventes", "Achats", "Stocks", "Entrepôts", "Caisse", "Dépenses", "Clients", "Fournisseurs", "Devis", "Factures", "Rapports", "Comptabilité", "Zakât", "Paramètres", "Sauvegardes", "Utilisateurs"],
+      ar: ["لوحة القيادة", "المنتجات", "المبيعات", "المشتريات", "المخزون", "المستودعات", "الصندوق", "المصاريف", "الزبائن", "الموردون", "عروض الأسعار", "الفواتير", "التقارير", "المحاسبة", "الزكاة", "الإعدادات", "النسخ الاحتياطية", "المستخدمون"],
+    },
   },
   {
     slug: "waqood",

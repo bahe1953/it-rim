@@ -55,6 +55,8 @@ export const releases: Record<string, Release> = {
     sha256: "d3cc33dec76ef3ae944cf83dd75521ff3d9fe2986cadfec16e585e19d7bd1d07",
   },
   mbourou: { ...empty },
+  // Mouhassib Pro : renseigner l'URL quand l'installateur sera publié dans les Releases GitHub.
+  "mouhassib-pro": { ...empty },
 };
 
 const baseReq: Requirements = { os: "Windows 10 / Windows 11", cpu: null, ram: null, disk: null, network: null };
@@ -65,5 +67,6 @@ export const requirements: Record<string, Requirements> = {
   manzeel: { ...baseReq },
   raqib: { ...baseReq },
   gestphone: { ...baseReq, os: "Windows 10 / Windows 11 (64 bits)" },
+  "mouhassib-pro": { ...baseReq, network: "Réseau local (Wi-Fi ou câble) entre le serveur et les caisses · شبكة محلية" },
   mbourou: { ...baseReq, os: "Windows 10 / 11, Linux, macOS · Node.js 22.13+", network: "Aucune · بدون إنترنت" },
 };

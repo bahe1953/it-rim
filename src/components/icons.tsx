@@ -43,8 +43,9 @@ export const YouTube = ({ size = 16, ...p }: P) => <svg {...base(size, p)} fill=
 export const Facebook = ({ size = 16, ...p }: P) => <svg {...base(size, p)} fill="currentColor"><path d="M14 8.5V6.8c0-.8.5-1 .9-1H17V2.2h-3c-3.3 0-4 2.4-4 4v2.3H8V12h2v10h4V12h2.7l.4-3.5z" /></svg>;
 
 /** Pictogrammes des produits */
-export const ProductIcon = ({ accent, size = 24 }: { accent: "m" | "w" | "z" | "r" | "p" | "b"; size?: number }) => {
+export const ProductIcon = ({ accent, size = 24 }: { accent: "m" | "w" | "z" | "r" | "p" | "b" | "q"; size?: number }) => {
   const b = base(size, {});
+  if (accent === "q") return <svg {...b} {...stroke}><rect x="3" y="3.5" width="8" height="6" rx="1.2" /><rect x="13" y="3.5" width="8" height="6" rx="1.2" /><rect x="8" y="15" width="8" height="6" rx="1.2" /><path d="M7 9.5v2.5h10V9.5M12 12v3" /></svg>;
   if (accent === "b") return <svg {...b} {...stroke}><ellipse cx="12" cy="12" rx="9.5" ry="5.5" /><path d="M8.5 9.5c.8 1.5.8 3.5 0 5M12 9c.8 1.7.8 4.3 0 6M15.5 9.5c.8 1.5.8 3.5 0 5" /></svg>;
   if (accent === "p") return <svg {...b} {...stroke}><rect x="7" y="2.5" width="10" height="19" rx="2.5" /><path d="M10.5 18.5h3" /></svg>;
   if (accent === "m") return <svg {...b} fill="currentColor"><rect x="4" y="12" width="4" height="8" rx="1" /><rect x="10" y="7" width="4" height="13" rx="1" /><rect x="16" y="3" width="4" height="17" rx="1" /></svg>;

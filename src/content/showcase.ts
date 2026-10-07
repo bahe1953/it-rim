@@ -35,6 +35,7 @@ const colors = {
   z: { c: "#15924b", g: "#22c55e", bg: "#e7f7ee" },
   r: { c: "#5650d6", g: "#7c6cf2", bg: "#eeedfd" },
   p: { c: "#0273b8", g: "#0ea5e9", bg: "#e0f2fe" },
+  q: { c: "#16325c", g: "#2f6db5", bg: "#e8eef8" },
   b: { c: "#b45309", g: "#f59e0b", bg: "#fdf3e4" },
 } as const;
 
@@ -66,6 +67,19 @@ const gestScreens: [string, string, string][] = [
   ["caisse", "Caisse : espèces, Bankily, Sedad", "الصندوق: نقداً، بنكيلي، سداد"],
   ["sav-garanties", "SAV et garanties par IMEI", "الضمان برقم IMEI"],
   ["rapports", "Rapports", "التقارير"],
+];
+
+/** Captures réelles de Mouhassib Pro (base de démonstration saisie via le vrai moteur du logiciel). */
+const mproScreens: [string, string, string][] = [
+  ["tableau-de-bord", "Tableau de bord", "لوحة القيادة"],
+  ["ventes", "Ventes multi-caisses", "المبيعات من كل الصناديق"],
+  ["produits", "Catalogue et code-barres", "الكتالوج والباركود"],
+  ["stocks", "Stocks et alertes", "المخزون والتنبيهات"],
+  ["entrepots", "Entrepôts et transferts", "المستودعات والتحويلات"],
+  ["caisse", "Caisse", "الصندوق"],
+  ["devis", "Devis clients", "عروض الأسعار"],
+  ["rapports", "Rapports", "التقارير"],
+  ["zakat", "Calcul de la Zakât", "حساب الزكاة"],
 ];
 
 /** Captures réelles de Mbourou (données de démonstration générées par le logiciel). */
@@ -108,7 +122,7 @@ export function showcaseItems(lang: Locale): ShowItem[] {
       logo: p.logo ?? null,
       flow: p.flow?.[lang] ?? [],
       modules: p.modules?.[lang] ?? [],
-      screens: p.slug === "mbourou" ? mbourouScreens.map(([f, fr, ar]) => ({ src: `/images/mbourou/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "gestphone" ? gestScreens.map(([f, fr, ar]) => ({ src: `/images/gestphone/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "raqib" ? raqibScreens.map(([f, fr, ar]) => ({ src: `/images/raqib/${f}.webp`, caption: lang === "fr" ? fr : ar })) : [],
+      screens: p.slug === "mouhassib-pro" ? mproScreens.map(([f, fr, ar]) => ({ src: `/images/mouhassib-pro/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "mbourou" ? mbourouScreens.map(([f, fr, ar]) => ({ src: `/images/mbourou/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "gestphone" ? gestScreens.map(([f, fr, ar]) => ({ src: `/images/gestphone/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "raqib" ? raqibScreens.map(([f, fr, ar]) => ({ src: `/images/raqib/${f}.webp`, caption: lang === "fr" ? fr : ar })) : [],
       details: { href: `/${lang}/applications/${p.slug}`, label: d.details, external: false },
       download: url && p.trial.enabled ? `/${lang}/applications/${p.slug}#telecharger` : null,
       whatsapp: { href: wa(d.demoMsg(p.name[lang])), label: d.demo },
