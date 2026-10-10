@@ -25,17 +25,17 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/realisati
   const d = getDictionary(lang);
   const s = d.work.sections;
   const cs = p.caseStudy;
-  const todo = <p className="placeholder">{d.common.toComplete}</p>;
-  const blocks: [string, React.ReactNode][] = [
-    [s.context, cs.context ? <p>{cs.context[lang]}</p> : todo],
-    [s.challenge, cs.challenge ? <p>{cs.challenge[lang]}</p> : todo],
-    [s.approach, cs.approach ? <ol className="grid gap-2">{cs.approach.map((a, i) => <li key={i}>{i + 1}. {a[lang]}</li>)}</ol> : todo],
-    [s.design, cs.design ? <p>{cs.design[lang]}</p> : todo],
-    [s.development, cs.development ? <p>{cs.development[lang]}</p> : todo],
-    [s.features, cs.features ? <ul className="grid gap-2">{cs.features.map((f, i) => <li key={i} className="flex gap-2"><Check className="mt-1 text-blue" />{f[lang]}</li>)}</ul> : todo],
-    [s.technologies, <div key="t" className="flex flex-wrap gap-2">{p.technologies.map((t) => <span key={t} className="chip font-semibold">{t}</span>)}</div>],
-    [s.result, cs.result ? <p>{cs.result[lang]}</p> : todo],
-  ];
+  // Seules les rubriques renseignées sont affichées : aucune valeur d'attente visible.
+  const blocks = ([
+    [s.context, cs.context && <p>{cs.context[lang]}</p>],
+    [s.challenge, cs.challenge && <p>{cs.challenge[lang]}</p>],
+    [s.approach, cs.approach && <ol className="grid gap-2">{cs.approach.map((a, i) => <li key={i}>{i + 1}. {a[lang]}</li>)}</ol>],
+    [s.design, cs.design && <p>{cs.design[lang]}</p>],
+    [s.development, cs.development && <p>{cs.development[lang]}</p>],
+    [s.features, cs.features && <ul className="grid gap-2">{cs.features.map((f, i) => <li key={i} className="flex gap-2"><Check className="mt-1 text-blue" />{f[lang]}</li>)}</ul>],
+    [s.technologies, p.technologies.length > 0 && <div key="t" className="flex flex-wrap gap-2">{p.technologies.map((t) => <span key={t} className="chip font-semibold">{t}</span>)}</div>],
+    [s.result, cs.result && <p>{cs.result[lang]}</p>],
+  ] as [string, React.ReactNode][]).filter(([, body]) => Boolean(body));
   return (
     <>
       <section className="hero">
@@ -50,7 +50,7 @@ export default async function CaseStudy({ params }: PageProps<"/[lang]/realisati
             <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-1.5 text-[15px]">
               <dt className="text-ink-soft">{d.work.facts.type}</dt><dd className="font-semibold">{p.type[lang]}</dd>
               <dt className="text-ink-soft">{d.work.facts.languages}</dt><dd className="font-semibold">{p.languages.join(" · ")}</dd>
-              <dt className="text-ink-soft">{d.work.facts.year}</dt><dd className="font-semibold">{p.year ?? <span className="placeholder">{d.common.toConfirm}</span>}</dd>
+              {p.year && <><dt className="text-ink-soft">{d.work.facts.year}</dt><dd className="font-semibold">{p.year}</dd></>}
             </dl>
             {p.url ? <a href={p.url} target="_blank" rel="noopener" className="btn btn-p w-fit">{d.work.visit}<Arrow /></a>
               : <span className="btn w-fit cursor-default border border-dashed border-line text-sm text-ink-soft">{d.work.urlPending}</span>}

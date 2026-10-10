@@ -9,7 +9,7 @@ import { site } from "./site";
 export type ShowItem = {
   id: string;
   kind: "app" | "web";
-  accent: { c: string; g: string; bg: string };
+  accent: { c: string; g: string; bg: string; /** Variante foncée pour le texte (contraste ≥ 4,5:1). */ t: string };
   name: string;
   category: string;
   by: string | null;
@@ -30,13 +30,13 @@ export type ShowItem = {
 };
 
 const colors = {
-  m: { c: "#1e7fd8", g: "#38a3f0", bg: "#e6f1fc" },
-  w: { c: "#ea6a0c", g: "#f59e0b", bg: "#fff2e6" },
-  z: { c: "#15924b", g: "#22c55e", bg: "#e7f7ee" },
-  r: { c: "#5650d6", g: "#7c6cf2", bg: "#eeedfd" },
-  p: { c: "#0273b8", g: "#0ea5e9", bg: "#e0f2fe" },
-  q: { c: "#16325c", g: "#2f6db5", bg: "#e8eef8" },
-  b: { c: "#b45309", g: "#f59e0b", bg: "#fdf3e4" },
+  m: { c: "#1e7fd8", g: "#38a3f0", bg: "#e6f1fc", t: "#196db9" },
+  w: { c: "#ea6a0c", g: "#f59e0b", bg: "#fff2e6", t: "#b15009" },
+  z: { c: "#15924b", g: "#22c55e", bg: "#e7f7ee", t: "#127d40" },
+  r: { c: "#5650d6", g: "#7c6cf2", bg: "#eeedfd", t: "#5650d6" },
+  p: { c: "#0273b8", g: "#0ea5e9", bg: "#e0f2fe", t: "#0170b4" },
+  q: { c: "#16325c", g: "#2f6db5", bg: "#e8eef8", t: "#16325c" },
+  b: { c: "#b45309", g: "#f59e0b", bg: "#fdf3e4", t: "#b05108" },
 } as const;
 
 /** Captures réelles de RAQIB (issues de sa page de présentation). */
@@ -54,6 +54,7 @@ const raqibScreens: [string, string, string][] = [
 /** Vidéos fournies par IT-RIM (durée différente d'une minute, avec bande son). */
 const clips: Record<string, { duration: string; sound: boolean }> = {
   "waqood-fr": { duration: "2 min", sound: true },
+  "waqood-ar": { duration: "دقيقتان", sound: true },
 };
 
 /** Captures réelles de GestPhone IT (données de démonstration générées par le logiciel). */
@@ -132,7 +133,7 @@ export function showcaseItems(lang: Locale): ShowItem[] {
   const web: ShowItem[] = projects.map((pr) => ({
     id: pr.slug,
     kind: "web",
-    accent: { c: "#0284c7", g: "#38bdf8", bg: "#e0f2fe" },
+    accent: { c: "#0284c7", g: "#38bdf8", bg: "#e0f2fe", t: "#0171ab" },
     name: pr.name[lang],
     category: pr.type[lang],
     by: null,

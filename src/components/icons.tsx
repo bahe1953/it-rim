@@ -71,6 +71,6 @@ export const Chevron = ({ size = 20, ...p }: P) => (
 
 /** Logo officiel IT-RIM (badge rond). */
 export const BrandLogo = ({ size = 44, priority = false }: { size?: number; priority?: boolean }) => (
-  <Image src="/images/logo-itrim.png" alt="IT-RIM" width={size} height={size} priority={priority}
+  <Image src="/images/logo-itrim.png" alt="" width={size} height={size} priority={priority}
     className="shrink-0 rounded-full shadow-[0_6px_16px_-6px_rgba(0,60,40,.55)] ring-2 ring-white" />
 );

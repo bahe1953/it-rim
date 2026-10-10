@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/applicatio
   const { lang, slug } = await params;
   const p = getProduct(slug);
   if (!hasLocale(lang) || !p) return {};
-  return pageMetadata(lang, `/applications/${slug}`, `${p.name[lang]} · ${p.category[lang]}`, p.summary[lang]);
+  return pageMetadata(lang, `/applications/${slug}`, `${p.name[lang]} · ${p.category[lang]}`, p.summary[lang], `/og/${slug}-${lang}.jpg`);
 }
 
 export default async function ProductPage({ params }: PageProps<"/[lang]/applications/[slug]">) {
@@ -200,7 +200,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
               <div className="grid grid-cols-2 gap-3">
                 {screens.map((sc) => (
                   <a key={sc.src} href={sc.src} target="_blank" rel="noopener" className="card overflow-hidden p-1.5 transition hover:border-[var(--c)]">
-                    <Image src={sc.src} alt={sc.caption} width={760} height={500} sizes="(max-width: 1024px) 45vw, 300px" className="block aspect-[3/2] h-auto w-full rounded-lg bg-white object-cover object-top" />
+                    <Image src={sc.src} alt="" width={760} height={500} sizes="(max-width: 1024px) 45vw, 300px" className="block aspect-[3/2] h-auto w-full rounded-lg bg-white object-cover object-top" />
                     <span className="block px-1.5 pt-1.5 pb-0.5 text-[12.5px] font-semibold text-ink-2">{sc.caption}</span>
                   </a>
                 ))}
@@ -239,10 +239,10 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
             <div className="card overflow-x-auto">
               <table className="w-full text-start text-[15px]">
                 <tbody>
-                  {(Object.keys(d.req) as (keyof typeof d.req)[]).map((k) => (
+                  {(Object.keys(d.req) as (keyof typeof d.req)[]).filter((k) => req[k]).map((k) => (
                     <tr key={k} className="border-b border-line last:border-0">
                       <th scope="row" className="px-5 py-3 text-start font-semibold text-ink-soft">{d.req[k]}</th>
-                      <td className="px-5 py-3 font-semibold">{req[k] ?? <span className="placeholder">{dict.common.toComplete}</span>}</td>
+                      <td className="px-5 py-3 font-semibold">{req[k]}</td>
                     </tr>
                   ))}
                 </tbody>

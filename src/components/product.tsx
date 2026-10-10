@@ -63,7 +63,6 @@ export function TrialCard({ p, lang, state }: { p: Product; lang: Locale; state:
 export function DownloadCard({ p, lang, release }: { p: Product; lang: Locale; release: Release }) {
   const dict = getDictionary(lang);
   const d = dict.product.dl;
-  const ph = <span className="placeholder">{dict.common.toComplete}</span>;
   return (
     <div className="card grid content-start gap-4 p-6" id="telechargement">
       <div className="flex items-center justify-between gap-3">
@@ -71,11 +70,14 @@ export function DownloadCard({ p, lang, release }: { p: Product; lang: Locale; r
         <span className="grid size-10 place-items-center rounded-xl bg-mist text-blue"><Download size={20} /></span>
       </div>
       <p className="flex items-center gap-2 font-bold"><Windows className="text-blue" />{p.platforms.join(" / ")}</p>
-      <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 text-[15px]">
-        <dt className="text-ink-soft">{d.version}</dt><dd className="ltr font-semibold">{release.version ?? ph}</dd>
-        <dt className="text-ink-soft">{d.size}</dt><dd className="font-semibold">{release.sizeMb ? <span className="ltr">{release.sizeMb} MB</span> : ph}</dd>
-        <dt className="text-ink-soft">{d.updated}</dt><dd className="font-semibold">{release.date ? <span className="ltr">{fmtDate(release.date, lang)}</span> : ph}</dd>
-      </dl>
+      {/* Seules les informations réellement connues sont affichées : aucune valeur d'attente. */}
+      {(release.version || release.sizeMb || release.date) && (
+        <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 text-[15px]">
+          {release.version && <><dt className="text-ink-soft">{d.version}</dt><dd className="ltr font-semibold">{release.version}</dd></>}
+          {release.sizeMb && <><dt className="text-ink-soft">{d.size}</dt><dd className="font-semibold"><span className="ltr">{release.sizeMb} MB</span></dd></>}
+          {release.date && <><dt className="text-ink-soft">{d.updated}</dt><dd className="font-semibold"><span className="ltr">{fmtDate(release.date, lang)}</span></dd></>}
+        </dl>
+      )}
       {releaseUrl(release, lang) ? (
         <a href={releaseUrl(release, lang)!} className="btn btn-p"><Download />{d.button}</a>
       ) : (

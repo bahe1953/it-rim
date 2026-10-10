@@ -19,7 +19,7 @@ export type Labels = {
 type Filter = "all" | "app" | "web";
 const noop = () => () => {};
 
-const accentVars = (it: ShowItem) => ({ "--c": it.accent.c, "--cg": it.accent.g, "--cb": it.accent.bg }) as CSSProperties;
+const accentVars = (it: ShowItem) => ({ "--c": it.accent.c, "--cg": it.accent.g, "--cb": it.accent.bg, "--ct": it.accent.t }) as CSSProperties;
 
 /**
  * Vitrine des logiciels et réalisations : une grille de cartes ;
@@ -70,7 +70,7 @@ function Card({ it, labels, onOpen }: { it: ShowItem; labels: Labels; onOpen: ()
         <Image src={it.card} alt="" fill sizes="(max-width: 640px) 92vw, (max-width: 1280px) 46vw, 380px"
           className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]" />
         <span className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(8,28,52,.55))]" />
-        <span className="absolute end-3.5 top-3.5 rounded-full bg-white/92 px-2.5 py-1 text-[11.5px] font-extrabold tracking-wide text-[var(--c)] uppercase shadow-sm">
+        <span className="absolute end-3.5 top-3.5 rounded-full bg-white/92 px-2.5 py-1 text-[11.5px] font-extrabold tracking-wide text-[var(--ct)] uppercase shadow-sm">
           {labels.kind[it.kind]}
         </span>
         <span className="absolute inset-0 grid place-items-center">
@@ -91,16 +91,16 @@ function Card({ it, labels, onOpen }: { it: ShowItem; labels: Labels; onOpen: ()
       <span className="flex flex-1 flex-col gap-3 p-5">
         <span className="block">
           <span className="block text-[21px] leading-tight font-extrabold text-ink">{it.name}</span>
-          <span className="mt-1 block text-[13.5px] font-bold text-[var(--c)]">{it.category}</span>
+          <span className="mt-1 block text-[13.5px] font-bold text-[var(--ct)]">{it.category}</span>
           {it.by && <span className="block text-xs font-medium text-ink-soft">{it.by}</span>}
         </span>
         <span className="line-clamp-3 block text-[14.5px] leading-relaxed text-ink-2">{it.summary}</span>
         <span className="flex flex-wrap gap-1.5">
           {it.features.slice(0, 3).map((f) => (
-            <span key={f} className="rounded-full bg-[var(--cb)] px-2.5 py-1 text-[12px] font-semibold text-[var(--c)]">{f}</span>
+            <span key={f} className="rounded-full bg-[var(--cb)] px-2.5 py-1 text-[12px] font-semibold text-[var(--ct)]">{f}</span>
           ))}
         </span>
-        <span className="mt-auto inline-flex items-center gap-2 pt-1 text-[14.5px] font-extrabold text-[var(--c)]">
+        <span className="mt-auto inline-flex items-center gap-2 pt-1 text-[14.5px] font-extrabold text-[var(--ct)]">
           {labels.watch}<Arrow />
         </span>
       </span>
@@ -163,7 +163,7 @@ function Viewer({ lang, items, index, labels, onClose, onMove }: {
               {it.logo ? (
                 <Image src={it.logo} alt="" width={40} height={38} className="h-auto w-10 shrink-0" />
               ) : (
-                <span className="rounded-full bg-[var(--cb)] px-2.5 py-1 text-[11.5px] font-extrabold tracking-wide text-[var(--c)] uppercase">{labels.kind[it.kind]}</span>
+                <span className="rounded-full bg-[var(--cb)] px-2.5 py-1 text-[11.5px] font-extrabold tracking-wide text-[var(--ct)] uppercase">{labels.kind[it.kind]}</span>
               )}
               <div className="min-w-0 flex-1">
                 <h2 id="sv-title" className="truncate text-[19px] font-extrabold sm:text-[22px]">{it.name}</h2>
@@ -192,7 +192,7 @@ function Viewer({ lang, items, index, labels, onClose, onMove }: {
                     <p className="text-[13px] font-bold text-ink-soft">{labels.screens}</p>
                     <div className="flex gap-2 overflow-x-auto pb-1">
                       <button type="button" onClick={() => setMedia(-1)} aria-pressed={media < 0}
-                        className={`grid h-16 w-24 shrink-0 place-items-center gap-0.5 rounded-xl border-2 text-[11px] font-bold ${media < 0 ? "border-[var(--c)] bg-[var(--cb)] text-[var(--c)]" : "border-line text-ink-2"}`}>
+                        className={`grid h-16 w-24 shrink-0 place-items-center gap-0.5 rounded-xl border-2 text-[11px] font-bold ${media < 0 ? "border-[var(--c)] bg-[var(--cb)] text-[var(--ct)]" : "border-line text-ink-2"}`}>
                         <Play size={14} />{labels.video}
                       </button>
                       {it.screens.map((s, i) => (
@@ -207,7 +207,7 @@ function Viewer({ lang, items, index, labels, onClose, onMove }: {
                 )}
                 {it.flow.length > 0 && (
                   <div className="mt-2 grid gap-2.5 rounded-2xl bg-[var(--cb)] p-4">
-                    <p className="text-[13px] font-extrabold tracking-wide text-[var(--c)] uppercase">{labels.flow}</p>
+                    <p className="text-[13px] font-extrabold tracking-wide text-[var(--ct)] uppercase">{labels.flow}</p>
                     <ol className="flex flex-wrap items-center gap-1.5">
                       {it.flow.map((st, i) => (
                         <li key={st} className="flex items-center gap-1.5">
@@ -233,7 +233,7 @@ function Viewer({ lang, items, index, labels, onClose, onMove }: {
               {/* Informations */}
               <div className="grid min-w-0 content-start gap-5">
                 <div>
-                  <p className="text-[15px] font-bold text-[var(--c)]">{it.category}</p>
+                  <p className="text-[15px] font-bold text-[var(--ct)]">{it.category}</p>
                   {it.by && <p className="text-[13px] font-medium text-ink-soft">{it.by}</p>}
                   <p className="mt-2.5 text-[15.5px] leading-relaxed text-ink-2">{it.presentation}</p>
                 </div>
@@ -262,7 +262,7 @@ function Viewer({ lang, items, index, labels, onClose, onMove }: {
 
                 {it.badges.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
-                    {it.badges.map((b) => <span key={b} className="rounded-lg bg-[var(--cb)] px-2.5 py-1 text-[12.5px] font-bold text-[var(--c)]">{b}</span>)}
+                    {it.badges.map((b) => <span key={b} className="rounded-lg bg-[var(--cb)] px-2.5 py-1 text-[12.5px] font-bold text-[var(--ct)]">{b}</span>)}
                   </div>
                 )}
 
