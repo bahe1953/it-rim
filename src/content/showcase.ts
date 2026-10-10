@@ -57,6 +57,7 @@ const clips: Record<string, { duration: string; sound: boolean }> = {
   "waqood-ar": { duration: "دقيقتان", sound: true },
   "mbourou-fr": { duration: "1 min", sound: true },
   "mbourou-ar": { duration: "دقيقة", sound: true },
+  "mouhassib-fr": { duration: "2 min 20", sound: true },
   "mouhassib-ar": { duration: "دقيقتان ونصف", sound: true },
 };
 
