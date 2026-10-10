@@ -55,6 +55,8 @@ const raqibScreens: [string, string, string][] = [
 const clips: Record<string, { duration: string; sound: boolean }> = {
   "waqood-fr": { duration: "2 min", sound: true },
   "waqood-ar": { duration: "دقيقتان", sound: true },
+  "mbourou-fr": { duration: "1 min", sound: true },
+  "mbourou-ar": { duration: "دقيقة", sound: true },
 };
 
 /** Captures réelles de GestPhone IT (données de démonstration générées par le logiciel). */
