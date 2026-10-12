@@ -24,7 +24,7 @@ export const decks: Record<string, Deck> = {
         "Vous gardez le contrôle",
         "Est-ce fait pour vous ?",
         "Ce qu'il vous faut pour démarrer",
-        "Test de charge : 10 caisses en même temps",
+        "Test de charge : plusieurs caisses en même temps",
         "Résultat : le serveur garde une très grande marge",
         "Ce qui compte vraiment : la qualité du réseau",
         "Fiche : ce qu'il faut retenir",
@@ -42,7 +42,7 @@ export const decks: Record<string, Deck> = {
         "تبقى السيطرة بأيديكم",
         "هل هو مناسب لكم؟",
         "ما تحتاجونه للبدء",
-        "اختبار التحمّل: 10 صناديق في الوقت نفسه",
+        "اختبار التحمّل: عدة صناديق في الوقت نفسه",
         "النتيجة: الخادم يحتفظ بهامش كبير جداً",
         "ما يهم حقاً: جودة الشبكة",
         "بطاقة: ما يجب تذكّره",
@@ -55,7 +55,7 @@ export const decks: Record<string, Deck> = {
 export const deckLabels: Record<Locale, { title: string; intro: string; prev: string; next: string; pdf: string; pptx: string; slide: string }> = {
   fr: {
     title: "Présentation commerciale",
-    intro: "Le logiciel expliqué simplement, en 16 diapositives, avec les résultats d'un test de charge à 10 caisses.",
+    intro: "Le logiciel expliqué simplement, en 16 diapositives, avec les résultats d'un test de charge multiposte.",
     prev: "Diapositive précédente",
     next: "Diapositive suivante",
     pdf: "Télécharger en PDF",
@@ -64,7 +64,7 @@ export const deckLabels: Record<Locale, { title: string; intro: string; prev: st
   },
   ar: {
     title: "العرض التقديمي",
-    intro: "البرنامج مشروح ببساطة في 16 شريحة، مع نتائج اختبار تحمّل بعشرة صناديق.",
+    intro: "البرنامج مشروح ببساطة في 16 شريحة، مع نتائج اختبار تحمّل متعدد المراكز.",
     prev: "الشريحة السابقة",
     next: "الشريحة التالية",
     pdf: "تحميل بصيغة PDF",
