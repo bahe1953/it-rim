@@ -4,6 +4,7 @@ import { products } from "./products";
 import { projects } from "./projects";
 import { releases, releaseUrl } from "./releases";
 import { site } from "./site";
+import { decks } from "./decks";
 
 /** Élément de la vitrine (logiciel ou réalisation), prêt à être affiché côté client. */
 export type ShowItem = {
@@ -17,6 +18,9 @@ export type ShowItem = {
   presentation: string;
   card: string;
   video: { src: string; poster: string; duration: string; sound: boolean };
+  /** Présentation en diapositives : quand elle existe, elle remplace la vidéo dans la fiche. */
+  slides: { src: string; caption: string }[] | null;
+  slidesPdf: string | null;
   features: string[];
   forWhom: string[];
   badges: string[];
@@ -123,8 +127,12 @@ export function showcaseItems(lang: Locale): ShowItem[] {
       by: p.developedBy?.[lang] ?? null,
       summary: p.summary[lang],
       presentation: p.presentation[lang],
-      card: p.slug === "mouhassib" ? `/videos/mouhassib-demo-${lang}.jpg` : `/images/cards/${p.slug}-${lang}.webp`,
-      video: { src: `${film}.mp4`, poster: `${film}.jpg`, ...(clips[`${p.slug}-${lang}`] ?? { duration: d.minute, sound: false }) },
+      card: p.slug === "mouhassib" ? `/videos/mouhassib-demo-${lang}.jpg` : decks[p.slug] ? `${decks[p.slug].dir}/${lang}/01.webp` : `/images/cards/${p.slug}-${lang}.webp`,
+      video: decks[p.slug]
+        ? { src: "", poster: "", duration: `${decks[p.slug].titles[lang].length} ${d.slides}`, sound: false }
+        : { src: `${film}.mp4`, poster: `${film}.jpg`, ...(clips[`${p.slug}-${lang}`] ?? { duration: d.minute, sound: false }) },
+      slides: decks[p.slug] ? decks[p.slug].titles[lang].map((caption, k) => ({ src: `${decks[p.slug].dir}/${lang}/${String(k + 1).padStart(2, "0")}.webp`, caption })) : null,
+      slidesPdf: decks[p.slug] ? `${decks[p.slug].dir}/${decks[p.slug].file}-${lang}.pdf` : null,
       features: p.features[lang],
       forWhom: p.forWhom[lang],
       badges,
@@ -149,6 +157,8 @@ export function showcaseItems(lang: Locale): ShowItem[] {
     presentation: [pr.caseStudy.context?.[lang], pr.caseStudy.design?.[lang]].filter(Boolean).join(" ") || pr.summary[lang],
     card: pr.image,
     video: { src: `/videos/${pr.slug}-${lang}.mp4`, poster: `/videos/${pr.slug}-${lang}.jpg`, duration: d.minute, sound: false },
+    slides: null,
+    slidesPdf: null,
     features: pr.caseStudy.features?.map((f) => f[lang]) ?? [],
     forWhom: [],
     badges: pr.languages,
@@ -171,6 +181,6 @@ export function showcaseLabels(lang: Locale) {
   const d = getDictionary(lang).showcase;
   return {
     tabs: d.tabs, kind: d.kind, watch: d.watch, minute: d.minute, close: d.close, prev: d.prev, next: d.next,
-    features: d.features, forWhom: d.forWhom, video: d.video, screens: d.screens, download: d.download, flow: d.flow, modules: d.modules,
+    features: d.features, forWhom: d.forWhom, video: d.video, slidesLabel: d.slidesLabel, pdf: d.pdf, screens: d.screens, download: d.download, flow: d.flow, modules: d.modules,
   };
 }

@@ -13,7 +13,7 @@ export type Labels = {
   tabs: { all: string; app: string; web: string };
   kind: { app: string; web: string };
   watch: string; minute: string; close: string; prev: string; next: string;
-  features: string; forWhom: string; video: string; screens: string; download: string; flow: string; modules: string;
+  features: string; forWhom: string; video: string; slidesLabel: string; pdf: string; screens: string; download: string; flow: string; modules: string;
 };
 
 type Filter = "all" | "app" | "web";
@@ -115,6 +115,10 @@ function Viewer({ lang, items, index, labels, onClose, onMove }: {
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
   const it = index === null ? null : items[index];
+  // Avec une présentation en diapositives, la galerie = diapositives puis captures, et il n'y a pas de vidéo.
+  const gallery = it ? [...(it.slides ?? []), ...it.screens] : [];
+  const nSlides = it?.slides?.length ?? 0;
+  const shown = it?.slides && media < 0 ? 0 : media;
   const rtl = lang === "ar";
   const mounted = useSyncExternalStore(noop, () => true, () => false);
 
@@ -181,28 +185,41 @@ function Viewer({ lang, items, index, labels, onClose, onMove }: {
               {/* Média : film d'une minute ou capture réelle */}
               <div className="grid min-w-0 content-start gap-3">
                 <div className="relative aspect-video overflow-hidden rounded-2xl bg-[#0b1d33] shadow-[0_30px_60px_-30px_rgba(10,40,80,.6)]">
-                  {media < 0 ? (
+                  {shown < 0 ? (
                     <video key={it.id + lang} src={it.video.src} poster={it.video.poster} controls autoPlay muted={!it.video.sound} playsInline preload="metadata" className="absolute inset-0 size-full object-contain" />
                   ) : (
-                    <Image key={it.screens[media].src} src={it.screens[media].src} alt={it.screens[media].caption} fill sizes="(max-width: 1024px) 94vw, 680px" className="bg-white object-contain" />
+                    <Image key={gallery[shown].src} src={gallery[shown].src} alt={gallery[shown].caption} fill sizes="(max-width: 1024px) 94vw, 680px" className="bg-white object-contain" />
+                  )}
+                  {nSlides > 0 && shown < nSlides && (
+                    <>
+                      <button type="button" onClick={() => setMedia((shown - 1 + nSlides) % nSlides)} aria-label={labels.prev}
+                        className="absolute start-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow"><span className="rotate-180"><Chevron size={18} /></span></button>
+                      <button type="button" onClick={() => setMedia((shown + 1) % nSlides)} aria-label={labels.next}
+                        className="absolute end-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-ink shadow"><Chevron size={18} /></button>
+                    </>
                   )}
                 </div>
-                {it.screens.length > 0 && (
+                {gallery.length > 0 && (
                   <div className="grid gap-2">
-                    <p className="text-[13px] font-bold text-ink-soft">{labels.screens}</p>
+                    <p className="text-[13px] font-bold text-ink-soft">{nSlides ? labels.slidesLabel : labels.screens}</p>
                     <div className="flex gap-2 overflow-x-auto pb-1">
-                      <button type="button" onClick={() => setMedia(-1)} aria-pressed={media < 0}
-                        className={`grid h-16 w-24 shrink-0 place-items-center gap-0.5 rounded-xl border-2 text-[11px] font-bold ${media < 0 ? "border-[var(--c)] bg-[var(--cb)] text-[var(--ct)]" : "border-line text-ink-2"}`}>
-                        <Play size={14} />{labels.video}
-                      </button>
-                      {it.screens.map((s, i) => (
-                        <button key={s.src} type="button" onClick={() => setMedia(i)} aria-pressed={media === i} title={s.caption}
-                          className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-xl border-2 bg-white ${media === i ? "border-[var(--c)]" : "border-line"}`}>
+                      {!nSlides && (
+                        <button type="button" onClick={() => setMedia(-1)} aria-pressed={media < 0}
+                          className={`grid h-16 w-24 shrink-0 place-items-center gap-0.5 rounded-xl border-2 text-[11px] font-bold ${media < 0 ? "border-[var(--c)] bg-[var(--cb)] text-[var(--ct)]" : "border-line text-ink-2"}`}>
+                          <Play size={14} />{labels.video}
+                        </button>
+                      )}
+                      {gallery.map((s, i) => (
+                        <button key={s.src} type="button" onClick={() => setMedia(i)} aria-pressed={shown === i} title={s.caption}
+                          className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-xl border-2 bg-white ${shown === i ? "border-[var(--c)]" : "border-line"}`}>
                           <Image src={s.src} alt={s.caption} fill sizes="96px" className="object-cover object-top" />
                         </button>
                       ))}
                     </div>
-                    {media >= 0 && <p className="text-sm font-semibold text-ink-2">{it.screens[media].caption}</p>}
+                    {shown >= 0 && <p className="text-sm font-semibold text-ink-2">{gallery[shown].caption}</p>}
+                    {it.slidesPdf && (
+                      <a href={it.slidesPdf} download className="inline-flex items-center gap-2 text-sm font-bold text-[var(--ct)] hover:underline"><Download size={16} />{labels.pdf}</a>
+                    )}
                   </div>
                 )}
                 {it.flow.length > 0 && (

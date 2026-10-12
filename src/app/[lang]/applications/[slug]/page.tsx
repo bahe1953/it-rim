@@ -36,7 +36,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
   const sc = dict.showcase;
   const showItem = showcaseItems(lang).find((i) => i.id === p.slug);
   const screens = showItem?.screens ?? [];
-  const film = showItem && p.slug !== "mouhassib" ? showItem.video.src : null;
+  const film = showItem && p.slug !== "mouhassib" && !decks[p.slug] ? showItem.video.src : null;
   const heroImg = screens.length ? { src: screens[0].src, w: 757, h: 500 } : { src: `/images/cards/${p.slug}-${lang}.webp`, w: 1120, h: 630 };
   const release = releases[p.slug];
   const req = requirements[p.slug];
@@ -72,8 +72,8 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
     );
   }
   const toc = [
-    ["presentation", s.presentation], ["probleme", s.problem], ["fonctionnalites", s.features], ["captures", s.screenshots],
-    ["video", s.video], ...(deck ? [["diaporama", dl.title]] : []), ["configuration", s.requirements], ["telechargement", s.download], ["faq", s.faq],
+    ["presentation", s.presentation], ["probleme", s.problem], ["fonctionnalites", s.features], ...(deck ? [["diaporama", dl.title]] : []), ["captures", s.screenshots],
+    ...(deck ? [] : [["video", s.video]]), ["configuration", s.requirements], ["telechargement", s.download], ["faq", s.faq],
   ];
 
   return (
@@ -195,40 +195,6 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
         </div>
       </section>
 
-      {/* Captures + vidéo */}
-      <section className="scroll-mt-32 bg-canvas py-16 md:py-20" id="captures">
-        <div className="wrap grid gap-6 lg:grid-cols-2">
-          <div className="grid content-start gap-4">
-            <h2 className="text-2xl">{s.screenshots}</h2>
-            {screens.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3">
-                {screens.map((sc) => (
-                  <a key={sc.src} href={sc.src} target="_blank" rel="noopener" className="card overflow-hidden p-1.5 transition hover:border-[var(--c)]">
-                    <Image src={sc.src} alt="" width={760} height={500} sizes="(max-width: 1024px) 45vw, 300px" className="block aspect-[3/2] h-auto w-full rounded-lg bg-white object-cover object-top" />
-                    <span className="block px-1.5 pt-1.5 pb-0.5 text-[12.5px] font-semibold text-ink-2">{sc.caption}</span>
-                  </a>
-                ))}
-              </div>
-            ) : (
-              <>
-                <div className="laptop"><Image src={`/images/cards/${p.slug}-${lang}.webp`} alt={`${s.screenshots} · ${p.name[lang]}`} width={1120} height={630} sizes="(max-width: 1024px) 92vw, 600px" className="block h-auto w-full rounded-md" /></div>
-                <p className="text-sm text-ink-soft">{d.screenshotsNote}</p>
-              </>
-            )}
-          </div>
-          <div className="grid content-start gap-4 scroll-mt-32" id="video">
-            <h2 className="text-2xl">{s.video}</h2>
-            {film ? (
-              <video src={film} poster={film.replace(".mp4", ".jpg")} controls playsInline preload="metadata" className="aspect-video w-full rounded-[20px] bg-[#0b1d33] shadow-[0_30px_60px_-30px_rgba(10,40,80,.6)]" />
-            ) : (
-              <div className="grid aspect-video place-items-center rounded-[20px] border border-dashed border-line bg-white p-6 text-center">
-                <div className="grid justify-items-center gap-3 text-ink-soft"><Video size={40} /><p className="font-semibold">{d.videoSoon}</p></div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
       {/* Présentation commerciale (diapositives) */}
       {deck && (
         <section className="sec scroll-mt-32" id="diaporama">
@@ -245,6 +211,40 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
           </div>
         </section>
       )}
+
+      {/* Captures + vidéo */}
+      <section className="scroll-mt-32 bg-canvas py-16 md:py-20" id="captures">
+        <div className={`wrap grid gap-6 ${deck ? "" : "lg:grid-cols-2"}`}>
+          <div className="grid content-start gap-4">
+            <h2 className="text-2xl">{s.screenshots}</h2>
+            {screens.length > 0 ? (
+              <div className={`grid grid-cols-2 gap-3 ${deck ? "md:grid-cols-3 lg:grid-cols-4" : ""}`}>
+                {screens.map((sc) => (
+                  <a key={sc.src} href={sc.src} target="_blank" rel="noopener" className="card overflow-hidden p-1.5 transition hover:border-[var(--c)]">
+                    <Image src={sc.src} alt="" width={760} height={500} sizes="(max-width: 1024px) 45vw, 300px" className="block aspect-[3/2] h-auto w-full rounded-lg bg-white object-cover object-top" />
+                    <span className="block px-1.5 pt-1.5 pb-0.5 text-[12.5px] font-semibold text-ink-2">{sc.caption}</span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <>
+                <div className="laptop"><Image src={`/images/cards/${p.slug}-${lang}.webp`} alt={`${s.screenshots} · ${p.name[lang]}`} width={1120} height={630} sizes="(max-width: 1024px) 92vw, 600px" className="block h-auto w-full rounded-md" /></div>
+                <p className="text-sm text-ink-soft">{d.screenshotsNote}</p>
+              </>
+            )}
+          </div>
+          {!deck && <div className="grid content-start gap-4 scroll-mt-32" id="video">
+            <h2 className="text-2xl">{s.video}</h2>
+            {film ? (
+              <video src={film} poster={film.replace(".mp4", ".jpg")} controls playsInline preload="metadata" className="aspect-video w-full rounded-[20px] bg-[#0b1d33] shadow-[0_30px_60px_-30px_rgba(10,40,80,.6)]" />
+            ) : (
+              <div className="grid aspect-video place-items-center rounded-[20px] border border-dashed border-line bg-white p-6 text-center">
+                <div className="grid justify-items-center gap-3 text-ink-soft"><Video size={40} /><p className="font-semibold">{d.videoSoon}</p></div>
+              </div>
+            )}
+          </div>}
+        </div>
+      </section>
 
       {/* Technologies + configuration */}
       <section className="sec scroll-mt-32" id="configuration">
