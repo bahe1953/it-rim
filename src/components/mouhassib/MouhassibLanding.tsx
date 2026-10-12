@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import Echelle from "./Echelle";
 import DashboardMockup from "./DashboardMockup";
-import VideoDemo from "./VideoDemo";
+import MouhassibCompare from "@/components/MouhassibCompare";
 import { C, POPPINS, ICONES as I, Icone, Logo } from "./theme";
 
 /**
@@ -34,8 +34,8 @@ const T = {
     checks: (d: number) => ["Fonctionne hors ligne", `Essai gratuit ${d} jours`, "Données sur votre ordinateur"],
     floatInvoice: ["Facture validée", "FAC-2026-0184 · 18 400 MRU"],
     floatStock: ["Stock · Riz 25 kg", "148 sacs"],
-    videoEyebrow: "DÉMONSTRATION · 60 SECONDES",
-    videoTitle: "Mouhassib en une minute.",
+    videoEyebrow: "DÉMONSTRATION · AVEC VOIX OFF",
+    videoTitle: "Mouhassib en vidéo.",
     featEyebrow: "FONCTIONNALITÉS",
     featTitle: "Tout ce qu'il vous faut pour piloter votre activité.",
     featLead: "Six modules reliés entre eux : chaque vente met à jour le stock, la caisse et les comptes, sans double saisie.",
@@ -56,7 +56,7 @@ const T = {
     whoLead: "Du comptoir de quartier au dépôt de gros, Mouhassib s'adapte à votre façon de vendre, d'acheter et de stocker.",
     targets: [
       ["Commerces", I.boutique, "Épiceries, boutiques, quincailleries : un comptoir rapide et un stock juste."],
-      ["Magasins", I.magasin, "Plusieurs caisses reliées au même poste, sur votre réseau local."],
+      ["Magasins", I.magasin, "Plusieurs caisses gérées sur le même poste."],
       ["Grossistes", I.entrepot, "Ventes en volume, ventes à crédit et facturation professionnelle."],
       ["Distributeurs", I.fourn, "Bons de livraison, créances par client et suivi des règlements."],
       ["PME", I.pme, "Comptabilité, paie et exports Sage prêts pour votre comptable."],
@@ -66,7 +66,7 @@ const T = {
     simTitle: "Moins de complexité. Plus de contrôle.",
     benefits: [
       ["01", "Gagnez du temps", I.temps, "Automatisez les opérations quotidiennes : une vente saisie une fois met tout à jour."],
-      ["02", "Gardez le contrôle", I.bouclier, "Visualisez votre activité à tout moment, poste par poste et utilisateur par utilisateur."],
+      ["02", "Gardez le contrôle", I.bouclier, "Visualisez votre activité à tout moment, utilisateur par utilisateur."],
       ["03", "Décidez avec de vrais chiffres", I.compta, "Des informations claires pour mieux piloter votre entreprise."],
     ],
     dlEyebrow: "ESSAI GRATUIT",
@@ -102,8 +102,8 @@ const T = {
     checks: (d: number) => ["يعمل دون إنترنت", `تجربة مجانية ${d} يوماً`, "بياناتك على حاسوبك"],
     floatInvoice: ["تم تأكيد الفاتورة", "FAC-2026-0184 · 18 400 أوقية"],
     floatStock: ["المخزون · أرز 25 كغ", "148 كيساً"],
-    videoEyebrow: "عرض توضيحي · 60 ثانية",
-    videoTitle: "محاسب في دقيقة واحدة.",
+    videoEyebrow: "عرض توضيحي · بتعليق صوتي",
+    videoTitle: "محاسب بالفيديو.",
     featEyebrow: "الوظائف",
     featTitle: "كل ما تحتاجه لتسيير نشاطك.",
     featLead: "ست وحدات مترابطة: كل عملية بيع تحدّث المخزون والصندوق والحسابات، دون إدخال مزدوج.",
@@ -124,7 +124,7 @@ const T = {
     whoLead: "من دكان الحي إلى مستودع الجملة، يتكيف محاسب مع طريقتك في البيع والشراء والتخزين.",
     targets: [
       ["المحلات التجارية", I.boutique, "البقالات والبوتيكات ومحلات الأدوات: صندوق سريع ومخزون دقيق."],
-      ["المتاجر", I.magasin, "عدة صناديق مرتبطة بالجهاز نفسه، عبر شبكتك المحلية."],
+      ["المتاجر", I.magasin, "عدة صناديق تُدار على الجهاز نفسه."],
       ["تجار الجملة", I.entrepot, "مبيعات بالكميات، وبيع بالأجل، وفوترة احترافية."],
       ["الموزعون", I.fourn, "وصولات التسليم، وديون كل زبون، ومتابعة التسديدات."],
       ["المؤسسات الصغيرة والمتوسطة", I.pme, "المحاسبة والرواتب وتصدير البيانات إلى Sage جاهزة لمحاسبك."],
@@ -134,7 +134,7 @@ const T = {
     simTitle: "تعقيد أقل. تحكم أكبر.",
     benefits: [
       ["01", "اربح الوقت", I.temps, "أتمت العمليات اليومية: بيع يُسجَّل مرة واحدة يحدّث كل شيء."],
-      ["02", "حافظ على السيطرة", I.bouclier, "تابع نشاطك في أي وقت، جهازاً بجهاز ومستخدماً بمستخدم."],
+      ["02", "حافظ على السيطرة", I.bouclier, "تابع نشاطك في أي وقت، مستخدماً بمستخدم."],
       ["03", "قرّر بأرقام حقيقية", I.compta, "معلومات واضحة لتسيير مؤسستك بشكل أفضل."],
     ],
     dlEyebrow: "تجربة مجانية",
@@ -181,12 +181,12 @@ const appear = {
 export default function MouhassibLanding({ lang, trialDays, download }: { lang: Lang; trialDays: number; download: DownloadInfo }) {
   const t = T[lang];
   const rtl = lang === "ar";
-  const [demoRequest, setDemoRequest] = useState(0);
+  const demoRef = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
 
   const watchDemo = () => {
     document.getElementById("demonstration")?.scrollIntoView({ behavior: "smooth", block: "center" });
-    setDemoRequest((n) => n + 1);
+    demoRef.current?.play().catch(() => {});
   };
   const trackDownload = (version: Lang) => {
     fetch("/api/download-request", {
@@ -264,7 +264,10 @@ export default function MouhassibLanding({ lang, trialDays, download }: { lang: 
           <EyebrowBase rtl={rtl}>{t.videoEyebrow}</EyebrowBase>
           <H2Base rtl={rtl} font={t.titles}>{t.videoTitle}</H2Base>
         </motion.div>
-        <motion.div {...appear}><VideoDemo demande={demoRequest} langue={lang} /></motion.div>
+        <motion.div {...appear}>
+          <video ref={demoRef} src={`/videos/mouhassib-demo-${lang}.mp4`} poster={`/videos/mouhassib-demo-${lang}.jpg`} controls playsInline preload="metadata"
+            className="aspect-video w-full rounded-[22px] bg-[#0b1d33] shadow-[0_40px_90px_-40px_rgba(3,105,161,.55)]" />
+        </motion.div>
       </section>
 
       {/* FONCTIONNALITÉS */}
@@ -349,6 +352,8 @@ export default function MouhassibLanding({ lang, trialDays, download }: { lang: 
           </div>
         </div>
       </section>
+
+      <MouhassibCompare lang={lang} current="mouhassib" />
 
       {/* TÉLÉCHARGEMENT — ESSAI GRATUIT */}
       <section id="telecharger" className="mx-auto max-w-5xl scroll-mt-28 px-5 py-20 md:px-8 md:py-28">

@@ -14,6 +14,7 @@ import { showcaseItems } from "@/content/showcase";
 import { Arrow, Download, Flask, ProductIcon, Video, WhatsApp } from "@/components/icons";
 import { DownloadCard, FeatureList, TrialCard, whatsappFor } from "@/components/product";
 import SlideDeck from "@/components/SlideDeck";
+import MouhassibCompare from "@/components/MouhassibCompare";
 import { deckLabels, decks } from "@/content/decks";
 
 export const dynamicParams = false;
@@ -272,6 +273,8 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
           </div>
         </div>
       </section>
+
+      {p.slug === "mouhassib-pro" && <MouhassibCompare lang={lang} current="mouhassib-pro" />}
 
       {/* Téléchargement + essai */}
       <section className="scroll-mt-32 bg-canvas py-16 md:py-20">
