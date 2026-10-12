@@ -13,6 +13,8 @@ import { trialState } from "@/lib/trial";
 import { showcaseItems } from "@/content/showcase";
 import { Arrow, Download, Flask, ProductIcon, Video, WhatsApp } from "@/components/icons";
 import { DownloadCard, FeatureList, TrialCard, whatsappFor } from "@/components/product";
+import SlideDeck from "@/components/SlideDeck";
+import { deckLabels, decks } from "@/content/decks";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => locales.flatMap((lang) => products.map((p) => ({ lang, slug: p.slug })));
@@ -39,6 +41,8 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
   const release = releases[p.slug];
   const req = requirements[p.slug];
   const faq = d.faq(p.name[lang], p.trial.days);
+  const deck = decks[p.slug];
+  const dl = deckLabels[lang];
 
   // Mouhassib a sa propre page de présentation (reprise de la page « mouhassib-fr »), en FR et en AR.
   if (p.slug === "mouhassib") {
@@ -69,7 +73,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
   }
   const toc = [
     ["presentation", s.presentation], ["probleme", s.problem], ["fonctionnalites", s.features], ["captures", s.screenshots],
-    ["video", s.video], ["configuration", s.requirements], ["telechargement", s.download], ["faq", s.faq],
+    ["video", s.video], ...(deck ? [["diaporama", dl.title]] : []), ["configuration", s.requirements], ["telechargement", s.download], ["faq", s.faq],
   ];
 
   return (
@@ -224,6 +228,23 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
           </div>
         </div>
       </section>
+
+      {/* Présentation commerciale (diapositives) */}
+      {deck && (
+        <section className="sec scroll-mt-32" id="diaporama">
+          <div className="wrap grid gap-6">
+            <div className="head"><div><p className="eyebrow">{dl.title}</p><h2 className="h2">{p.name[lang]}</h2><p className="mt-2 max-w-2xl text-ink-soft">{dl.intro}</p></div></div>
+            <SlideDeck
+              dir={deck.dir}
+              lang={lang}
+              titles={deck.titles[lang]}
+              pdf={`${deck.dir}/${deck.file}-${lang}.pdf`}
+              pptx={`${deck.dir}/${deck.file}-${lang}.pptx`}
+              labels={{ prev: dl.prev, next: dl.next, pdf: dl.pdf, pptx: dl.pptx, slide: dl.slide }}
+            />
+          </div>
+        </section>
+      )}
 
       {/* Technologies + configuration */}
       <section className="sec scroll-mt-32" id="configuration">
