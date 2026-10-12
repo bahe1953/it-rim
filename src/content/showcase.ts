@@ -30,6 +30,9 @@ export type ShowItem = {
   modules: string[];
   details: { href: string; label: string; external: boolean };
   download: string | null;
+  /** Essai : à télécharger, sur demande (formulaire), ou rien. */
+  trialMode: "download" | "request" | null;
+  request: string | null;
   whatsapp: { href: string; label: string };
 };
 
@@ -141,7 +144,9 @@ export function showcaseItems(lang: Locale): ShowItem[] {
       modules: p.modules?.[lang] ?? [],
       screens: p.slug === "mouhassib-pro" ? mproScreens.map(([f, fr, ar]) => ({ src: `/images/mouhassib-pro/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "mbourou" ? mbourouScreens.map(([f, fr, ar]) => ({ src: `/images/mbourou/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "gestphone" ? gestScreens.map(([f, fr, ar]) => ({ src: `/images/gestphone/${lang}-${f}.webp`, caption: lang === "fr" ? fr : ar })) : p.slug === "raqib" ? raqibScreens.map(([f, fr, ar]) => ({ src: `/images/raqib/${f}.webp`, caption: lang === "fr" ? fr : ar })) : [],
       details: { href: `/${lang}/applications/${p.slug}`, label: d.details, external: false },
-      download: url && p.trial.enabled ? `/${lang}/applications/${p.slug}#telecharger` : null,
+      download: url && p.trial.enabled ? `/${lang}/applications/${p.slug}#telechargement` : null,
+      trialMode: !p.trial.enabled ? null : url ? "download" : "request",
+      request: !url && p.trial.enabled ? `/${lang}/applications/${p.slug}/essai` : null,
       whatsapp: { href: wa(d.demoMsg(p.name[lang])), label: d.demo },
     };
   });
@@ -170,6 +175,8 @@ export function showcaseItems(lang: Locale): ShowItem[] {
       ? { href: pr.url, label: d.visit, external: true }
       : { href: `/${lang}/realisations/${pr.slug}`, label: d.details, external: false },
     download: null,
+    trialMode: null,
+    request: null,
     whatsapp: { href: wa(d.projectMsg(pr.name[lang])), label: d.talk },
   }));
 
@@ -181,6 +188,6 @@ export function showcaseLabels(lang: Locale) {
   const d = getDictionary(lang).showcase;
   return {
     tabs: d.tabs, kind: d.kind, watch: d.watch, minute: d.minute, close: d.close, prev: d.prev, next: d.next,
-    features: d.features, forWhom: d.forWhom, video: d.video, slidesLabel: d.slidesLabel, pdf: d.pdf, screens: d.screens, download: d.download, flow: d.flow, modules: d.modules,
+    features: d.features, forWhom: d.forWhom, video: d.video, slidesLabel: d.slidesLabel, pdf: d.pdf, screens: d.screens, download: d.download, request: d.request, badgeDownload: d.badgeDownload, badgeRequest: d.badgeRequest, flow: d.flow, modules: d.modules,
   };
 }

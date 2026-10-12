@@ -6,13 +6,13 @@ import { hasLocale, locales, siteUrl } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { getProduct, products } from "@/content/products";
 import { releaseSha, releaseUrl, releases, requirements } from "@/content/releases";
-import MouhassibLanding from "@/components/mouhassib/MouhassibLanding";
+import Echelle from "@/components/mouhassib/Echelle";
+import DashboardMockup from "@/components/mouhassib/DashboardMockup";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
-import { trialState } from "@/lib/trial";
 import { showcaseItems } from "@/content/showcase";
 import { Arrow, Download, Flask, ProductIcon, Video, WhatsApp } from "@/components/icons";
-import { DownloadCard, FeatureList, TrialCard, whatsappFor } from "@/components/product";
+import { DownloadCard, FeatureList, TrialOffer, whatsappFor } from "@/components/product";
 import SlideDeck from "@/components/SlideDeck";
 import MouhassibCompare from "@/components/MouhassibCompare";
 import { deckLabels, decks } from "@/content/decks";
@@ -37,43 +37,17 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
   const sc = dict.showcase;
   const showItem = showcaseItems(lang).find((i) => i.id === p.slug);
   const screens = showItem?.screens ?? [];
-  const film = showItem && p.slug !== "mouhassib" && !decks[p.slug] ? showItem.video.src : null;
+  const film = showItem && !decks[p.slug] ? showItem.video.src : null;
   const heroImg = screens.length ? { src: screens[0].src, w: 757, h: 500 } : { src: `/images/cards/${p.slug}-${lang}.webp`, w: 1120, h: 630 };
   const release = releases[p.slug];
+  const hasInstaller = Boolean(releaseUrl(release, lang));
   const req = requirements[p.slug];
   const faq = d.faq(p.name[lang], p.trial.days);
   const deck = decks[p.slug];
   const dl = deckLabels[lang];
 
-  // Mouhassib a sa propre page de présentation (reprise de la page « mouhassib-fr »), en FR et en AR.
-  if (p.slug === "mouhassib") {
-    const other = lang === "fr" ? "ar" : "fr";
-    return (
-      <>
-        <MouhassibLanding
-          lang={lang}
-          trialDays={p.trial.days}
-          download={{ url: releaseUrl(release, lang), otherUrl: releaseUrl(release, other), version: release.version, date: release.date, platforms: p.platforms.join(" / "), sizeMb: release.sizeMb, sha256: releaseSha(release, lang) }}
-        />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([
-          {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            name: p.name[lang],
-            applicationCategory: "BusinessApplication",
-            operatingSystem: p.platforms.join(", "),
-            description: p.summary[lang],
-            url: `${siteUrl}/${lang}/applications/${p.slug}`,
-            publisher: { "@type": "Organization", name: site.name, url: siteUrl },
-            ...(release.version ? { softwareVersion: release.version } : {}),
-            ...(releaseUrl(release, lang) ? { downloadUrl: releaseUrl(release, lang), fileSize: `${release.sizeMb} MB` } : {}),
-          },
-        ]) }} />
-      </>
-    );
-  }
   const toc = [
-    ["presentation", s.presentation], ["probleme", s.problem], ["fonctionnalites", s.features], ...(deck ? [["diaporama", dl.title]] : []), ["captures", s.screenshots],
+    ["presentation", s.presentation], ["probleme", s.problem], ["fonctionnalites", s.features], ...(deck ? [["diaporama", dl.title]] : []), ...(screens.length ? [["captures", s.screenshots]] : []),
     ...(deck ? [] : [["video", s.video]]), ["configuration", s.requirements], ["telechargement", s.download], ["faq", s.faq],
   ];
 
@@ -104,8 +78,12 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
               {p.developedBy && <span className="chip font-semibold">{p.developedBy[lang]}</span>}
             </div>
             <div className="flex flex-wrap gap-3">
-              {p.trial.enabled && <Link href={`/${lang}/applications/${p.slug}/essai`} className="btn btn-acc max-sm:flex-[1_1_100%]"><Flask />{d.start}<Arrow /></Link>}
-              <a href="#telechargement" className="btn btn-w max-sm:flex-[1_1_100%]"><Download />{d.download}</a>
+              {hasInstaller ? (
+                <a href="#telechargement" className="btn btn-acc max-sm:flex-[1_1_100%]"><Download />{d.tryDownload}<Arrow /></a>
+              ) : p.trial.enabled ? (
+                <Link href={`/${lang}/applications/${p.slug}/essai`} className="btn btn-acc max-sm:flex-[1_1_100%]"><Flask />{d.tryRequest}<Arrow /></Link>
+              ) : null}
+              {(deck || film) && <a href={deck ? "#diaporama" : "#video"} className="btn btn-w max-sm:flex-[1_1_100%]"><Video size={18} />{d.seePresentation}</a>}
             </div>
             {p.documents && p.documents.length > 0 && (
               <div className="flex flex-wrap gap-x-5 gap-y-2">
@@ -120,7 +98,9 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
           </div>
           <div className="relative">
             <div className="pointer-events-none absolute -inset-[12%] rounded-full bg-[radial-gradient(closest-side,var(--cb),transparent_70%)]" />
-            <div className="laptop relative"><Image src={heroImg.src} alt={p.name[lang]} width={heroImg.w} height={heroImg.h} priority sizes="(max-width: 768px) 92vw, 50vw" className="block h-auto w-full rounded-md" /></div>
+            {p.slug === "mouhassib" ? (
+              <div className="laptop relative overflow-hidden"><Echelle largeur={1040} hauteur={660}><DashboardMockup langue={lang} /></Echelle></div>
+            ) : <div className="laptop relative"><Image src={heroImg.src} alt={p.name[lang]} width={heroImg.w} height={heroImg.h} priority sizes="(max-width: 768px) 92vw, 50vw" className="block h-auto w-full rounded-md" /></div>}
           </div>
         </div>
       </section>
@@ -215,10 +195,10 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
 
       {/* Captures + vidéo */}
       <section className="scroll-mt-32 bg-canvas py-16 md:py-20" id="captures">
-        <div className={`wrap grid gap-6 ${deck ? "" : "lg:grid-cols-2"}`}>
-          <div className="grid content-start gap-4">
+        <div className={`wrap grid gap-6 ${!deck && screens.length > 0 ? "lg:grid-cols-2" : ""}`}>
+          {screens.length > 0 && <div className="grid content-start gap-4">
             <h2 className="text-2xl">{s.screenshots}</h2>
-            {screens.length > 0 ? (
+            {(
               <div className={`grid grid-cols-2 gap-3 ${deck ? "md:grid-cols-3 lg:grid-cols-4" : ""}`}>
                 {screens.map((sc) => (
                   <a key={sc.src} href={sc.src} target="_blank" rel="noopener" className="card overflow-hidden p-1.5 transition hover:border-[var(--c)]">
@@ -227,14 +207,9 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
                   </a>
                 ))}
               </div>
-            ) : (
-              <>
-                <div className="laptop"><Image src={`/images/cards/${p.slug}-${lang}.webp`} alt={`${s.screenshots} · ${p.name[lang]}`} width={1120} height={630} sizes="(max-width: 1024px) 92vw, 600px" className="block h-auto w-full rounded-md" /></div>
-                <p className="text-sm text-ink-soft">{d.screenshotsNote}</p>
-              </>
             )}
-          </div>
-          {!deck && <div className="grid content-start gap-4 scroll-mt-32" id="video">
+          </div>}
+          {!deck && <div className={`grid content-start gap-4 scroll-mt-32 ${screens.length ? "" : "mx-auto w-full max-w-4xl"}`} id="video">
             <h2 className="text-2xl">{s.video}</h2>
             {film ? (
               <video src={film} poster={film.replace(".mp4", ".jpg")} controls playsInline preload="metadata" className="aspect-video w-full rounded-[20px] bg-[#0b1d33] shadow-[0_30px_60px_-30px_rgba(10,40,80,.6)]" />
@@ -274,13 +249,13 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
         </div>
       </section>
 
-      {p.slug === "mouhassib-pro" && <MouhassibCompare lang={lang} current="mouhassib-pro" />}
+      {(p.slug === "mouhassib" || p.slug === "mouhassib-pro") && <MouhassibCompare lang={lang} current={p.slug} />}
 
       {/* Téléchargement + essai */}
-      <section className="scroll-mt-32 bg-canvas py-16 md:py-20">
-        <div className="wrap grid gap-5 md:grid-cols-2">
-          <DownloadCard p={p} lang={lang} release={release} />
-          <TrialCard p={p} lang={lang} state={trialState(p, null)} />
+      <section className="scroll-mt-32 bg-canvas py-16 md:py-20" id="telechargement">
+        <div className={`wrap grid gap-5 ${hasInstaller ? "md:grid-cols-2" : "max-w-2xl"}`}>
+          {hasInstaller && <DownloadCard p={p} lang={lang} release={release} />}
+          <TrialOffer p={p} lang={lang} hasInstaller={hasInstaller} />
         </div>
       </section>
 

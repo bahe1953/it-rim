@@ -7,13 +7,13 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Locale } from "@/i18n/config";
 import type { ShowItem } from "@/content/showcase";
-import { Arrow, Check, Chevron, Close, Download, Play, WhatsApp } from "./icons";
+import { Arrow, Check, Chevron, Close, Download, Flask, Play, WhatsApp } from "./icons";
 
 export type Labels = {
   tabs: { all: string; app: string; web: string };
   kind: { app: string; web: string };
   watch: string; minute: string; close: string; prev: string; next: string;
-  features: string; forWhom: string; video: string; slidesLabel: string; pdf: string; screens: string; download: string; flow: string; modules: string;
+  features: string; forWhom: string; video: string; slidesLabel: string; pdf: string; screens: string; download: string; request: string; badgeDownload: string; badgeRequest: string; flow: string; modules: string;
 };
 
 type Filter = "all" | "app" | "web";
@@ -100,6 +100,11 @@ function Card({ it, labels, onOpen }: { it: ShowItem; labels: Labels; onOpen: ()
             <span key={f} className="rounded-full bg-[var(--cb)] px-2.5 py-1 text-[12px] font-semibold text-[var(--ct)]">{f}</span>
           ))}
         </span>
+        {it.trialMode && (
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-[12px] font-bold text-ink-2">
+            {it.trialMode === "download" ? <><Download size={13} />{labels.badgeDownload}</> : <><Flask size={13} />{labels.badgeRequest}</>}
+          </span>
+        )}
         <span className="mt-auto inline-flex items-center gap-2 pt-1 text-[14.5px] font-extrabold text-[var(--ct)]">
           {labels.watch}<Arrow />
         </span>
@@ -290,7 +295,8 @@ function Viewer({ lang, items, index, labels, onClose, onMove }: {
                     <Link href={it.details.href} className="btn btn-acc min-h-12" onClick={close}>{it.details.label}<Arrow /></Link>
                   )}
                   {it.download && <Link href={it.download} className="btn btn-try min-h-12" onClick={close}><Download size={17} />{labels.download}</Link>}
-                  <a href={it.whatsapp.href} target="_blank" rel="noopener" className={`btn btn-wa min-h-12 ${it.download ? "sm:col-span-2 lg:col-span-1 xl:col-span-2" : ""}`}><WhatsApp size={18} />{it.whatsapp.label}</a>
+                  {it.request && <Link href={it.request} className="btn btn-try min-h-12" onClick={close}>{labels.request}<Arrow /></Link>}
+                  <a href={it.whatsapp.href} target="_blank" rel="noopener" className={`btn btn-wa min-h-12 ${it.download || it.request ? "sm:col-span-2 lg:col-span-1 xl:col-span-2" : ""}`}><WhatsApp size={18} />{it.whatsapp.label}</a>
                 </div>
               </div>
             </div>

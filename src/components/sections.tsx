@@ -53,7 +53,7 @@ export function ProductCard({ p, lang }: { p: Product; lang: Locale }) {
       <div className="mt-auto grid gap-2.5">
         <Link href={href} className="btn btn-acc min-h-[46px] rounded-[11px] text-[14.5px]">{d.common.discover} {p.name[lang]}<Arrow /></Link>
         {p.trial.enabled ? (
-          <Link href={releaseUrl(releases[p.slug], lang) ? `${href}#telecharger` : `${href}/essai`} className="btn btn-try min-h-11 rounded-[11px] text-sm"><Flask />{d.common.tryFree}</Link>
+          <Link href={releaseUrl(releases[p.slug], lang) ? `${href}#telechargement` : `${href}/essai`} className="btn btn-try min-h-11 rounded-[11px] text-sm"><Flask />{d.common.tryFree}</Link>
         ) : (
           <Link href={`/${lang}/contact`} className="btn btn-try min-h-11 rounded-[11px] text-sm">{d.common.requestDemo}</Link>
         )}

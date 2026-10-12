@@ -54,8 +54,8 @@ export const products: Product[] = [
       ar: "حل متكامل لإدارة المبيعات والمشتريات والمخزون والعملاء والموردين والصندوق والمحاسبة.",
     },
     features: {
-      fr: ["Ventes et achats", "Stock et inventaire", "Clients et fournisseurs", "Caisse et comptabilité", "Rapports détaillés", "Paiements"],
-      ar: ["المبيعات والمشتريات", "المخزون والجرد", "العملاء والموردون", "الصندوق والمحاسبة", "تقارير مفصلة", "المدفوعات"],
+      fr: ["Ventes et achats", "Stock et inventaire", "Clients et fournisseurs", "Caisse et comptabilité", "Rapports détaillés", "Paiements", "Paie des employés", "Export comptable vers Sage", "Frais de douane et de transport dans le coût de revient"],
+      ar: ["المبيعات والمشتريات", "المخزون والجرد", "العملاء والموردون", "الصندوق والمحاسبة", "تقارير مفصلة", "المدفوعات", "رواتب الموظفين", "تصدير المحاسبة إلى Sage", "مصاريف الجمارك والنقل في سعر التكلفة"],
     },
     presentation: {
       fr: "Mouhassib réunit dans un seul logiciel les opérations quotidiennes d'un commerce ou d'une entreprise : vendre, acheter, suivre le stock, encaisser et tenir la comptabilité.",
@@ -91,8 +91,8 @@ export const products: Product[] = [
       ar: "النسخة الشبكية من محاسب: عدة صناديق مرتبطة بخادم واحد، وعدة مستودعات، وعروض أسعار وفواتير، ومحاسبة وزكاة، على قاعدة بيانات PostgreSQL.",
     },
     features: {
-      fr: ["Plusieurs caisses en réseau local", "Plusieurs entrepôts et transferts", "Ventes, achats, code-barres", "Devis et factures clients", "Comptabilité : journaux, balance, bilan", "Calcul de la Zakât", "Caisse : espèces, Bankily, Sedad, Masrivi", "Utilisateurs, rôles et sauvegardes"],
-      ar: ["عدة صناديق عبر الشبكة المحلية", "عدة مستودعات وتحويلات", "المبيعات والمشتريات والباركود", "عروض الأسعار وفواتير العملاء", "المحاسبة: اليوميات والميزان والميزانية", "حساب الزكاة", "الصندوق: نقداً، بنكيلي، سداد، مصرفي", "المستخدمون والصلاحيات والنسخ الاحتياطي"],
+      fr: ["Plusieurs caisses en réseau local", "Plusieurs entrepôts et transferts", "Ventes, achats, code-barres", "Devis et factures clients", "Comptabilité : journaux, balance, bilan", "Calcul de la Zakât", "Caisse : espèces, Bankily, Sedad, Masrivi", "Utilisateurs, rôles et sauvegardes", "Paie des employés", "Export comptable vers Sage", "Frais de douane et de transport dans le coût de revient"],
+      ar: ["عدة صناديق عبر الشبكة المحلية", "عدة مستودعات وتحويلات", "المبيعات والمشتريات والباركود", "عروض الأسعار وفواتير العملاء", "المحاسبة: اليوميات والميزان والميزانية", "حساب الزكاة", "الصندوق: نقداً، بنكيلي، سداد، مصرفي", "المستخدمون والصلاحيات والنسخ الاحتياطي", "رواتب الموظفين", "تصدير المحاسبة إلى Sage", "مصاريف الجمارك والنقل في سعر التكلفة"],
     },
     presentation: {
       fr: "Mouhassib Pro reprend tout Mouhassib et l'ouvre au travail à plusieurs : un ordinateur serveur garde les données, chaque caisse s'y connecte par le réseau local, et le stock est suivi dépôt par dépôt.",
