@@ -12,7 +12,7 @@ import { Arrow, Check, Chevron, Close, Download, Flask, Play, WhatsApp } from ".
 export type Labels = {
   tabs: { all: string; app: string; web: string };
   kind: { app: string; web: string };
-  watch: string; minute: string; close: string; prev: string; next: string;
+  watch: string; open: string; minute: string; close: string; prev: string; next: string;
   features: string; forWhom: string; video: string; slidesLabel: string; pdf: string; screens: string; download: string; request: string; badgeDownload: string; badgeRequest: string; flow: string; modules: string;
 };
 
@@ -25,7 +25,7 @@ const accentVars = (it: ShowItem) => ({ "--c": it.accent.c, "--cg": it.accent.g,
  * Vitrine des logiciels et réalisations : une grille de cartes ;
  * un clic ouvre une fiche avec le film de présentation d'une minute, les captures réelles et les actions.
  */
-export default function Showcase({ lang, items, labels, tabs = true }: { lang: Locale; items: ShowItem[]; labels: Labels; tabs?: boolean }) {
+export default function Showcase({ lang, items, labels, tabs = true, linkCards = false }: { lang: Locale; items: ShowItem[]; labels: Labels; tabs?: boolean; linkCards?: boolean }) {
   const [filter, setFilter] = useState<Filter>("all");
   const [open, setOpen] = useState<number | null>(null);
   const visible = items.filter((it) => filter === "all" || it.kind === filter);
@@ -50,21 +50,21 @@ export default function Showcase({ lang, items, labels, tabs = true }: { lang: L
         <AnimatePresence mode="popLayout">
           {visible.map((it) => (
             <motion.li key={it.id} layout initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.35 }} className="min-w-0">
-              <Card it={it} labels={labels} onOpen={() => setOpen(items.indexOf(it))} />
+              <Card it={it} labels={labels} href={linkCards ? it.details.href : undefined} onOpen={() => setOpen(items.indexOf(it))} />
             </motion.li>
           ))}
         </AnimatePresence>
       </motion.ul>
 
-      <Viewer lang={lang} items={items} index={open} labels={labels} onClose={() => setOpen(null)} onMove={setOpen} />
+      {!linkCards && <Viewer lang={lang} items={items} index={open} labels={labels} onClose={() => setOpen(null)} onMove={setOpen} />}
     </div>
   );
 }
 
-function Card({ it, labels, onOpen }: { it: ShowItem; labels: Labels; onOpen: () => void }) {
-  return (
-    <button type="button" onClick={onOpen} style={accentVars(it)}
-      className="group card lift relative flex h-full w-full flex-col overflow-hidden text-start outline-offset-4">
+function Card({ it, labels, onOpen, href }: { it: ShowItem; labels: Labels; onOpen: () => void; href?: string }) {
+  const cls = "group card lift relative flex h-full w-full flex-col overflow-hidden text-start outline-offset-4";
+  const inner = (
+    <>
       <span className="absolute inset-x-0 top-0 z-10 h-1 bg-[linear-gradient(90deg,var(--c),var(--cg))]" />
       <span className="relative block aspect-video overflow-hidden bg-[var(--cb)]">
         <Image src={it.card} alt="" fill sizes="(max-width: 640px) 92vw, (max-width: 1280px) 46vw, 380px"
@@ -106,11 +106,14 @@ function Card({ it, labels, onOpen }: { it: ShowItem; labels: Labels; onOpen: ()
           </span>
         )}
         <span className="mt-auto inline-flex items-center gap-2 pt-1 text-[14.5px] font-extrabold text-[var(--ct)]">
-          {labels.watch}<Arrow />
+          {href ? labels.open : labels.watch}<Arrow />
         </span>
       </span>
-    </button>
+    </>
   );
+  return href
+    ? <Link href={href} style={accentVars(it)} className={cls}>{inner}</Link>
+    : <button type="button" onClick={onOpen} style={accentVars(it)} className={cls}>{inner}</button>;
 }
 
 function Viewer({ lang, items, index, labels, onClose, onMove }: {

@@ -187,7 +187,7 @@ export function showcaseItems(lang: Locale): ShowItem[] {
 export function showcaseLabels(lang: Locale) {
   const d = getDictionary(lang).showcase;
   return {
-    tabs: d.tabs, kind: d.kind, watch: d.watch, minute: d.minute, close: d.close, prev: d.prev, next: d.next,
+    tabs: d.tabs, kind: d.kind, watch: d.watch, open: d.open, minute: d.minute, close: d.close, prev: d.prev, next: d.next,
     features: d.features, forWhom: d.forWhom, video: d.video, slidesLabel: d.slidesLabel, pdf: d.pdf, screens: d.screens, download: d.download, request: d.request, badgeDownload: d.badgeDownload, badgeRequest: d.badgeRequest, flow: d.flow, modules: d.modules,
   };
 }

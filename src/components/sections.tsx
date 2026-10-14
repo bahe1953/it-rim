@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import type { Product } from "@/content/products";
+import { products, type Product } from "@/content/products";
 import { projects, workCategories } from "@/content/projects";
 import { releaseUrl, releases } from "@/content/releases";
 import { site } from "@/content/site";
@@ -204,6 +204,60 @@ export function ContactSection({ lang, as = "h2" }: { lang: Locale; as?: "h1" | 
           </a>
         </div>
         <ContactForm lang={lang} labels={d.contact.form} whatsappUrl={site.whatsappUrl} />
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Bandeau de contact compact (toutes les pages sauf Contact) ---------- */
+export function CtaBand({ lang }: { lang: Locale }) {
+  const d = getDictionary(lang);
+  return (
+    <section className="py-14 md:py-16" aria-labelledby="cta-title">
+      <div className="wrap">
+        <div className="card flex flex-col items-start justify-between gap-5 bg-[linear-gradient(135deg,#0e1b33,#16325c)] p-7 text-white md:flex-row md:items-center md:p-9">
+          <div className="grid gap-1.5">
+            <h2 id="cta-title" className="text-[clamp(22px,2.6vw,30px)] text-white">{d.contact.title}</h2>
+            <p className="text-white/80">{d.contact.subtitle}</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a href={site.whatsappUrl} target="_blank" rel="noopener" className="btn btn-wa"><WhatsApp />{d.contact.talk}</a>
+            <Link href={`/${lang}/contact`} className="btn btn-w"><Mail size={18} />{d.contact.formLink}</Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Accueil : une simple ligne avec les logiciels, qui mène à « Nos applications » ---------- */
+export function AppsStrip({ lang }: { lang: Locale }) {
+  const d = getDictionary(lang);
+  return (
+    <section className="sec !pt-4" aria-labelledby="strip-title">
+      <div className="wrap grid gap-6">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="eyebrow">{d.apps.eyebrow}</p>
+            <h2 id="strip-title" className="h2">{d.apps.title}</h2>
+          </div>
+          <Link href={`/${lang}/applications`} className="btn btn-o">{d.apps.all}<Arrow /></Link>
+        </div>
+        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+          {products.map((p) => (
+            <li key={p.slug} className={`acc-${p.accent}`}>
+              <Link href={`/${lang}/applications/${p.slug}`} className="card lift flex h-full flex-col items-center gap-2 p-4 text-center">
+                {p.logo ? (
+                  <Image src={p.logo} alt="" width={48} height={48} className="size-12 rounded-xl object-contain" />
+                ) : (
+                  <span className="p-icon size-12 rounded-xl"><ProductIcon accent={p.accent} size={24} /></span>
+                )}
+                <span className="text-[15px] font-extrabold text-ink">{p.name[lang]}</span>
+                <span className="text-[12px] leading-snug font-semibold text-ink-soft">{p.category[lang]}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

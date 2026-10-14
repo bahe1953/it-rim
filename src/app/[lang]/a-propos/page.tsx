@@ -4,7 +4,7 @@ import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
 import { Bulb, Globe, Growth, Pin, Screen } from "@/components/icons";
-import { ContactSection, ProcessSection, SectionHead } from "@/components/sections";
+import { SectionHead , CtaBand } from "@/components/sections";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/a-propos">): Promise<Metadata> {
   const { lang } = await params;
@@ -43,8 +43,7 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/a-propos"
           </div>
         </div>
       </section>
-      <ProcessSection lang={lang} />
-      <ContactSection lang={lang} />
+      <CtaBand lang={lang} />
     </>
   );
 }

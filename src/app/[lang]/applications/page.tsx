@@ -5,7 +5,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 import Showcase from "@/components/Showcase";
 import { showcaseItems, showcaseLabels } from "@/content/showcase";
 import { pageMetadata } from "@/lib/seo";
-import { ContactSection, SectionHead, StrengthsBand } from "@/components/sections";
+import { CtaBand, SectionHead } from "@/components/sections";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/applications">): Promise<Metadata> {
   const { lang } = await params;
@@ -23,11 +23,10 @@ export default async function AppsPage({ params }: PageProps<"/[lang]/applicatio
       <section className="hero !pb-24">
         <div className="wrap relative z-10">
           <SectionHead as="h1" eyebrow={d.apps.eyebrow} title={d.appsPage.title} subtitle={d.appsPage.subtitle} />
-          <Showcase lang={lang} items={showcaseItems(lang).filter((i) => i.kind === "app")} labels={showcaseLabels(lang)} tabs={false} />
+          <Showcase lang={lang} items={showcaseItems(lang).filter((i) => i.kind === "app")} labels={showcaseLabels(lang)} tabs={false} linkCards />
         </div>
       </section>
-      <StrengthsBand lang={lang} />
-      <ContactSection lang={lang} />
+      <CtaBand lang={lang} />
     </>
   );
 }

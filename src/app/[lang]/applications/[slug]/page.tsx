@@ -12,7 +12,7 @@ import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 import { showcaseItems } from "@/content/showcase";
 import { Arrow, Download, Flask, ProductIcon, Video, WhatsApp } from "@/components/icons";
-import { DownloadCard, FeatureList, TrialOffer, whatsappFor } from "@/components/product";
+import { DocsCard, DownloadCard, FeatureList, TrialOffer, whatsappFor } from "@/components/product";
 import SlideDeck from "@/components/SlideDeck";
 import MouhassibCompare from "@/components/MouhassibCompare";
 import { deckLabels, decks } from "@/content/decks";
@@ -85,16 +85,6 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
               ) : null}
               {(deck || film) && <a href={deck ? "#diaporama" : "#video"} className="btn btn-w max-sm:flex-[1_1_100%]"><Video size={18} />{d.seePresentation}</a>}
             </div>
-            {p.documents && p.documents.length > 0 && (
-              <div className="flex flex-wrap gap-x-5 gap-y-2">
-                {[...p.documents].sort((a) => (a.lang === lang ? -1 : 1)).map((doc) => (
-                  <a key={doc.href} href={doc.href} target={doc.href.endsWith(".pptx") ? undefined : "_blank"} rel="noopener"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--c)] underline underline-offset-4">
-                    <Download size={16} />{doc.label[lang]}
-                  </a>
-                ))}
-              </div>
-            )}
           </div>
           <div className="relative">
             <div className="pointer-events-none absolute -inset-[12%] rounded-full bg-[radial-gradient(closest-side,var(--cb),transparent_70%)]" />
@@ -146,7 +136,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
       {p.flow && (
         <section className="sec scroll-mt-32 !pb-0" id="fonctionnement">
           <div className="wrap grid gap-8">
-            <div className="head"><div><p className="eyebrow">{sc.flow}</p><h2 className="h2">{p.name[lang]}</h2></div></div>
+            <div className="head"><div><p className="eyebrow">{p.name[lang]}</p><h2 className="h2">{sc.flow}</h2></div></div>
             <ol className="grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
               {p.flow[lang].map((st, i) => (
                 <li key={st} className="card relative grid justify-items-center gap-2 px-4 py-6 text-center">
@@ -171,7 +161,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
       {/* Fonctionnalités */}
       <section className="sec scroll-mt-32" id="fonctionnalites">
         <div className="wrap">
-          <div className="head"><div><p className="eyebrow">{s.features}</p><h2 className="h2">{p.name[lang]}</h2></div></div>
+          <div className="head"><div><p className="eyebrow">{p.name[lang]}</p><h2 className="h2">{s.features}</h2></div></div>
           <FeatureList items={p.features[lang]} />
         </div>
       </section>
@@ -180,7 +170,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
       {deck && (
         <section className="sec scroll-mt-32" id="diaporama">
           <div className="wrap grid gap-6">
-            <div className="head"><div><p className="eyebrow">{dl.title}</p><h2 className="h2">{p.name[lang]}</h2><p className="mt-2 max-w-2xl text-ink-soft">{dl.intro}</p></div></div>
+            <div className="head"><div><p className="eyebrow">{p.name[lang]}</p><h2 className="h2">{dl.title}</h2><p className="mt-2 max-w-2xl text-ink-soft">{dl.intro}</p></div></div>
             <SlideDeck
               dir={deck.dir}
               lang={lang}
@@ -253,9 +243,11 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
 
       {/* Téléchargement + essai */}
       <section className="scroll-mt-32 bg-canvas py-16 md:py-20" id="telechargement">
-        <div className={`wrap grid gap-5 ${hasInstaller ? "md:grid-cols-2" : "max-w-2xl"}`}>
+        <div className="wrap mb-6"><p className="eyebrow">{p.name[lang]}</p><h2 className="h2">{d.dl.section}</h2></div>
+        <div className={`wrap grid gap-5 md:grid-cols-2 ${hasInstaller ? "lg:grid-cols-3" : ""}`}>
           {hasInstaller && <DownloadCard p={p} lang={lang} release={release} />}
           <TrialOffer p={p} lang={lang} hasInstaller={hasInstaller} />
+          <DocsCard p={p} lang={lang} deckPdf={deck ? `${deck.dir}/${deck.file}-${lang}.pdf` : null} />
         </div>
       </section>
 

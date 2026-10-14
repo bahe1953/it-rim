@@ -54,6 +54,7 @@ const fr = {
     features: "Fonctionnalités",
     forWhom: "Pour qui",
     details: "Fiche complète",
+    open: "Voir la fiche",
     visit: "Visiter le site",
     demo: "Demander une démo",
     demoMsg: (name: string) => `Bonjour IT-RIM, je souhaite une démonstration de ${name}.`,
@@ -147,6 +148,7 @@ const fr = {
     title: "Votre prochain projet commence ici.",
     subtitle: "Vous avez une idée, un besoin de digitalisation ou un logiciel à développer ?",
     talk: "Parler à IT-RIM",
+    formLink: "Écrire un message",
     form: {
       name: "Nom",
       company: "Entreprise",
@@ -196,6 +198,7 @@ const fr = {
     req: { os: "Système", cpu: "Processeur", ram: "Mémoire", disk: "Espace disque", network: "Connexion" },
     dl: {
       title: "Télécharger",
+      section: "Essai, téléchargement et guide",
       version: "Version",
       size: "Taille",
       updated: "Dernière mise à jour",
@@ -205,6 +208,12 @@ const fr = {
       soonText: "Écrivez-nous sur WhatsApp pour être prévenu dès la mise en ligne.",
       notify: "Être prévenu sur WhatsApp",
       otherLang: "Version en arabe",
+      docsTitle: "Guide et documents",
+      guide: "Guide utilisateur",
+      guideSoon: "Le guide utilisateur sera bientôt téléchargeable ici.",
+      guideAsk: "Demander le guide sur WhatsApp",
+      guideMsg: (app: string) => `Bonjour IT-RIM, je souhaite le guide utilisateur de ${app}.`,
+      deckPdf: "Présentation commerciale (PDF)",
       notifyMsg: (app: string) => `Bonjour IT-RIM, prévenez-moi quand ${app} sera disponible au téléchargement.`,
     },
     trial: {
@@ -341,6 +350,7 @@ const ar: Dictionary = {
     features: "الوظائف",
     forWhom: "لمن",
     details: "الصفحة الكاملة",
+    open: "عرض الصفحة",
     visit: "زيارة الموقع",
     demo: "اطلبوا عرضاً توضيحياً",
     demoMsg: (name: string) => `السلام عليكم IT-RIM، أرغب في عرض توضيحي لـ ${name}.`,
@@ -434,6 +444,7 @@ const ar: Dictionary = {
     title: "مشروعكم القادم يبدأ من هنا.",
     subtitle: "لديكم فكرة، أو حاجة إلى الرقمنة، أو برمجية ترغبون في تطويرها؟",
     talk: "تحدث إلى IT-RIM",
+    formLink: "اكتبوا لنا رسالة",
     form: {
       name: "الاسم",
       company: "المؤسسة",
@@ -483,6 +494,7 @@ const ar: Dictionary = {
     req: { os: "النظام", cpu: "المعالج", ram: "الذاكرة", disk: "مساحة القرص", network: "الاتصال" },
     dl: {
       title: "تحميل",
+      section: "التجربة والتحميل والدليل",
       version: "الإصدار",
       size: "الحجم",
       updated: "آخر تحديث",
@@ -492,6 +504,12 @@ const ar: Dictionary = {
       soonText: "راسلونا عبر واتساب لنعلمكم فور توفره.",
       notify: "أعلموني عبر واتساب",
       otherLang: "النسخة الفرنسية",
+      docsTitle: "الدليل والوثائق",
+      guide: "دليل المستخدم",
+      guideSoon: "سيكون دليل المستخدم متاحاً للتحميل هنا قريباً.",
+      guideAsk: "اطلبوا الدليل عبر واتساب",
+      guideMsg: (app: string) => `السلام عليكم IT-RIM، أرغب في دليل المستخدم لـ ${app}.`,
+      deckPdf: "العرض التقديمي (PDF)",
       notifyMsg: (app: string) => `السلام عليكم IT-RIM، أرجو إعلامي عندما يصبح ${app} متاحاً للتحميل.`,
     },
     trial: {

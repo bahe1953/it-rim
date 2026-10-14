@@ -4,11 +4,9 @@ import { hasLocale, siteUrl } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { products } from "@/content/products";
 import HeroShowcase from "@/components/HeroShowcase";
-import Showcase from "@/components/Showcase";
-import { showcaseItems, showcaseLabels } from "@/content/showcase";
 import { Arrow, Globe, Grid, Play, Shield, Users } from "@/components/icons";
 import {
-  ContactSection, ExpertiseSection, ProcessSection, StrengthsBand,
+  AppsStrip, CtaBand, StrengthsBand,
 } from "@/components/sections";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
@@ -47,25 +45,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         </div>
       </section>
 
-      {/* LOGICIELS ET RÉALISATIONS */}
-      <section className="sec !pt-6 md:!pt-10" id="applications" aria-labelledby="apps-title">
-        <div className="wrap">
-          <div className="head">
-            <div>
-              <p className="eyebrow">{d.showcase.eyebrow}</p>
-              <h2 id="apps-title" className="h2">{d.showcase.title}</h2>
-              <p className="sub">{d.showcase.subtitle}</p>
-            </div>
-            <Link href={`/${lang}/applications`} className="btn btn-o">{d.apps.all}<Arrow /></Link>
-          </div>
-          <Showcase lang={lang} items={showcaseItems(lang)} labels={showcaseLabels(lang)} />
-        </div>
-      </section>
+      {/* Les logiciels : une simple ligne qui mène à « Nos applications » (la seule vitrine) */}
+      <AppsStrip lang={lang} />
 
       <StrengthsBand lang={lang} />
-      <ProcessSection lang={lang} />
-      <ExpertiseSection lang={lang} />
-      <ContactSection lang={lang} />
+      <CtaBand lang={lang} />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",

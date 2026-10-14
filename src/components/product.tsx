@@ -143,3 +143,32 @@ export function TrialOffer({ p, lang, hasInstaller }: { p: Product; lang: Locale
     </div>
   );
 }
+
+/** Carte « Guide et documents » : guide utilisateur (quand il existe), présentations et documents du logiciel. */
+export function DocsCard({ p, lang, deckPdf }: { p: Product; lang: Locale; deckPdf?: string | null }) {
+  const d = getDictionary(lang).product.dl;
+  const docs = [...(p.documents ?? [])].sort((a) => (a.lang === lang ? -1 : 1));
+  return (
+    <div className="card grid content-start gap-4 p-6" id="guide">
+      <div className="flex items-center justify-between gap-3">
+        <p className="eyebrow">{d.docsTitle}</p>
+        <span className="grid size-10 place-items-center rounded-xl bg-mist text-blue"><Download size={20} /></span>
+      </div>
+      <div className="grid gap-2 rounded-2xl border border-dashed border-line bg-canvas p-4">
+        <p className="font-bold">{d.guide}</p>
+        <p className="text-sm text-ink-soft">{d.guideSoon}</p>
+        <a href={whatsappFor(d.guideMsg(p.name[lang]))} target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-sm font-bold text-[var(--c)] hover:underline"><WhatsApp size={16} />{d.guideAsk}</a>
+      </div>
+      {(deckPdf || docs.length > 0) && (
+        <ul className="grid gap-2">
+          {deckPdf && <li><a href={deckPdf} download className="inline-flex items-center gap-2 font-semibold text-[var(--c)] hover:underline"><Download size={16} />{d.deckPdf}</a></li>}
+          {docs.map((doc) => (
+            <li key={doc.href}>
+              <a href={doc.href} target={doc.href.endsWith(".pptx") ? undefined : "_blank"} rel="noopener" className="inline-flex items-center gap-2 font-semibold text-[var(--c)] hover:underline"><Download size={16} />{doc.label[lang]}</a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}

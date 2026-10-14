@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { pageMetadata } from "@/lib/seo";
-import { ContactSection, SectionHead } from "@/components/sections";
+import { SectionHead , CtaBand } from "@/components/sections";
 import Showcase from "@/components/Showcase";
 import { showcaseItems, showcaseLabels } from "@/content/showcase";
 
@@ -28,7 +28,7 @@ export default async function WorkPage({ params }: PageProps<"/[lang]/realisatio
           <Showcase lang={lang} items={showcaseItems(lang).filter((i) => i.kind === "web")} labels={showcaseLabels(lang)} tabs={false} />
         </div>
       </section>
-      <ContactSection lang={lang} />
+      <CtaBand lang={lang} />
     </>
   );
 }

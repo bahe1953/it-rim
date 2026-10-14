@@ -4,7 +4,7 @@ import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
-import { ContactSection, ProcessSection, SectionHead, expertiseIcons } from "@/components/sections";
+import { ProcessSection, SectionHead, expertiseIcons , CtaBand } from "@/components/sections";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/expertise">): Promise<Metadata> {
   const { lang } = await params;
@@ -40,7 +40,7 @@ export default async function ExpertisePage({ params }: PageProps<"/[lang]/exper
         </div>
       </section>
       <ProcessSection lang={lang} />
-      <ContactSection lang={lang} />
+      <CtaBand lang={lang} />
     </>
   );
 }
