@@ -69,7 +69,7 @@ export default function Header({ lang, nav, labels, whatsappUrl }: Props) {
           <BrandLogo size={46} priority />
           <span className="leading-none">
             <span className="block font-[family-name:var(--font-lat)] text-[21px] font-extrabold tracking-tight text-ink">IT-RIM</span>
-            <span className="mt-1 hidden font-[family-name:var(--font-lat)] text-[10px] font-semibold text-blue sm:block">Digital Products &amp; Business Solutions</span>
+            <span className="mt-1 hidden text-[11px] font-semibold text-blue sm:block">{labels.tagline}</span>
           </span>
         </Link>
 

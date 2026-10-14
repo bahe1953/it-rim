@@ -22,7 +22,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <div className="wrap relative z-10 grid items-center gap-6 md:grid-cols-[1.12fr_1fr] md:gap-12">
           <div className="grid min-w-0 gap-5.5">
             <h1 id="hero-title" className="rise text-[clamp(34px,4.2vw,52px)]">
-              {d.hero.titleBefore}<span className="hl">{d.hero.titleHl1}</span>{d.hero.titleMid}<span className="hl">{d.hero.titleHl2}</span>
+              {d.hero.titleBefore}<span className="hl whitespace-nowrap">{d.hero.titleHl1}</span>{d.hero.titleMid}<span className="hl">{d.hero.titleHl2}</span>
             </h1>
             <p className="rise rise-2 max-w-[60ch] text-[clamp(16.5px,1.6vw,19px)] text-ink-2">{d.hero.subtitle}</p>
             <div className="rise rise-3 flex flex-wrap gap-3">

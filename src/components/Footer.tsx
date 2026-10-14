@@ -31,7 +31,7 @@ export default function Footer({ lang }: { lang: Locale }) {
               <BrandLogo size={64} />
               <span className="leading-none">
                 <span className="block font-[family-name:var(--font-lat)] text-[21px] font-extrabold text-ink">IT-RIM</span>
-                <span className="mt-1 block font-[family-name:var(--font-lat)] text-[10px] font-semibold text-blue">Digital Products &amp; Business Solutions</span>
+                <span className="mt-1 block text-[11px] font-semibold text-blue">{d.common.tagline}</span>
               </span>
             </Link>
             <p className="max-w-[36ch] text-sm text-ink-2">{d.footer.tagline}</p>

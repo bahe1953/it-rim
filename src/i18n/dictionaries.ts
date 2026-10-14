@@ -2,8 +2,8 @@ import type { Locale } from "./config";
 
 const fr = {
   meta: {
-    title: "IT-RIM — Digital Products & Business Solutions",
-    description: "IT-RIM crée des logiciels professionnels, des applications web et des plateformes numériques qui font avancer les entreprises et les organisations.",
+    title: "IT-RIM — Votre passage au numérique, pas à pas",
+    description: "Administrations et entreprises mauritaniennes : IT-RIM vous aide à passer au numérique, pas à pas, avec des logiciels conçus en Mauritanie, en français et en arabe.",
   },
   nav: { home: "Accueil", apps: "Applications", work: "Réalisations", expertise: "Expertise", about: "À propos", contact: "Contact" },
   common: {
@@ -22,17 +22,17 @@ const fr = {
     days: "jours",
     whatsapp: "WhatsApp",
     email: "Email",
-    tagline: "Digital Products & Business Solutions",
+    tagline: "Votre passage au numérique",
   },
   hero: {
-    titleBefore: "Nous créons les solutions numériques ",
-    titleHl1: "qui font",
-    titleMid: " avancer vos ",
-    titleHl2: "activités.",
-    subtitle: "Logiciels professionnels, applications web et plateformes numériques conçus par IT-RIM.",
+    titleBefore: "Moins de papier. ",
+    titleHl1: "Plus de temps.",
+    titleMid: " Une gestion ",
+    titleHl2: "claire.",
+    subtitle: "Administrations et entreprises mauritaniennes : IT-RIM vous aide à passer au numérique, pas à pas, avec des outils conçus ici, pour vous.",
     ctaApps: "Découvrir nos applications",
     ctaWork: "Voir nos réalisations",
-    badges: ["Solutions locales et internationales", "Technologies modernes", "Accompagnement de A à Z"],
+    badges: ["Conçu en Mauritanie", "En français et en arabe", "Accompagnement de A à Z"],
   },
   apps: {
     eyebrow: "Nos applications",
@@ -298,8 +298,8 @@ export type Dictionary = typeof fr;
 
 const ar: Dictionary = {
   meta: {
-    title: "IT-RIM — منتجات رقمية وحلول للأعمال",
-    description: "تطور IT-RIM برمجيات مهنية وتطبيقات ويب ومنصات رقمية تدفع الشركات والمؤسسات إلى الأمام.",
+    title: "IT-RIM — انتقالكم إلى الرقمنة خطوة بخطوة",
+    description: "إدارات ومؤسسات موريتانية: ترافقكم IT-RIM في الانتقال إلى الرقمنة خطوة بخطوة، ببرمجيات مصممة في موريتانيا بالعربية والفرنسية.",
   },
   nav: { home: "الرئيسية", apps: "التطبيقات", work: "المشاريع", expertise: "الخبرات", about: "من نحن", contact: "اتصل بنا" },
   common: {
@@ -318,17 +318,17 @@ const ar: Dictionary = {
     days: "يوماً",
     whatsapp: "واتساب",
     email: "البريد الإلكتروني",
-    tagline: "منتجات رقمية وحلول للأعمال",
+    tagline: "انتقالكم إلى الرقمنة",
   },
   hero: {
-    titleBefore: "نصمم الحلول الرقمية التي ",
-    titleHl1: "تطور",
-    titleMid: " ",
-    titleHl2: "أعمالكم.",
-    subtitle: "برمجيات احترافية وتطبيقات ويب ومنصات رقمية، تطورها IT-RIM لتلبية احتياجات المؤسسات والأعمال.",
+    titleBefore: "أوراق أقل. ",
+    titleHl1: "وقت أكثر.",
+    titleMid: " تسيير ",
+    titleHl2: "أوضح.",
+    subtitle: "إدارات ومؤسسات موريتانية: ترافقكم IT-RIM في الانتقال إلى الرقمنة خطوة بخطوة، بأدوات صُممت هنا، من أجلكم.",
     ctaApps: "اكتشف تطبيقاتنا",
     ctaWork: "شاهد أعمالنا",
-    badges: ["حلول محلية ودولية", "تقنيات حديثة", "مرافقة شاملة من الفكرة إلى الإطلاق"],
+    badges: ["مصمم في موريتانيا", "بالعربية والفرنسية", "مرافقة شاملة من الفكرة إلى الإطلاق"],
   },
   apps: {
     eyebrow: "تطبيقاتنا",

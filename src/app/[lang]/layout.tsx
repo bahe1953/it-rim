@@ -46,7 +46,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
     name: "IT-RIM",
     url: siteUrl,
     email: site.email,
-    slogan: "Digital Products & Business Solutions",
+    slogan: d.common.tagline,
     address: { "@type": "PostalAddress", addressLocality: "Nouakchott", addressCountry: "MR" },
     contactPoint: [{ "@type": "ContactPoint", telephone: "+22243459222", contactType: "customer service", availableLanguage: ["fr", "ar"] }],
   };
