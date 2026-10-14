@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { products, type Product } from "@/content/products";
+import { resellers } from "@/content/revendeurs";
 import { projects, workCategories } from "@/content/projects";
 import { releaseUrl, releases } from "@/content/releases";
 import { site } from "@/content/site";
@@ -258,6 +259,26 @@ export function AppsStrip({ lang }: { lang: Locale }) {
             </li>
           ))}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Accueil : bandeau du programme « Revendeurs fondateurs » ---------- */
+export function ResellersBand({ lang }: { lang: Locale }) {
+  const t = resellers[lang];
+  return (
+    <section className="pb-6 md:pb-10" aria-labelledby="resellers-title">
+      <div className="wrap">
+        <Link href={`/${lang}/revendeurs`} className="group card lift flex flex-col items-start gap-5 overflow-hidden bg-[linear-gradient(135deg,#0e1b33,#16325c_60%,#1e4a86)] p-6 text-white md:flex-row md:items-center md:p-8">
+          <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-amber-400 text-center text-[13px] font-extrabold leading-tight text-[#0e1b33]"><span><span className="ltr block text-[26px] leading-none">10</span>{lang === "ar" ? "مقاعد" : "places"}</span></span>
+          <div className="grid flex-1 gap-1.5">
+            <p className="text-[13px] font-bold tracking-wide text-amber-200">{t.eyebrow}</p>
+            <h2 id="resellers-title" className="text-[clamp(21px,2.4vw,28px)] text-white">{t.bandTitle}</h2>
+            <p className="text-white/80">{t.bandText}</p>
+          </div>
+          <span className="btn bg-amber-400 text-[#0e1b33] group-hover:bg-amber-300">{t.bandBtn}<Arrow /></span>
+        </Link>
       </div>
     </section>
   );

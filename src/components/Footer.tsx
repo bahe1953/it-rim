@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { site } from "@/content/site";
+import { resellers } from "@/content/revendeurs";
 import { BrandLogo, Facebook, LinkedIn, Mail, Pin, WhatsApp, YouTube } from "./icons";
 import { LangSwitch } from "./Header";
 
@@ -13,6 +14,7 @@ export default function Footer({ lang }: { lang: Locale }) {
     [`/${lang}/realisations`, d.nav.work],
     [`/${lang}/expertise`, d.nav.expertise],
     [`/${lang}/a-propos`, d.nav.about],
+    [`/${lang}/revendeurs`, resellers[lang].nav],
     [`/${lang}/contact`, d.nav.contact],
   ];
   const socials = [

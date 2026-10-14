@@ -6,7 +6,7 @@ import { products } from "@/content/products";
 import HeroShowcase from "@/components/HeroShowcase";
 import { Arrow, Globe, Grid, Play, Shield, Users } from "@/components/icons";
 import {
-  AppsStrip, CtaBand, StrengthsBand,
+  AppsStrip, CtaBand, ResellersBand, StrengthsBand,
 } from "@/components/sections";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
@@ -47,6 +47,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
       {/* Les logiciels : une simple ligne qui mène à « Nos applications » (la seule vitrine) */}
       <AppsStrip lang={lang} />
+      <ResellersBand lang={lang} />
 
       <StrengthsBand lang={lang} />
       <CtaBand lang={lang} />

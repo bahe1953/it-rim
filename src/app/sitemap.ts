@@ -4,7 +4,7 @@ import { products } from "@/content/products";
 import { projects } from "@/content/projects";
 
 const paths = [
-  "", "/applications", "/realisations", "/expertise", "/a-propos", "/contact", "/confidentialite", "/conditions",
+  "", "/applications", "/realisations", "/expertise", "/a-propos", "/revendeurs", "/contact", "/confidentialite", "/conditions",
   ...products.map((p) => `/applications/${p.slug}`),
   ...projects.map((p) => `/realisations/${p.slug}`),
 ];
