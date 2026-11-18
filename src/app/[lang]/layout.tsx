@@ -34,6 +34,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
   const nav = [
     { href: `/${lang}`, label: d.nav.home },
     { href: `/${lang}/applications`, label: d.nav.apps },
+    { href: `/${lang}/tarifs`, label: d.nav.pricing },
     { href: `/${lang}/realisations`, label: d.nav.work },
     { href: `/${lang}/expertise`, label: d.nav.expertise },
     { href: `/${lang}/a-propos`, label: d.nav.about },

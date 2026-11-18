@@ -18,7 +18,7 @@ export default async function LegalPage({ params }: PageProps<"/[lang]/confident
     <section className="sec">
       <div className="wrap grid max-w-3xl gap-6">
         <h1 className="text-[clamp(30px,3.6vw,42px)]">{d.legal.privacy}</h1>
-        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-900">{d.legal.draft}</p>
+        <p className="text-sm text-ink-soft">{d.legal.updated}</p>
         <div className="prose-it">{d.legal.privacyBody.map((p) => <p key={p}>{p}</p>)}</div>
       </div>
     </section>
