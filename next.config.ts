@@ -2,18 +2,20 @@ import type { NextConfig } from "next";
 
 /**
  * En-têtes de sécurité appliqués à toutes les pages.
- * La politique de contenu (CSP) n'autorise que le site lui-même, plus Google Fonts
- * (utilisé par la page de présentation RAQIB). Les liens vers WhatsApp et GitHub sont
+ * La politique de contenu (CSP) n'autorise que le site lui-même, Google Fonts
+ * (utilisé par la page de présentation RAQIB) et Paddle (paiement en ligne : script,
+ * fenêtre de paiement superposée, Apple Pay et Google Pay). Les liens vers WhatsApp et GitHub sont
  * de simples liens de navigation : ils ne sont pas concernés.
  */
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "script-src 'self' 'unsafe-inline' https://cdn.paddle.com https://*.paddle.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.paddle.com",
   "font-src 'self' data: https://fonts.gstatic.com",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://*.paddle.com",
+  "frame-src https://buy.paddle.com https://sandbox-buy.paddle.com https://*.paddle.com",
   "media-src 'self'",
-  "connect-src 'self'",
+  "connect-src 'self' https://*.paddle.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -26,7 +28,7 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+  { key: "Permissions-Policy", value: 'camera=(), microphone=(), geolocation=(), payment=(self "https://buy.paddle.com" "https://sandbox-buy.paddle.com")' },
   { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
 ];
 

@@ -101,7 +101,16 @@ Aujourd'hui, une demande d'essai ou de licence arrive à l'équipe par email ou 
 5. Créer une page `/{lang}/compte` qui lit l'essai côté serveur et affiche `<TrialCard state={trialState(product, record)} />`. Les jours restants sont calculés sur le serveur, jamais dans le navigateur.
 6. Si le logiciel de bureau doit vérifier sa clé, ajouter une route `/api/license/verify` qui contrôle une clé signée.
 
-Aucun paiement en ligne n'est proposé : la licence est délivrée par l'équipe IT-RIM.
+La licence peut être achetée en ligne (voir « Vente en ligne avec Paddle ») ou délivrée par l'équipe IT-RIM.
+
+## Vente en ligne avec Paddle
+
+- Page `/{lang}/tarifs` : une licence mensuelle par logiciel, **65 USD par mois**, et bouton « Acheter la licence » sur chaque fiche produit.
+- Paddle.com est le revendeur officiel (Merchant of Record) : il encaisse, gère les taxes et les remboursements, puis verse le reste en USD.
+- Configuration dans `src/content/pricing.ts` : prix, délai de remboursement (14 jours), nom légal, et un identifiant de prix Paddle (`pri_…`) par logiciel.
+- Variables : `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN` et, pour les essais, `NEXT_PUBLIC_PADDLE_ENV=sandbox`.
+- Tant que le jeton ou l'identifiant de prix manque, le bouton devient « Demander une licence » et renvoie vers le formulaire : aucun faux paiement n'est proposé.
+- Pages légales exigées par Paddle : `/conditions` (avec la phrase Merchant of Record), `/remboursement` et `/confidentialite`, reliées dans le pied de page.
 
 ## Bilingue et RTL
 

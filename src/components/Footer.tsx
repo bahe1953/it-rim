@@ -11,6 +11,7 @@ export default function Footer({ lang }: { lang: Locale }) {
   const nav = [
     [`/${lang}`, d.nav.home],
     [`/${lang}/applications`, d.nav.apps],
+    [`/${lang}/tarifs`, d.nav.pricing],
     [`/${lang}/realisations`, d.nav.work],
     [`/${lang}/expertise`, d.nav.expertise],
     [`/${lang}/a-propos`, d.nav.about],
@@ -74,6 +75,7 @@ export default function Footer({ lang }: { lang: Locale }) {
           <nav className="flex flex-wrap gap-4" aria-label={d.legal.privacy}>
             <Link href={`/${lang}/confidentialite`} className="hover:text-blue">{d.legal.privacy}</Link>
             <Link href={`/${lang}/conditions`} className="hover:text-blue">{d.legal.terms}</Link>
+            <Link href={`/${lang}/remboursement`} className="hover:text-blue">{d.legal.refund}</Link>
           </nav>
           <LangSwitch lang={lang} label={d.common.language} />
         </div>

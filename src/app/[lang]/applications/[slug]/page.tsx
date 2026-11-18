@@ -16,6 +16,8 @@ import { DocsCard, DownloadCard, FeatureList, TrialOffer, whatsappFor } from "@/
 import SlideDeck from "@/components/SlideDeck";
 import MouhassibCompare from "@/components/MouhassibCompare";
 import { deckLabels, decks } from "@/content/decks";
+import { billing, paddlePriceIds, priceIdOf } from "@/content/pricing";
+import BuyButton from "@/components/BuyButton";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => locales.flatMap((lang) => products.map((p) => ({ lang, slug: p.slug })));
@@ -85,6 +87,21 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
               ) : null}
               {(deck || film) && <a href={deck ? "#diaporama" : "#video"} className="btn btn-w max-sm:flex-[1_1_100%]"><Video size={18} />{d.seePresentation}</a>}
             </div>
+            {p.status === "available" && p.slug in paddlePriceIds && (
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="text-lg font-extrabold" dir="ltr">{billing.monthlyUsd} $ <span className="text-sm font-semibold text-ink-soft" dir="auto">{dict.pricing.perMonth}</span></span>
+                <BuyButton
+                  lang={lang}
+                  label={priceIdOf(p.slug) && billing.paddle.clientToken ? dict.pricing.buy : dict.pricing.request}
+                  priceId={priceIdOf(p.slug)}
+                  clientToken={billing.paddle.clientToken}
+                  environment={billing.paddle.environment}
+                  fallbackHref={`/${lang}/applications/${p.slug}/licence`}
+                  className="btn btn-w"
+                />
+                <Link href={`/${lang}/tarifs`} className="text-sm font-semibold text-blue hover:underline">{dict.nav.pricing}</Link>
+              </div>
+            )}
           </div>
           <div className="relative">
             <div className="pointer-events-none absolute -inset-[12%] rounded-full bg-[radial-gradient(closest-side,var(--cb),transparent_70%)]" />

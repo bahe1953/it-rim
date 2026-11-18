@@ -73,7 +73,7 @@ export default function Header({ lang, nav, labels, whatsappUrl }: Props) {
           </span>
         </Link>
 
-        <nav className="ms-auto hidden gap-7 xl:flex" aria-label={labels.menu}>
+        <nav className="ms-auto hidden gap-5 whitespace-nowrap xl:flex 2xl:gap-7" aria-label={labels.menu}>
           {nav.map((n) => (
             <Link key={n.href} href={n.href} className="nav-link" aria-current={isActive(n.href) ? "page" : undefined}>{n.label}</Link>
           ))}

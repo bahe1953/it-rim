@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { hasLocale } from "@/i18n/config";
@@ -18,8 +19,10 @@ export default async function LegalPage({ params }: PageProps<"/[lang]/condition
     <section className="sec">
       <div className="wrap grid max-w-3xl gap-6">
         <h1 className="text-[clamp(30px,3.6vw,42px)]">{d.legal.terms}</h1>
-        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-900">{d.legal.draft}</p>
+        <p className="text-sm text-ink-soft">{d.legal.updated}</p>
+        <p className="rounded-xl border border-line bg-canvas px-4 py-3 text-sm font-semibold" dir="ltr" lang="en">{d.legal.paddleClause}</p>
         <div className="prose-it">{d.legal.termsBody.map((p) => <p key={p}>{p}</p>)}</div>
+        <p className="text-sm"><Link href={`/${lang}/remboursement`} className="font-semibold text-blue hover:underline">{d.legal.refund}</Link></p>
       </div>
     </section>
   );
