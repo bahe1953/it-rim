@@ -13,14 +13,19 @@ type Props = {
   nav: NavItem[];
   labels: { requestProject: string; menu: string; close: string; language: string; tagline: string };
   whatsappUrl: string;
+  /** Bouton principal à droite. Par défaut : « Demander un projet » vers /contact. */
+  cta?: { href: string; label: string };
 };
+
+/** Chemin vu par le visiteur : sans le préfixe interne de la boutique (réécrit par le proxy). */
+const visiblePath = (path: string | null, lang: Locale) => (path || `/${lang}`).replace(/^\/boutique(?=\/)/, "");
 
 function rememberLang(l: Locale) {
   document.cookie = `lang=${l}; path=/; max-age=31536000; samesite=lax`;
 }
 
 export function LangSwitch({ lang, label, className = "" }: { lang: Locale; label: string; className?: string }) {
-  const pathname = usePathname() || `/${lang}`;
+  const pathname = visiblePath(usePathname(), lang);
   return (
     <div className={`flex items-center gap-2 text-sm font-semibold text-ink-soft ${className}`} role="group" aria-label={label}>
       <Link href={swapLocale(pathname, "fr")} hrefLang="fr" lang="fr" onClick={() => rememberLang("fr")}
@@ -32,8 +37,9 @@ export function LangSwitch({ lang, label, className = "" }: { lang: Locale; labe
   );
 }
 
-export default function Header({ lang, nav, labels, whatsappUrl }: Props) {
-  const pathname = usePathname() || `/${lang}`;
+export default function Header({ lang, nav, labels, whatsappUrl, cta }: Props) {
+  const action = cta ?? { href: `/${lang}/contact`, label: labels.requestProject };
+  const pathname = visiblePath(usePathname(), lang);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -79,7 +85,7 @@ export default function Header({ lang, nav, labels, whatsappUrl }: Props) {
           ))}
         </nav>
         <LangSwitch lang={lang} label={labels.language} className="hidden xl:flex" />
-        <Link href={`/${lang}/contact`} className="btn btn-p btn-sm hidden xl:inline-flex">{labels.requestProject}<Arrow /></Link>
+        <Link href={action.href} className="btn btn-p btn-sm hidden xl:inline-flex">{action.label}<Arrow /></Link>
 
         <button ref={burgerRef} type="button" className="ms-auto grid size-11 place-items-center rounded-xl border border-line xl:hidden"
           aria-label={labels.menu} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(true)}>
@@ -105,7 +111,7 @@ export default function Header({ lang, nav, labels, whatsappUrl }: Props) {
               ))}
             </nav>
             <div className="mt-auto grid gap-2.5">
-              <Link href={`/${lang}/contact`} onClick={() => setOpen(false)} className="btn btn-p">{labels.requestProject}<Arrow /></Link>
+              <Link href={action.href} onClick={() => setOpen(false)} className="btn btn-p">{action.label}<Arrow /></Link>
               <a href={whatsappUrl} target="_blank" rel="noopener" className="btn btn-wa"><WhatsApp />WhatsApp</a>
             </div>
           </div>

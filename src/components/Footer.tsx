@@ -5,10 +5,17 @@ import { site } from "@/content/site";
 import { resellers } from "@/content/revendeurs";
 import { BrandLogo, Facebook, LinkedIn, Mail, Pin, WhatsApp, YouTube } from "./icons";
 import { LangSwitch } from "./Header";
+import { storeText } from "@/content/store";
 
-export default function Footer({ lang }: { lang: Locale }) {
+/** `store` : pied de page de la boutique, sans les liens vers les services IT-RIM. */
+export default function Footer({ lang, store = false }: { lang: Locale; store?: boolean }) {
   const d = getDictionary(lang);
-  const nav = [
+  const s = storeText[lang].nav;
+  const nav = store ? [
+    [`/${lang}`, s.home],
+    [`/${lang}/tarifs`, s.pricing],
+    [`/${lang}/contact`, s.contact],
+  ] : [
     [`/${lang}`, d.nav.home],
     [`/${lang}/applications`, d.nav.apps],
     [`/${lang}/tarifs`, d.nav.pricing],
@@ -37,7 +44,7 @@ export default function Footer({ lang }: { lang: Locale }) {
                 <span className="mt-1 block text-[11px] font-semibold text-blue">{d.common.tagline}</span>
               </span>
             </Link>
-            <p className="max-w-[36ch] text-sm text-ink-2">{d.footer.tagline}</p>
+            <p className="max-w-[36ch] text-sm text-ink-2">{store ? storeText[lang].title : d.footer.tagline}</p>
             <div className="flex gap-2">
               {socials.map(({ url, label, Icon }) => (
                 <a key={label} href={url!} target="_blank" rel="noopener" aria-label={label} className="grid size-9 place-items-center rounded-[9px] bg-blue text-white hover:bg-blue-h">
