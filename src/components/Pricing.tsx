@@ -7,7 +7,7 @@ import BuyButton from "@/components/BuyButton";
 import { Check, ProductIcon, WhatsApp } from "@/components/icons";
 import { SectionHead } from "@/components/sections";
 
-/** Grille des tarifs : un logiciel par carte, prix en USD, bouton d'achat Paddle. Utilisée par /tarifs et la boutique. */
+/** Grille des tarifs : un logiciel par carte, prix en euros, bouton d'achat Paddle. Utilisée par /tarifs et la boutique. */
 export default function PricingContent({ lang, title, subtitle }: { lang: Locale; title: string; subtitle: string }) {
   const d = getDictionary(lang);
   const t = d.pricing;
@@ -32,7 +32,7 @@ export default function PricingContent({ lang, title, subtitle }: { lang: Locale
                 </div>
               </div>
               <p className="flex items-baseline gap-2" dir="ltr">
-                <span className="text-4xl font-extrabold">{billing.monthlyUsd} $</span>
+                <span className="text-4xl font-extrabold">{billing.monthlyPrice} {billing.currencySymbol}</span>
                 <span className="text-sm text-ink-soft" dir="auto">{t.perMonth}</span>
               </p>
               <p className="text-sm text-ink-2">{t.perLicense}</p>

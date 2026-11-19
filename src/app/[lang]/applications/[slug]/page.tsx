@@ -89,7 +89,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
             </div>
             {p.status === "available" && p.slug in paddlePriceIds && (
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-lg font-extrabold" dir="ltr">{billing.monthlyUsd} $ <span className="text-sm font-semibold text-ink-soft" dir="auto">{dict.pricing.perMonth}</span></span>
+                <span className="text-lg font-extrabold" dir="ltr">{billing.monthlyPrice} {billing.currencySymbol} <span className="text-sm font-semibold text-ink-soft" dir="auto">{dict.pricing.perMonth}</span></span>
                 <BuyButton
                   lang={lang}
                   label={priceIdOf(p.slug) && billing.paddle.clientToken ? dict.pricing.buy : dict.pricing.request}
