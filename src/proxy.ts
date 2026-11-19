@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, hasLocale, type Locale } from "@/i18n/config";
+import { isStoreHost, storePaths } from "@/content/store";
 
 /** Choisit la langue : cookie de préférence, puis en-tête Accept-Language, sinon français. */
 function pickLocale(request: NextRequest): Locale {
@@ -19,12 +20,33 @@ function pickLocale(request: NextRequest): Locale {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const first = pathname.split("/")[1] ?? "";
-  if (hasLocale(first)) return;
+  const store = isStoreHost(request.headers.get("host") ?? "");
 
+  // Les pages de la boutique ne s'ouvrent que sur son propre domaine, sans le préfixe interne.
+  if (pathname === "/boutique" || pathname.startsWith("/boutique/")) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname.slice("/boutique".length) || "/";
+    return NextResponse.redirect(url, 307);
+  }
+
+  const first = pathname.split("/")[1] ?? "";
+  if (!hasLocale(first)) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${pickLocale(request)}${pathname === "/" ? "" : pathname}`;
+    return NextResponse.redirect(url, 307);
+  }
+
+  if (!store) return;
+
+  // Boutique : seuls les logiciels, les tarifs, les pages légales et le contact ; le reste mène à l'accueil.
+  if (!storePaths.test(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${first}`;
+    return NextResponse.redirect(url, 307);
+  }
   const url = request.nextUrl.clone();
-  url.pathname = `/${pickLocale(request)}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.redirect(url, 307);
+  url.pathname = `/boutique${pathname.replace(/\/$/, "")}`;
+  return NextResponse.rewrite(url);
 }
 
 export const config = {

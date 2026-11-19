@@ -110,6 +110,7 @@ La licence peut être achetée en ligne (voir « Vente en ligne avec Paddle ») 
 - Configuration dans `src/content/pricing.ts` : prix, délai de remboursement (14 jours), nom légal, et un identifiant de prix Paddle (`pri_…`) par logiciel.
 - Variables : `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN` et, pour les essais, `NEXT_PUBLIC_PADDLE_ENV=sandbox`.
 - Tant que le jeton ou l'identifiant de prix manque, le bouton devient « Demander une licence » et renvoie vers le formulaire : aucun faux paiement n'est proposé.
+- Boutique **logiciels.it-rim.net** (`src/app/boutique`, `src/content/store.ts`) : uniquement les logiciels, les tarifs, les pages légales et un contact, sans les services (que Paddle n'accepte pas). Le proxy (`src/proxy.ts`) sert ces pages quand la requête arrive sur ce domaine ; les autres adresses y renvoient vers l'accueil de la boutique. Domaine modifiable avec `NEXT_PUBLIC_STORE_HOST`. Essai en local : http://logiciels.localhost:3000/fr.
 - Pages légales exigées par Paddle : `/conditions` (avec la phrase Merchant of Record), `/remboursement` et `/confidentialite`, reliées dans le pied de page.
 
 ## Bilingue et RTL

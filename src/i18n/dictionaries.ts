@@ -271,14 +271,14 @@ const fr = {
     updated: "Dernière mise à jour : 18 novembre 2026",
     paddleClause: "Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders. Paddle provides all customer service inquiries and handles returns.",
     privacyBody: [
-      "Ce site est édité par BRAHIM ABD EL JELIL, entrepreneur individuel exerçant sous le nom commercial IT-RIM, à Nouakchott (Mauritanie).",
+      "Les sites it-rim.net et logiciels.it-rim.net sont édités par BRAHIM ABD EL JELIL, entrepreneur individuel exerçant sous le nom commercial IT-RIM, à Nouakchott (Mauritanie).",
       "Les informations envoyées via les formulaires (nom, entreprise, téléphone, email, message) servent uniquement à répondre à votre demande et à gérer votre licence.",
       "Les paiements en ligne sont traités par Paddle.com, notre revendeur officiel (Merchant of Record). IT-RIM ne reçoit et ne conserve jamais vos numéros de carte bancaire. Paddle traite vos données de paiement selon sa propre politique de confidentialité, disponible sur paddle.com.",
       "Vos informations ne sont ni vendues ni cédées à des tiers, en dehors de ce qui est nécessaire au paiement et à la livraison de votre licence.",
       "Pour toute demande d'accès, de correction ou de suppression de vos données, écrivez à contact@it-rim.net.",
     ],
     termsBody: [
-      "Éditeur. Le site it-rim.net et les logiciels IT-RIM sont édités par BRAHIM ABD EL JELIL, entrepreneur individuel exerçant sous le nom commercial IT-RIM, Nouakchott, Mauritanie. Contact : contact@it-rim.net.",
+      "Éditeur. Les sites it-rim.net et logiciels.it-rim.net (boutique en ligne) et les logiciels IT-RIM sont édités par BRAHIM ABD EL JELIL, entrepreneur individuel exerçant sous le nom commercial IT-RIM, Nouakchott, Mauritanie. Contact : contact@it-rim.net.",
       "Revendeur. Les commandes en ligne sont traitées par notre revendeur Paddle.com, qui est le vendeur officiel (Merchant of Record) de toutes nos commandes. Paddle gère le paiement, la facturation, les taxes, le service client lié au paiement et les remboursements.",
       "Produits. IT-RIM vend des licences d'utilisation de ses logiciels pour Windows. Le contenu de chaque logiciel est décrit sur sa fiche produit. Le prix affiché correspond à une licence mensuelle d'un logiciel, en dollars américains (USD). Des taxes peuvent s'ajouter selon le pays de l'acheteur ; leur montant est affiché avant le paiement.",
       "Abonnement. La licence est un abonnement mensuel, renouvelé automatiquement chaque mois au même prix. Vous pouvez l'annuler à tout moment depuis le lien présent dans votre reçu Paddle ou en écrivant à contact@it-rim.net ; l'annulation prend effet à la fin de la période déjà payée.",
@@ -608,14 +608,14 @@ const ar: Dictionary = {
     updated: "آخر تحديث: 18 نوفمبر 2026",
     paddleClause: "Our order process is conducted by our online reseller Paddle.com. Paddle.com is the Merchant of Record for all our orders. Paddle provides all customer service inquiries and handles returns.",
     privacyBody: [
-      "يُصدر هذا الموقعَ BRAHIM ABD EL JELIL، مقاول فردي يعمل تحت الاسم التجاري IT-RIM، في نواكشوط (موريتانيا).",
+      "يُصدر موقعي it-rim.net وlogiciels.it-rim.net BRAHIM ABD EL JELIL، مقاول فردي يعمل تحت الاسم التجاري IT-RIM، في نواكشوط (موريتانيا).",
       "تُستخدم المعلومات المرسلة عبر النماذج (الاسم، المؤسسة، الهاتف، البريد الإلكتروني، الرسالة) للرد على طلبكم وإدارة ترخيصكم فقط.",
       "تتم معالجة المدفوعات الإلكترونية عبر Paddle.com، الموزّع الرسمي لنا (Merchant of Record). لا تتلقى IT-RIM أرقام بطاقاتكم البنكية ولا تحتفظ بها أبداً. تعالج Paddle بيانات الدفع وفق سياسة الخصوصية الخاصة بها، المتاحة على paddle.com.",
       "لا تُباع معلوماتكم ولا تُنقل إلى أي طرف ثالث، باستثناء ما يلزم للدفع وتسليم الترخيص.",
       "لأي طلب اطلاع أو تصحيح أو حذف لبياناتكم، راسلونا على contact@it-rim.net.",
     ],
     termsBody: [
-      "الناشر. يُصدر موقع it-rim.net وبرامج IT-RIM BRAHIM ABD EL JELIL، مقاول فردي يعمل تحت الاسم التجاري IT-RIM، نواكشوط، موريتانيا. للتواصل: contact@it-rim.net.",
+      "الناشر. يُصدر موقعي it-rim.net وlogiciels.it-rim.net (المتجر الإلكتروني) وبرامج IT-RIM BRAHIM ABD EL JELIL، مقاول فردي يعمل تحت الاسم التجاري IT-RIM، نواكشوط، موريتانيا. للتواصل: contact@it-rim.net.",
       "الموزّع. تتم معالجة الطلبات الإلكترونية عبر موزّعنا Paddle.com، وهو البائع الرسمي (Merchant of Record) لجميع طلباتنا. تتولى Paddle الدفع والفوترة والضرائب وخدمة العملاء المتعلقة بالدفع وعمليات الاسترداد.",
       "المنتجات. تبيع IT-RIM تراخيص استخدام برامجها لنظام ويندوز. محتوى كل برنامج موضح في صفحته. السعر المعروض هو سعر ترخيص شهري لبرنامج واحد، بالدولار الأمريكي (USD). قد تُضاف ضرائب حسب بلد المشتري، ويُعرض مبلغها قبل الدفع.",
       "الاشتراك. الترخيص اشتراك شهري يتجدد تلقائياً كل شهر بنفس السعر. يمكنكم إلغاؤه في أي وقت عبر الرابط الموجود في إيصال Paddle أو بمراسلة contact@it-rim.net، ويسري الإلغاء عند نهاية الفترة المدفوعة.",
