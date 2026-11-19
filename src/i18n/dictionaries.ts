@@ -238,7 +238,7 @@ const fr = {
       [`Combien de temps dure l'essai de ${name} ?`, `L'essai gratuit dure ${days} jours.`],
       ["Que se passe-t-il à la fin de l'essai ?", "Vous pouvez demander une licence à IT-RIM pour continuer à utiliser l'application."],
       [`Sur quel système fonctionne ${name} ?`, "Sur Windows 10 et Windows 11."],
-      ["Comment obtenir une licence ?", "Achetez-la en ligne sur la page Tarifs (65 $ par mois, paiement sécurisé par Paddle), ou contactez-nous sur WhatsApp pour payer en ouguiyas."],
+      ["Comment obtenir une licence ?", "Achetez-la en ligne sur la page Tarifs (30 € par mois, paiement sécurisé par Paddle), ou contactez-nous sur WhatsApp pour payer en ouguiyas."],
     ],
     ctaQuestion: (name: string) => `Une question sur ${name} ?`,
     trialPage: {
@@ -280,7 +280,7 @@ const fr = {
     termsBody: [
       "Éditeur. Les sites it-rim.net et logiciels.it-rim.net (boutique en ligne) et les logiciels IT-RIM sont édités par BRAHIM ABD EL JELIL, entrepreneur individuel exerçant sous le nom commercial IT-RIM, Nouakchott, Mauritanie. Contact : contact@it-rim.net.",
       "Revendeur. Les commandes en ligne sont traitées par notre revendeur Paddle.com, qui est le vendeur officiel (Merchant of Record) de toutes nos commandes. Paddle gère le paiement, la facturation, les taxes, le service client lié au paiement et les remboursements.",
-      "Produits. IT-RIM vend des licences d'utilisation de ses logiciels pour Windows. Le contenu de chaque logiciel est décrit sur sa fiche produit. Le prix affiché correspond à une licence mensuelle d'un logiciel, en dollars américains (USD). Des taxes peuvent s'ajouter selon le pays de l'acheteur ; leur montant est affiché avant le paiement.",
+      "Produits. IT-RIM vend des licences d'utilisation de ses logiciels pour Windows. Le contenu de chaque logiciel est décrit sur sa fiche produit. Le prix affiché correspond à une licence mensuelle d'un logiciel, en euros (EUR). Des taxes peuvent s'ajouter selon le pays de l'acheteur ; leur montant est affiché avant le paiement.",
       "Abonnement. La licence est un abonnement mensuel, renouvelé automatiquement chaque mois au même prix. Vous pouvez l'annuler à tout moment depuis le lien présent dans votre reçu Paddle ou en écrivant à contact@it-rim.net ; l'annulation prend effet à la fin de la période déjà payée.",
       "Livraison. Après le paiement, vous recevez un reçu de Paddle par email. IT-RIM vous envoie votre clé de licence et le lien d'installation par email ou WhatsApp, au plus tard sous 24 heures ouvrées.",
       "Remboursement. Vous pouvez obtenir un remboursement intégral dans les 14 jours suivant chaque paiement, sans avoir à donner de raison. Voir notre politique de remboursement.",
@@ -299,7 +299,7 @@ const fr = {
   },
   pricing: {
     title: "Tarifs",
-    lead: "Une licence mensuelle par logiciel, payée en dollars, sans engagement. Annulable à tout moment.",
+    lead: "Une licence mensuelle par logiciel, payée en euros, sans engagement. Annulable à tout moment.",
     perMonth: "par mois",
     perLicense: "Licence d'un logiciel, renouvelée chaque mois",
     buy: "Acheter la licence",
@@ -575,7 +575,7 @@ const ar: Dictionary = {
       [`كم تدوم تجربة ${name}؟`, `تدوم التجربة المجانية ${days} يوماً.`],
       ["ماذا يحدث عند انتهاء التجربة؟", "يمكنكم طلب ترخيص من IT-RIM لمواصلة استخدام التطبيق."],
       [`على أي نظام يعمل ${name}؟`, "على ويندوز 10 وويندوز 11."],
-      ["كيف أحصل على ترخيص؟", "اشتروه عبر الإنترنت من صفحة الأسعار (65 دولاراً شهرياً، دفع آمن عبر Paddle)، أو راسلونا على واتساب للدفع بالأوقية."],
+      ["كيف أحصل على ترخيص؟", "اشتروه عبر الإنترنت من صفحة الأسعار (30 يورو شهرياً، دفع آمن عبر Paddle)، أو راسلونا على واتساب للدفع بالأوقية."],
     ],
     ctaQuestion: (name: string) => `لديكم سؤال حول ${name}؟`,
     trialPage: {
@@ -617,7 +617,7 @@ const ar: Dictionary = {
     termsBody: [
       "الناشر. يُصدر موقعي it-rim.net وlogiciels.it-rim.net (المتجر الإلكتروني) وبرامج IT-RIM BRAHIM ABD EL JELIL، مقاول فردي يعمل تحت الاسم التجاري IT-RIM، نواكشوط، موريتانيا. للتواصل: contact@it-rim.net.",
       "الموزّع. تتم معالجة الطلبات الإلكترونية عبر موزّعنا Paddle.com، وهو البائع الرسمي (Merchant of Record) لجميع طلباتنا. تتولى Paddle الدفع والفوترة والضرائب وخدمة العملاء المتعلقة بالدفع وعمليات الاسترداد.",
-      "المنتجات. تبيع IT-RIM تراخيص استخدام برامجها لنظام ويندوز. محتوى كل برنامج موضح في صفحته. السعر المعروض هو سعر ترخيص شهري لبرنامج واحد، بالدولار الأمريكي (USD). قد تُضاف ضرائب حسب بلد المشتري، ويُعرض مبلغها قبل الدفع.",
+      "المنتجات. تبيع IT-RIM تراخيص استخدام برامجها لنظام ويندوز. محتوى كل برنامج موضح في صفحته. السعر المعروض هو سعر ترخيص شهري لبرنامج واحد، باليورو (EUR). قد تُضاف ضرائب حسب بلد المشتري، ويُعرض مبلغها قبل الدفع.",
       "الاشتراك. الترخيص اشتراك شهري يتجدد تلقائياً كل شهر بنفس السعر. يمكنكم إلغاؤه في أي وقت عبر الرابط الموجود في إيصال Paddle أو بمراسلة contact@it-rim.net، ويسري الإلغاء عند نهاية الفترة المدفوعة.",
       "التسليم. بعد الدفع، تصلكم رسالة إيصال من Paddle عبر البريد الإلكتروني، وترسل لكم IT-RIM مفتاح الترخيص ورابط التثبيت عبر البريد الإلكتروني أو واتساب خلال 24 ساعة عمل كحد أقصى.",
       "الاسترداد. يمكنكم استرداد المبلغ كاملاً خلال 14 يوماً من كل عملية دفع، دون الحاجة إلى ذكر السبب. راجعوا سياسة الاسترداد.",
@@ -636,7 +636,7 @@ const ar: Dictionary = {
   },
   pricing: {
     title: "الأسعار",
-    lead: "ترخيص شهري لكل برنامج، يُدفع بالدولار، دون التزام. يمكن إلغاؤه في أي وقت.",
+    lead: "ترخيص شهري لكل برنامج، يُدفع باليورو، دون التزام. يمكن إلغاؤه في أي وقت.",
     perMonth: "شهرياً",
     perLicense: "ترخيص برنامج واحد، يتجدد كل شهر",
     buy: "شراء الترخيص",

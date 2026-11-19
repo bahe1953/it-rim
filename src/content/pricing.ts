@@ -1,11 +1,11 @@
 import { products } from "@/content/products";
 
 /**
- * Vente en ligne en dollars via Paddle (revendeur et « Merchant of Record »).
- * Paddle encaisse le client, prélève sa commission, gère les taxes et verse le reste en USD.
+ * Vente en ligne en euros via Paddle (revendeur et « Merchant of Record »).
+ * Paddle encaisse le client, prélève sa commission, gère les taxes et verse le reste en USD (conversion faite par Paddle).
  *
  * Mise en service :
- * 1. Dans Paddle, créer un produit par logiciel avec un prix récurrent mensuel de 65 USD.
+ * 1. Dans Paddle, créer un produit par logiciel avec un prix récurrent mensuel de 30 EUR.
  * 2. Copier chaque identifiant de prix (pri_…) dans `paddlePriceIds` ci-dessous.
  * 3. Renseigner NEXT_PUBLIC_PADDLE_CLIENT_TOKEN (et NEXT_PUBLIC_PADDLE_ENV=sandbox pour les essais).
  * Tant qu'un identifiant vaut null, le bouton « Acheter » renvoie vers la demande de licence : aucun faux paiement.
@@ -15,8 +15,10 @@ export const billing = {
   legalName: "BRAHIM ABD EL JELIL",
   tradeName: "IT-RIM",
   city: "Nouakchott, Mauritanie",
-  /** Prix d'une licence mensuelle, par logiciel, en USD. */
-  monthlyUsd: 65,
+  /** Prix d'une licence mensuelle, par logiciel. */
+  monthlyPrice: 30,
+  currency: "EUR" as const,
+  currencySymbol: "€",
   /** Délai de remboursement sans condition, en jours (Paddle : 14 à 90). */
   refundDays: 14,
   paddle: {
