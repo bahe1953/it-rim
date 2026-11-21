@@ -34,14 +34,14 @@ export const paddlePriceIds: Record<string, string | null> = {
   waqood: "pri_01m7z5m531cfcjraa183mcaxd0",
   manzeel: "pri_01m7z5zw48fbpzxfzyafad0nba",
   raqib: "pri_01m7z610bny09scn43h3j4jr7n",
-  gestphone: "pri_01m7z628sd8xvjsyhe0pczhyjs",
-  mbourou: "pri_01m7z63at2fze0mp3cmb1r9eh1",
+  gestphone: null, // retiré de la vente en ligne pour l'instant (prix Paddle : pri_01m7z628sd8xvjsyhe0pczhyjs)
+  mbourou: null, // retiré de la vente en ligne pour l'instant (prix Paddle : pri_01m7z63at2fze0mp3cmb1r9eh1)
 };
 
-/** Logiciels proposés à la vente en ligne, dans l'ordre du catalogue. */
-export const sellableProducts = products.filter((p) => p.status === "available" && p.slug in paddlePriceIds);
-
 export const priceIdOf = (slug: string) => paddlePriceIds[slug] ?? null;
+
+/** Logiciels proposés à la vente en ligne, dans l'ordre du catalogue (ceux qui ont un prix Paddle). */
+export const sellableProducts = products.filter((p) => p.status === "available" && Boolean(priceIdOf(p.slug)));
 
 /** Vrai quand le paiement en ligne est prêt pour ce logiciel (jeton + identifiant de prix). */
 export const canBuyOnline = (slug: string) => Boolean(billing.paddle.clientToken && priceIdOf(slug));
