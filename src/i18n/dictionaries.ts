@@ -198,7 +198,7 @@ const fr = {
     req: { os: "Système", cpu: "Processeur", ram: "Mémoire", disk: "Espace disque", network: "Connexion" },
     dl: {
       title: "Télécharger",
-      section: "Essai, téléchargement et guide",
+      section: "Téléchargement et guide",
       version: "Version",
       size: "Taille",
       updated: "Dernière mise à jour",
@@ -535,7 +535,7 @@ const ar: Dictionary = {
     req: { os: "النظام", cpu: "المعالج", ram: "الذاكرة", disk: "مساحة القرص", network: "الاتصال" },
     dl: {
       title: "تحميل",
-      section: "التجربة والتحميل والدليل",
+      section: "التحميل والدليل",
       version: "الإصدار",
       size: "الحجم",
       updated: "آخر تحديث",

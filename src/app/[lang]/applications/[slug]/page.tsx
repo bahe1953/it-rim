@@ -16,7 +16,7 @@ import { DocsCard, DownloadCard, FeatureList, TrialOffer, whatsappFor } from "@/
 import SlideDeck from "@/components/SlideDeck";
 import MouhassibCompare from "@/components/MouhassibCompare";
 import { deckLabels, decks } from "@/content/decks";
-import { billing, paddlePriceIds, priceIdOf } from "@/content/pricing";
+import { billing, priceIdOf } from "@/content/pricing";
 import BuyButton from "@/components/BuyButton";
 
 export const dynamicParams = false;
@@ -44,7 +44,8 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
   const release = releases[p.slug];
   const hasInstaller = Boolean(releaseUrl(release, lang));
   const req = requirements[p.slug];
-  const faq = d.faq(p.name[lang], p.trial.days);
+  // Sans essai, on retire les 2 questions sur l'essai (durée, fin de l'essai).
+  const faq = d.faq(p.name[lang], p.trial.days).slice(p.trial.enabled ? 0 : 2);
   const deck = decks[p.slug];
   const dl = deckLabels[lang];
 
@@ -81,13 +82,13 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
             </div>
             <div className="flex flex-wrap gap-3">
               {hasInstaller ? (
-                <a href="#telechargement" className="btn btn-acc max-sm:flex-[1_1_100%]"><Download />{d.tryDownload}<Arrow /></a>
+                <a href="#telechargement" className="btn btn-acc max-sm:flex-[1_1_100%]"><Download />{p.trial.enabled ? d.tryDownload : d.dl.button}<Arrow /></a>
               ) : p.trial.enabled ? (
                 <Link href={`/${lang}/applications/${p.slug}/essai`} className="btn btn-acc max-sm:flex-[1_1_100%]"><Flask />{d.tryRequest}<Arrow /></Link>
               ) : null}
               {(deck || film) && <a href={deck ? "#diaporama" : "#video"} className="btn btn-w max-sm:flex-[1_1_100%]"><Video size={18} />{d.seePresentation}</a>}
             </div>
-            {p.status === "available" && p.slug in paddlePriceIds && (
+            {p.status === "available" && Boolean(priceIdOf(p.slug)) && (
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-lg font-extrabold" dir="ltr">{billing.monthlyPrice} {billing.currencySymbol} <span className="text-sm font-semibold text-ink-soft" dir="auto">{dict.pricing.perMonth}</span></span>
                 <BuyButton
