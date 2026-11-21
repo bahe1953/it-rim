@@ -105,7 +105,7 @@ La licence peut être achetée en ligne (voir « Vente en ligne avec Paddle ») 
 
 ## Vente en ligne avec Paddle
 
-- Page `/{lang}/tarifs` : une licence mensuelle par logiciel, **30 EUR par mois**, et bouton « Acheter la licence » sur chaque fiche produit.
+- Page `/{lang}/tarifs` : une licence mensuelle par logiciel, **25 USD par mois**, et bouton « Acheter la licence » sur chaque fiche produit.
 - Paddle.com est le revendeur officiel (Merchant of Record) : il encaisse, gère les taxes et les remboursements, puis verse le reste en USD sur le compte bancaire (conversion faite par Paddle).
 - Configuration dans `src/content/pricing.ts` : prix, délai de remboursement (14 jours), nom légal, et un identifiant de prix Paddle (`pri_…`) par logiciel.
 - Variables : `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN` et, pour les essais, `NEXT_PUBLIC_PADDLE_ENV=sandbox`.
