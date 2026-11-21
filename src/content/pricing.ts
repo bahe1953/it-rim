@@ -30,10 +30,10 @@ export const billing = {
 /** Identifiants de prix Paddle (pri_…), un par logiciel. */
 export const paddlePriceIds: Record<string, string | null> = {
   mouhassib: "pri_01m7z5eb70sx3ap12dwemc2zj4",
-  "mouhassib-pro": "pri_01m7z5jrwwn9p2jyccwj72wrb4",
-  waqood: "pri_01m7z5m531cfcjraa183mcaxd0",
-  manzeel: "pri_01m7z5zw48fbpzxfzyafad0nba",
-  raqib: "pri_01m7z610bny09scn43h3j4jr7n",
+  "mouhassib-pro": null, // retiré de la vente en ligne pour l'instant (prix Paddle : pri_01m7z5jrwwn9p2jyccwj72wrb4)
+  waqood: null, // retiré de la vente en ligne pour l'instant (prix Paddle : pri_01m7z5m531cfcjraa183mcaxd0)
+  manzeel: null, // retiré de la vente en ligne pour l'instant (prix Paddle : pri_01m7z5zw48fbpzxfzyafad0nba)
+  raqib: null, // retiré de la vente en ligne pour l'instant (prix Paddle : pri_01m7z610bny09scn43h3j4jr7n)
   gestphone: null, // retiré de la vente en ligne pour l'instant (prix Paddle : pri_01m7z628sd8xvjsyhe0pczhyjs)
   mbourou: null, // retiré de la vente en ligne pour l'instant (prix Paddle : pri_01m7z63at2fze0mp3cmb1r9eh1)
 };
