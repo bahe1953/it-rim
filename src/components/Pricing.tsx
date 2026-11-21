@@ -7,7 +7,7 @@ import BuyButton from "@/components/BuyButton";
 import { Check, ProductIcon, WhatsApp } from "@/components/icons";
 import { SectionHead } from "@/components/sections";
 
-/** Grille des tarifs : un logiciel par carte, prix en euros, bouton d'achat Paddle. Utilisée par /tarifs et la boutique. */
+/** Grille des tarifs : un logiciel par carte, prix en dollars (USD), bouton d'achat Paddle. Utilisée par /tarifs et la boutique. */
 export default function PricingContent({ lang, title, subtitle }: { lang: Locale; title: string; subtitle: string }) {
   const d = getDictionary(lang);
   const t = d.pricing;

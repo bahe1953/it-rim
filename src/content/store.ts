@@ -28,7 +28,7 @@ export const storeText: Record<Locale, {
     nav: { home: "Logiciels", pricing: "Tarifs", contact: "Contact" },
     cta: "Voir les tarifs",
     title: "Logiciels de gestion IT-RIM pour Windows",
-    lead: "Achetez votre licence en ligne : 30 € par mois et par logiciel, sans engagement, annulable à tout moment.",
+    lead: "Achetez votre licence en ligne : 25 $ par mois et par logiciel, sans engagement, annulable à tout moment.",
     contact: {
       title: "Contact",
       lead: "Une question sur un logiciel, une licence ou un paiement ? Écrivez-nous, nous répondons sous 24 heures ouvrées.",
@@ -41,7 +41,7 @@ export const storeText: Record<Locale, {
     nav: { home: "البرامج", pricing: "الأسعار", contact: "اتصل بنا" },
     cta: "عرض الأسعار",
     title: "برامج التسيير من IT-RIM لنظام ويندوز",
-    lead: "اشتروا ترخيصكم عبر الإنترنت: 30 يورو شهرياً لكل برنامج، دون التزام، ويمكن إلغاؤه في أي وقت.",
+    lead: "اشتروا ترخيصكم عبر الإنترنت: 25 دولاراً شهرياً لكل برنامج، دون التزام، ويمكن إلغاؤه في أي وقت.",
     contact: {
       title: "اتصل بنا",
       lead: "لديكم سؤال حول برنامج أو ترخيص أو عملية دفع؟ راسلونا، ونرد خلال 24 ساعة عمل.",
