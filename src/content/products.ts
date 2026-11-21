@@ -73,7 +73,7 @@ export const products: Product[] = [
       fr: ["Commerces de détail et de gros", "PME", "Distributeurs"],
       ar: ["محلات التجزئة والجملة", "المؤسسات الصغيرة والمتوسطة", "الموزعون"],
     },
-    technologies: { fr: ["Application de bureau Windows"], ar: ["تطبيق مكتبي لويندوز"] },
+    technologies: { fr: ["Application de bureau Windows", "Interface en français"], ar: ["تطبيق مكتبي لويندوز", "واجهة باللغة الفرنسية"] },
   },
   {
     slug: "mouhassib-pro",

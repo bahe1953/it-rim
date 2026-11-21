@@ -29,19 +29,14 @@ const empty: Release = { version: null, date: null, sizeMb: null, url: null, sha
 
 export const releases: Record<string, Release> = {
   // Version 1.1.0 publiée le 30/09/2026 (GitHub Releases du dépôt bahe1953/it-rim).
-  // Fichiers vérifiés le 03/10/2026 : installateurs Windows (NSIS), 84 849 074 octets (FR) et 84 848 230 octets (AR).
+  // Fichier vérifié le 03/10/2026 : installateur Windows (NSIS), 84 849 074 octets (FR).
   mouhassib: {
     version: "1.1.0",
     date: "2026-09-30",
     sizeMb: 81,
-    url: {
-      fr: "https://github.com/bahe1953/it-rim/releases/download/mouhassib-fr-v1.1.0/Mouhassib-FR-Setup-1.1.0.exe",
-      ar: "https://github.com/bahe1953/it-rim/releases/download/mouhassib-ar-v1.1.0/Mouhassib-Setup-1.1.0.exe",
-    },
-    sha256: {
-      fr: "093f7db278615151b8cda9898d765bbdb24be71d62bfc0a4965bc121ab183bea",
-      ar: "1190d15d2ea648453717bed04d9a9f2e2166bcc36753270dd313630d2272d973",
-    },
+    // Version arabe abandonnée (21/11/2026) : les deux langues du site proposent l'installateur français.
+    url: "https://github.com/bahe1953/it-rim/releases/download/mouhassib-fr-v1.1.0/Mouhassib-FR-Setup-1.1.0.exe",
+    sha256: "093f7db278615151b8cda9898d765bbdb24be71d62bfc0a4965bc121ab183bea",
   },
   waqood: { ...empty },
   manzeel: { ...empty },
