@@ -5,7 +5,7 @@ import { products } from "@/content/products";
  * Paddle encaisse le client, prélève sa commission, gère les taxes et verse le reste en USD (conversion faite par Paddle).
  *
  * Mise en service :
- * 1. Dans Paddle, créer un produit par logiciel avec un prix récurrent mensuel de 25 USD.
+ * 1. Dans Paddle, créer un produit par logiciel avec un prix récurrent mensuel de 15 USD.
  * 2. Copier chaque identifiant de prix (pri_…) dans `paddlePriceIds` ci-dessous.
  * 3. Renseigner NEXT_PUBLIC_PADDLE_CLIENT_TOKEN (et NEXT_PUBLIC_PADDLE_ENV=sandbox pour les essais).
  * Tant qu'un identifiant vaut null, le bouton « Acheter » renvoie vers la demande de licence : aucun faux paiement.
@@ -16,7 +16,7 @@ export const billing = {
   tradeName: "IT-RIM",
   city: "Nouakchott, Mauritanie",
   /** Prix d'une licence mensuelle, par logiciel. */
-  monthlyPrice: 25,
+  monthlyPrice: 15,
   currency: "USD" as const,
   currencySymbol: "$",
   /** Délai de remboursement sans condition, en jours (Paddle : 14 à 90). */

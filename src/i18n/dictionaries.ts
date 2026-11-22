@@ -238,7 +238,7 @@ const fr = {
       [`Combien de temps dure l'essai de ${name} ?`, `L'essai gratuit dure ${days} jours.`],
       ["Que se passe-t-il à la fin de l'essai ?", "Vous pouvez demander une licence à IT-RIM pour continuer à utiliser l'application."],
       [`Sur quel système fonctionne ${name} ?`, "Sur Windows 10 et Windows 11."],
-      ["Comment obtenir une licence ?", "Achetez-la en ligne sur la page Tarifs (25 $ par mois, paiement sécurisé par Paddle), ou contactez-nous sur WhatsApp pour payer en ouguiyas."],
+      ["Comment obtenir une licence ?", "Achetez-la en ligne sur la page Tarifs (15 $ par mois, paiement sécurisé par Paddle), ou contactez-nous sur WhatsApp pour payer en ouguiyas."],
     ],
     ctaQuestion: (name: string) => `Une question sur ${name} ?`,
     trialPage: {
@@ -575,7 +575,7 @@ const ar: Dictionary = {
       [`كم تدوم تجربة ${name}؟`, `تدوم التجربة المجانية ${days} يوماً.`],
       ["ماذا يحدث عند انتهاء التجربة؟", "يمكنكم طلب ترخيص من IT-RIM لمواصلة استخدام التطبيق."],
       [`على أي نظام يعمل ${name}؟`, "على ويندوز 10 وويندوز 11."],
-      ["كيف أحصل على ترخيص؟", "اشتروه عبر الإنترنت من صفحة الأسعار (25 دولاراً شهرياً، دفع آمن عبر Paddle)، أو راسلونا على واتساب للدفع بالأوقية."],
+      ["كيف أحصل على ترخيص؟", "اشتروه عبر الإنترنت من صفحة الأسعار (15 دولاراً شهرياً، دفع آمن عبر Paddle)، أو راسلونا على واتساب للدفع بالأوقية."],
     ],
     ctaQuestion: (name: string) => `لديكم سؤال حول ${name}؟`,
     trialPage: {
