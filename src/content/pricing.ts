@@ -23,7 +23,8 @@ export const billing = {
   refundDays: 14,
   paddle: {
     environment: process.env.NEXT_PUBLIC_PADDLE_ENV === "sandbox" ? ("sandbox" as const) : ("production" as const),
-    clientToken: process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN ?? null,
+    // Jeton côté client (live_…) : public par nature, il sert seulement à ouvrir le paiement Paddle.js. Jamais de clé pdl_ ici.
+    clientToken: process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN ?? "live_571a292e3f9560a72413bf3f666",
   },
 };
 
