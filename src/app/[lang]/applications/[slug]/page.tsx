@@ -17,6 +17,7 @@ import SlideDeck from "@/components/SlideDeck";
 import MouhassibCompare from "@/components/MouhassibCompare";
 import { deckLabels, decks } from "@/content/decks";
 import { billing, priceIdOf } from "@/content/pricing";
+import { storeHome } from "@/content/store";
 import BuyButton from "@/components/BuyButton";
 
 export const dynamicParams = false;
@@ -43,6 +44,7 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
   const heroImg = screens.length ? { src: screens[0].src, w: 757, h: 500 } : { src: `/images/cards/${p.slug}-${lang}.webp`, w: 1120, h: 630 };
   const release = releases[p.slug];
   const hasInstaller = Boolean(releaseUrl(release, lang));
+  const sellable = p.status === "available" && Boolean(priceIdOf(p.slug));
   const req = requirements[p.slug];
   // Sans essai, on retire les 2 questions sur l'essai (durée, fin de l'essai).
   const faq = d.faq(p.name[lang], p.trial.days).slice(p.trial.enabled ? 0 : 2);
@@ -80,29 +82,34 @@ export default async function ProductPage({ params }: PageProps<"/[lang]/applica
               {p.platforms.map((pl) => <span key={pl} className="chip font-semibold">{pl}</span>)}
               {p.developedBy && <span className="chip font-semibold">{p.developedBy[lang]}</span>}
             </div>
+            {sellable && (
+              <div className="card grid gap-4 p-4 sm:flex sm:items-center sm:justify-between sm:p-5">
+                <div>
+                  <p className="flex items-baseline gap-2" dir="ltr">
+                    <span className="text-4xl font-extrabold">{billing.monthlyPrice} {billing.currencySymbol}</span>
+                    <span className="text-sm font-semibold text-ink-soft" dir="auto">{dict.pricing.perMonth}</span>
+                  </p>
+                  <p className="text-xs text-ink-soft">{storeHome[lang].noCommitment} · {storeHome[lang].refund(billing.refundDays)}</p>
+                </div>
+                <BuyButton
+                  lang={lang}
+                  label={billing.paddle.clientToken ? dict.pricing.buy : dict.pricing.request}
+                  priceId={priceIdOf(p.slug)}
+                  clientToken={billing.paddle.clientToken}
+                  environment={billing.paddle.environment}
+                  fallbackHref={`/${lang}/applications/${p.slug}/licence`}
+                  className="btn btn-acc justify-center px-7"
+                />
+              </div>
+            )}
             <div className="flex flex-wrap gap-3">
               {hasInstaller ? (
-                <a href="#telechargement" className="btn btn-acc max-sm:flex-[1_1_100%]"><Download />{p.trial.enabled ? d.tryDownload : d.dl.button}<Arrow /></a>
+                <a href="#telechargement" className={`btn ${sellable ? "btn-w" : "btn-acc"} max-sm:flex-[1_1_100%]`}><Download />{p.trial.enabled ? d.tryDownload : d.dl.button}<Arrow /></a>
               ) : p.trial.enabled ? (
                 <Link href={`/${lang}/applications/${p.slug}/essai`} className="btn btn-acc max-sm:flex-[1_1_100%]"><Flask />{d.tryRequest}<Arrow /></Link>
               ) : null}
               {(deck || film) && <a href={deck ? "#diaporama" : "#video"} className="btn btn-w max-sm:flex-[1_1_100%]"><Video size={18} />{d.seePresentation}</a>}
             </div>
-            {p.status === "available" && Boolean(priceIdOf(p.slug)) && (
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="text-lg font-extrabold" dir="ltr">{billing.monthlyPrice} {billing.currencySymbol} <span className="text-sm font-semibold text-ink-soft" dir="auto">{dict.pricing.perMonth}</span></span>
-                <BuyButton
-                  lang={lang}
-                  label={priceIdOf(p.slug) && billing.paddle.clientToken ? dict.pricing.buy : dict.pricing.request}
-                  priceId={priceIdOf(p.slug)}
-                  clientToken={billing.paddle.clientToken}
-                  environment={billing.paddle.environment}
-                  fallbackHref={`/${lang}/applications/${p.slug}/licence`}
-                  className="btn btn-w"
-                />
-                <Link href={`/${lang}/tarifs`} className="text-sm font-semibold text-blue hover:underline">{dict.nav.pricing}</Link>
-              </div>
-            )}
           </div>
           <div className="relative">
             <div className="pointer-events-none absolute -inset-[12%] rounded-full bg-[radial-gradient(closest-side,var(--cb),transparent_70%)]" />

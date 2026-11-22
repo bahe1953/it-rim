@@ -54,6 +54,9 @@ export const storeText: Record<Locale, {
 
 type Faq = { q: string; a: string };
 
+/** Logiciels présentés comme « bientôt disponibles » tant qu'ils n'ont pas de prix Paddle actif sur le site. */
+export const comingSoonSlugs = ["mouhassib-pro", "waqood", "manzeel", "raqib"];
+
 /** Textes de l'accueil de la boutique (présentation des logiciels vendus en ligne). */
 export const storeHome: Record<Locale, {
   eyebrow: string;
@@ -69,6 +72,10 @@ export const storeHome: Record<Locale, {
   faqTitle: string;
   faq: (refundDays: number) => Faq[];
   moreQuestions: string;
+  soonTitle: string;
+  soonLead: string;
+  soonBadge: string;
+  soonCta: string;
 }> = {
   fr: {
     eyebrow: "Logiciel de gestion pour Windows",
@@ -95,6 +102,10 @@ export const storeHome: Record<Locale, {
       { q: "Quel ordinateur faut-il ?", a: "Un PC sous Windows 10 ou Windows 11. Le logiciel fonctionne sans connexion Internet une fois activé." },
     ],
     moreQuestions: "Une autre question ?",
+    soonTitle: "Bientôt disponibles en ligne",
+    soonLead: "Nos autres logiciels de gestion arrivent prochainement dans la boutique.",
+    soonBadge: "Bientôt",
+    soonCta: "Être prévenu sur WhatsApp",
   },
   ar: {
     eyebrow: "برنامج تسيير لنظام ويندوز",
@@ -121,5 +132,9 @@ export const storeHome: Record<Locale, {
       { q: "ما هو الجهاز المطلوب؟", a: "حاسوب يعمل بنظام ويندوز 10 أو ويندوز 11. يعمل البرنامج دون اتصال بالإنترنت بعد تفعيله." },
     ],
     moreQuestions: "لديكم سؤال آخر؟",
+    soonTitle: "قريباً عبر الإنترنت",
+    soonLead: "برامج التسيير الأخرى قادمة قريباً إلى المتجر.",
+    soonBadge: "قريباً",
+    soonCta: "أعلموني عبر واتساب",
   },
 };
