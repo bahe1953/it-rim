@@ -28,15 +28,15 @@ export type Requirements = {
 const empty: Release = { version: null, date: null, sizeMb: null, url: null, sha256: null };
 
 export const releases: Record<string, Release> = {
-  // Version 1.1.0 publiée le 30/09/2026 (GitHub Releases du dépôt bahe1953/it-rim).
-  // Fichier vérifié le 03/10/2026 : installateur Windows (NSIS), 84 849 074 octets (FR).
+  // Version 1.2.0 compilée le 22/11/2026 par GitHub (dépôt Mouhassib-FRA), publiée dans les Releases de bahe1953/it-rim.
+  // Fichier vérifié le 22/11/2026 : installateur Windows (NSIS) 1.2.0, sans essai automatique, 84 848 048 octets (FR).
   mouhassib: {
-    version: "1.1.0",
-    date: "2026-09-30",
+    version: "1.2.0",
+    date: "2026-11-22",
     sizeMb: 81,
     // Version arabe abandonnée (21/11/2026) : les deux langues du site proposent l'installateur français.
-    url: "https://github.com/bahe1953/it-rim/releases/download/mouhassib-fr-v1.1.0/Mouhassib-FR-Setup-1.1.0.exe",
-    sha256: "093f7db278615151b8cda9898d765bbdb24be71d62bfc0a4965bc121ab183bea",
+    url: "https://github.com/bahe1953/it-rim/releases/download/mouhassib-fr-v1.2.0/Mouhassib-FR-Setup-1.2.0.exe",
+    sha256: "e0165e3f1dab9f95ef4c2ea271dd648a80b3dd195658fa934d85f7324dbb9b75",
   },
   waqood: { ...empty },
   manzeel: { ...empty },
