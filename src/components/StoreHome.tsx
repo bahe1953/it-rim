@@ -5,6 +5,7 @@ import { site } from "@/content/site";
 import { billing, priceIdOf, sellableProducts } from "@/content/pricing";
 import { storeHome } from "@/content/store";
 import BuyButton from "@/components/BuyButton";
+import { ComingSoon } from "@/components/Pricing";
 import { Check, Clock, Download, Mail, ProductIcon, Shield, WhatsApp, Windows } from "@/components/icons";
 
 /**
@@ -142,6 +143,8 @@ export default function StoreHome({ lang }: { lang: Locale }) {
           </div>
         </div>
       </section>
+
+      <ComingSoon lang={lang} links={false} />
 
       <section className="bg-canvas py-16">
         <div className="wrap grid max-w-3xl gap-6">

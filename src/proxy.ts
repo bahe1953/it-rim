@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, hasLocale, type Locale } from "@/i18n/config";
 import { isStoreHost, storePaths } from "@/content/store";
+import { priceIdOf } from "@/content/pricing";
 
 /** Choisit la langue : cookie de préférence, puis en-tête Accept-Language, sinon français. */
 function pickLocale(request: NextRequest): Locale {
@@ -39,7 +40,9 @@ export function proxy(request: NextRequest) {
   if (!store) return;
 
   // Boutique : seuls les logiciels, les tarifs, les pages légales et le contact ; le reste mène à l'accueil.
-  if (!storePaths.test(pathname)) {
+  // Fiche d'un logiciel qui n'est pas vendu en ligne : retour à l'accueil de la boutique plutôt qu'une page introuvable.
+  const app = pathname.match(/^\/(?:fr|ar)\/applications\/([a-z0-9-]+)/);
+  if (!storePaths.test(pathname) || (app && !priceIdOf(app[1]))) {
     const url = request.nextUrl.clone();
     url.pathname = `/${first}`;
     return NextResponse.redirect(url, 307);
